@@ -1,0 +1,16 @@
+<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" routerLinkActive="active" [routerLink]="['/dashboard']">{{getTitle()}}</a>
+  
+    <!-- User -->
+    <ul class="navbar-nav align-items-center d-none d-md-flex">
+      <li class="nav-item">
+        <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/login']">
+          <i class="ni ni-key-25"></i>
+          <span class="nav-link-inner--text">Login</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,67 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+        <!-- Card stats -->
+        <div class="row">
+          <div class="col">
+          <div class="card shadow">
+            <div class="col-md-6">
+              <br>
+                <label>Tanggal</label>
+                <input type="date" class="form-control form-control-alternative" [(ngModel)]="updt.tanggal">            
+            </div>
+            <div class="col-md-6">
+              <br>
+                <label>Waktu</label>
+                <input type="time" class="form-control form-control-alternative" [(ngModel)]="updt.jam">            
+            </div>
+            <div class="col-md-12">
+            <br>
+            <button type="button" class="btn btn-default" (click)="updateTopik(updt)">Submit</button>
+            </div>
+          </div>
+          </div>
+        </div>
+</div>
+<!-- Content -->
+<!-- <div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">Materi</th>
+                          <th scope="col">End Date</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let file of dataMateri">
+                          <td>{{ file.judul_materi }}</td>
+                          <td>{{ file.endDate }}</td>
+                          <td>
+                            <button class="btn btn-primary" type="button" (click)="gets(file)">Actived</button>
+                            <button class="btn btn-primary" type="button" (click)="gets(file)">Deactived</button>
+                            <button class="btn btn-primary" type="button" (click)="gets(file)">Download</button>
+                            <button class="btn btn-primary" type="button" (click)="deleteFile(file.id)">Delete</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

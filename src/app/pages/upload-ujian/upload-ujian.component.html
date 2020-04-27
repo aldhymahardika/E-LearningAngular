@@ -1,0 +1,116 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+        <!-- Card stats -->
+        <div class="row">
+            <div class="col-md-6">
+                <label>Nama File</label>
+                <input type="text" class="form-control form-control-alternative" id="judul" [(ngModel)]="ujian.judul_file">
+            </div>
+            <div class="col-md-6">
+              <label>Judul Tugas</label>
+              <input type="text" class="form-control form-control-alternative" id="judul" [(ngModel)]="ujian.judul_tugas">
+            </div>
+            <!-- <div class="col-md-4">
+              <br>
+              <label>Pilih Hari</label>
+              <p-dropdown class="form-control form-control-alternative" placeholder="Pilih Hari" [options]="hari" [(ngModel)]="setHari" optionLabel="label" [showClear]="true" [disabled]="exampleFlag"></p-dropdown>
+            </div> -->
+            <div class="col-md-4">
+              <br>
+              <label>Pilih Materi</label>
+              <p-dropdown class="form-control form-control-alternative" placeholder="Pilih Materi" [options]="cities2" [(ngModel)]="selectedCity1" optionLabel="name" [showClear]="true" (ngModelChange)="getKelasList(selectedCity1)"></p-dropdown>
+            </div>
+            <div class="col-md-4">
+              <br>
+              <label>Pilih Kelas</label>
+              <p-dropdown class="form-control form-control-alternative" placeholder="Pilih Kelas" [options]="kelas" [(ngModel)]="setKelas" optionLabel="nama_kelas" [showClear]="true"></p-dropdown>
+            </div>
+            <div class="col-md-6">
+              <br>
+                <label>Start Date</label>
+                <input type="date" class="form-control form-control-alternative" id="start-date" [(ngModel)]="ujian.start_date" required pattern="\d{2}-\d{2}-\d{4}">            
+            </div>
+            <div class="col-md-6">
+              <br>
+                <label>End Date</label> 
+                <input type="date" class="form-control form-control-alternative" id="end-date" [(ngModel)]="ujian.end_date" required pattern="\d{2}-\d{2}-\d{4}">
+            </div>
+            <div class="col-md-4">
+              <br>
+              <label>Waktu Mulai</label>
+              <input type="time" class="form-control form-control-alternative" [(ngModel)]="ujian.startTime">
+            </div>
+            <div class="col-md-4">
+              <br>
+              <label>Waktu Selesai</label>
+              <input type="time" class="form-control form-control-alternative" [(ngModel)]="ujian.endTime">
+            </div>
+            <div class="col-md-4">
+              <br>
+              <label>Pilih Jenis Ujian :</label>
+                <div class="custom-control custom-radio mb-3">
+                  <p-radioButton  value="TUGAS" label="Quiz" [(ngModel)]="ujian.jenis" inputId="TUGAS" (click)=localClick(2)></p-radioButton>
+                    <!-- <label class="custom-control-label" for="customRadio5">Quiz</label> -->
+                </div>
+                <div class="custom-control custom-radio mb-3">
+                  <p-radioButton  value="UJIAN" label="Ujian" [(ngModel)]="ujian.jenis" inputId="UJIAN" (click)=localClick(1)></p-radioButton>
+                    <!-- <input name="custom-radio-2" class="custom-control-input" id="ujian"   type="radio" >
+                    <label class="custom-control-label" for="customRadio5">Ujian</label> -->
+                </div>    
+            </div>
+            
+            <div class="col-md-12">
+                <label>File</label>
+                <input type="file" class="form-control form-control-alternative" id="upload" (change)="selectFile($event)" [(ngModel)]="ujian.file">
+            </div>
+            <div class="col-md-12">
+            <br>
+            <button type="button" class="btn btn-default" (click)="uploadUjian()">Upload</button>
+            </div>
+            <div class="col-md-12">
+            </div> 
+        </div>
+</div>
+<!-- Content -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">Materi</th>
+                          <th scope="col">End Date</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let file of dataMateri">
+                          <td>{{ file.judul_materi }}</td>
+                          <td>{{ file.endDate }}</td>
+                          <td>
+                            <button class="btn btn-primary" type="button" (click)="gets(file)">Actived</button>
+                            <button class="btn btn-primary" type="button" (click)="gets(file)">Deactived</button>
+                            <button class="btn btn-primary" type="button" (click)="gets(file)">Download</button>
+                            <button class="btn btn-primary" type="button" (click)="deleteFile(file.id)">Delete</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

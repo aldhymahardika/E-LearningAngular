@@ -1,0 +1,35 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+      <div class="row">
+        <div class="col-lg-7 col-md-10">
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+          <!-- Card stats -->
+          <div class="row">
+            <div class="col">
+            <div class="card shadow">
+              <div class="col-md-12">
+                <label>Judul Tugas</label>
+                <input type="text" class="form-control form-control-alternative" id="judul" [(ngModel)]="ujian.judul_file">
+              </div>
+              <div class="col-md-12">
+                  <label>File</label>
+                  <input type="file" class="form-control form-control-alternative" id="upload" (change)="selectFile($event)" [(ngModel)]="ujian.file">
+              </div>
+              <div class="col-md-12">
+              <br>
+              <button type="button" class="btn btn-default" (click)="getUpdateDetail(ujian)">Upload</button>
+              </div>
+              <div class="col-md-12">
+              </div>
+              </div>
+            </div> 
+  </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; ">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <!-- <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Hello Jesse</h1>
+        <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+        <a href="#!" class="btn btn-info">Edit profile</a>
+      </div>
+    </div> -->
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Info Peserta</h3>
+            </div>
+            <div class="col-4 text-right">
+              <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Username</label>
+                    <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="lucky.jesse">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- List Upload -->
+            <hr class="my-4" />
+            <h6 class="heading-small text-muted mb-4">List Upload</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">Hari</th>
+                          <th scope="col">Jenis</th>
+                          <th scope="col">Nama File</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let data of details">
+                        <tr>
+                          <td>{{ data.hari }}</td>
+                          <td>{{ data.jenis }}</td>
+                          <td>{{ data.file_name }}</td>
+                          <td class="text-center">
+                            <button type="button" class="btn btn-primary">Download</button>
+                            <button type="button" class="btn btn-primary" (click)="updateNilai(data)">Input Nilai</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            <!-- Scores -->
+            <hr class="my-4" />
+            <h6 class="heading-small text-muted mb-4">Scores</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Jenis</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Jenis" type="text" [(ngModel)]="dataNilai.jenis" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Nilai Utama</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Nilai Utama" type="number" [(ngModel)]="dataNilai.nilaiUtama" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Nilai Kehadiran</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Nilai Kehadiran" type="number" [(ngModel)]="dataNilai.nilaiKehadiran" [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <button type="button" class="btn btn-primary btn-lg btn-block" (click)="updateNilai(dataNilai)">Submit Nilai</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Description -->
+            <!-- <h6 class="heading-small text-muted mb-4">About me</h6>
+            <div class="pl-lg-4">
+              <div class="form-group">
+                <label>About Me</label>
+                <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+              </div>
+            </div> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

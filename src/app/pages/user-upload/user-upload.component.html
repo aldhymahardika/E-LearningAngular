@@ -1,0 +1,64 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+          <div class="col">
+              <div class="card shadow">
+                <p-tabView>
+                  <p-tabPanel header="Materi" leftIcon="pi pi-calendar">
+                    <div class="table-responsive">
+                      <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Materi</th>
+                            <th scope="col">End Date</th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let file of dataMateri">
+                            <td>{{ file.judul_materi }}</td>
+                            <td>{{ file.endDate }}</td>
+                            <td class="text-center">
+                              <button class="btn btn-icon btn-3 btn-primary" type="button">
+                                  <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
+                                  <span class="btn-inner--text" (click)="gets(file)">Download</span>
+                                </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </p-tabPanel>
+                  <p-tabPanel header="Forum" leftIcon="pi pi-inbox">
+                    <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize"></textarea>
+                  </p-tabPanel>
+              </p-tabView>
+              </div>
+          </div>
+      </div>
+      </div>
+    </div>
+  </div>
+<div class="container-fluid mt--7">
+    
+</div>
+
+<!-- <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+         Card stats 
+        <div class="row">
+            <div class="col-md-12">
+                <label>File</label>
+                <input type="file" class="form-control form-control-alternative" id="upload" (change)="selectFile($event)" [(ngModel)]="jawab.file">
+            </div>
+            <div class="col-md-12">
+              <br>
+              <button type="button" class="btn btn-default" (click)="upload()">Upload</button>
+            </div>
+        </div>
+      </div>
+    </div>
+</div> -->

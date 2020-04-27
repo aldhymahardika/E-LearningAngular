@@ -1,0 +1,45 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+    <!-- Mask -->
+    <span class="mask bg-gradient-danger opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+      <div class="row">
+        <div class="col-lg-7 col-md-10">
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+          <!-- Card stats -->
+          <div class="row">
+            <div class="col">
+            <div class="card shadow">
+              <div class="col-md-6">
+                <br>
+                  <label>Start Date</label>
+                  <input type="date" class="form-control form-control-alternative" [(ngModel)]="data.start_date" required pattern="\d{2}-\d{2}-\d{4}">            
+              </div>
+              <div class="col-md-6">
+                <br>
+                  <label>End Date</label>
+                  <input type="date" class="form-control form-control-alternative" [(ngModel)]="data.end_date" required pattern="\d{2}-\d{2}-\d{4}">            
+              </div>
+              <div class="col-md-6">
+                <br>
+                  <label>Start Time</label>
+                  <input type="time" class="form-control form-control-alternative" [(ngModel)]="data.startTime">            
+              </div>
+              <div class="col-md-6">
+                <br>
+                  <label>End Time</label>
+                  <input type="time" class="form-control form-control-alternative" [(ngModel)]="data.endTime">            
+              </div>
+              <div class="col-md-12">
+              <br>
+              <button type="button" class="btn btn-default" (click)="getUpdateQuiz(data)">Submit</button>
+              </div>
+            </div>
+            </div>
+          </div>
+  </div>

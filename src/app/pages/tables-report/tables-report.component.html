@@ -1,0 +1,86 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        
+      </div>
+    </div>
+</div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <p-tabView>
+        <p-tabPanel header="Materi" leftIcon="pi pi-calendar">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Table Materi</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Hari</th>
+                  <th scope="col">Topic</th>
+                  <th scope="col">Waktu</th>
+                  <th scope="col">Tanggal</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of dataFile">
+                  <td>{{data.hari}}</td>
+                  <td>{{data.topic}}</td>
+                  <td>{{data.waktu}}</td>
+                  <td>{{data.tanggal}}</td>                  
+                  <td class="text-center">
+                    <button type="button" class="btn btn-primary" (click)="getUpdateMateri(data.id)">Update</button>
+                    <button type="button" class="btn btn-primary" (click)="getDeleteMateri(data.id)">Delete</button>
+                    <button type="button" class="btn btn-primary" (click)="getDetailMateri(data.id)">Info</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </p-tabPanel>
+        <p-tabPanel header="Quiz" leftIcon="pi pi-calendar">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <h3 class="mb-0">Table Quiz & Ujian</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Jenis</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Start Time</th>
+                    <th scope="col">End Time</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of dataUjian">
+                    <td>{{data.jenis}}</td>
+                    <td>{{data.startDate}}</td>
+                    <td>{{data.endDate}}</td>
+                    <td>{{data.startTime}}</td>
+                    <td>{{data.endTime}}</td>
+                    <td class="text-center">
+                      <button type="button" class="btn btn-primary" (click)="getUpdateUjian(data.header_id)">Update</button>
+                      <button type="button" class="btn btn-primary" (click)="getDeleteSoal(data.header_id)">Delete</button>
+                      <button type="button" class="btn btn-primary" (click)="getDetailMateri(data.header_id)">Info</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+    </div>
+  </div>
