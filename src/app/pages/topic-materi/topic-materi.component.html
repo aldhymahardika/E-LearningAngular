@@ -11,6 +11,8 @@
     <div class="row">
         <div class="col-xl-12 order-xl-1">
         <div class="card bg-secondary shadow">
+          <p-tabView>
+            <p-tabPanel header="Materi" leftIcon="pi pi-calendar">
           <div class="card-header bg-white border-0">
             <div class="row align-items-center">
               <div class="col-8">
@@ -300,6 +302,31 @@
               </div>
             </form>
           </div>
+          </p-tabPanel>
+          <p-tabPanel header="Nilai Kelas" leftIcon="pi pi-calendar">
+            <div class="card shadow">
+              <div class="card-header border-0">
+                <h3 class="mb-0">Card tables</h3>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Nama</th>
+                      <th scope="col">Nilai Akhir</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let kel of kelas">
+                    <tr>
+                      <td>{{ kel.name }}</td>
+                      <td>{{ kel.nilai_akhir }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </p-tabPanel>
+          </p-tabView>
         </div>
       </div>
     </div>

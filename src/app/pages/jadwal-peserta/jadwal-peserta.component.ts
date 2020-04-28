@@ -12,8 +12,12 @@ import { query } from '@angular/animations';
 export class JadwalPesertaComponent implements OnInit {
   
   jadwal:any[]
+  dataScore:any[]
+  dataKuis:any[]
   constructor(private uploadService: AppService, private storageService: StorageService, private route: ActivatedRoute, private router: Router) {
-    this.getJadwalUser()    
+    this.getJadwalUser()
+    this.getDetailScore()
+    this.getJadwalKuis()
    }
 
   ngOnInit(): void {
@@ -37,6 +41,38 @@ export class JadwalPesertaComponent implements OnInit {
     this.route.queryParams
     .subscribe(params=>{
     this.router.navigate(['/user-score'], {queryParams: {mpId:params.id, uId:uId}})
+    })
+  }
+
+  getDetailKelas(){
+    this.route.queryParams
+    .subscribe(params=>{
+      this.router.navigate(['/user-class'], {queryParams: {kId: params.id}})
+    })
+  }
+
+  getDetailScore(){
+    let uId='1'
+    this.route.queryParams
+    .subscribe(params=>{
+      this.uploadService.getDetailScore(uId, params.id).subscribe(data=>{
+        this.dataScore=data
+        console.log(data);
+        console.log(params);
+        
+      })
+    })
+  }
+
+  getJadwalKuis(){
+    let uId='1'
+    this.route.queryParams
+    .subscribe(params=>{
+      this.uploadService.getJadwalKuis(uId, params.id).subscribe(data=>{
+        this.dataKuis=data
+        console.log(data);
+        
+      })
     })
   }
 

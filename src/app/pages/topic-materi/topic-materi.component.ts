@@ -18,13 +18,16 @@ export class TopicMateriComponent implements OnInit {
     this.getTopic()
     this.getQuiz()
     this.getTask()
+    // this.getDetailScore()
+    this.getDetailKelass()
   }
 
   // dataMateri : Hari[];
   topics: Topic[];
   quizs: Quiz[];
   ujians: Quiz[];
-
+  kelas:any[];
+  dataScore:any[]
   ngOnInit(): void {
 
   }
@@ -98,4 +101,15 @@ export class TopicMateriComponent implements OnInit {
       })
     })
   }
+
+  getDetailKelass(){
+    this.route.queryParams
+    .subscribe(params=>{
+      this.uploadService.getDetailScoreKelas(params.kId).subscribe(data=>{
+        this.kelas=data
+        console.log(data);
+      })
+    })
+  }
+
 }

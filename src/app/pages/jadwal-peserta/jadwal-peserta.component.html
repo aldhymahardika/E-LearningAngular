@@ -11,44 +11,35 @@
     <div class="row">
         <div class="col-xl-12 order-xl-1">
         <div class="card bg-secondary shadow">
+          <p-tabView>
+            <p-tabPanel header="Jadwal" leftIcon="pi pi-calendar">
           <div class="card-header bg-white border-0">
             <div class="row align-items-center">
-              <div class="col-8">
-                <h3 class="mb-0">Info Peserta</h3>
-              </div>
-              <div class="col-4 text-right">
-                <button type="button" class="btn btn-sm btn-primary" (click)="getDetail()">Enrol Me</button>
+              <div class="col-12">
+                <h3 class="mb-0">Info Jadwal</h3>
               </div>
             </div>
           </div>
           <div class="card-body">
             <form>
               <h2 class="heading-large text-muted mb-4">Ujian</h2>
-                  <div class="pl-lg-4" *ngFor="let ujian of ujians">
-                    <div class="row">
-                      <div class="col-lg-3">
+                  <div class="pl-lg-4" *ngFor="let ujian of dataKuis">
+                    <div class="row" *ngIf="ujian.jenis === 'UJIAN'">
+                      <div class="col-lg-4">
                         <div class="form-group">
-                          <h5 class="heading-large">{{ ujian.jenis }}</h5>
+                          <h5 class="heading-large">Tanggal : {{ ujian.tanggal }}</h5>
                         </div>
                       </div>
-                      <div class="col-lg-3">
+                      <div class="col-lg-4">
                         <div class="form-group">
-                          <h5 class="heading-large">Start : {{ ujian.start_time }}</h5>
+                          <h5 class="heading-large">Waktu Mulai : {{ ujian.waktu_mulai }}</h5>
                         </div>
                       </div>
-                      <div class="col-lg-3">
+                      <div class="col-lg-4">
                         <div class="form-group">
-                          <h5 class="heading-large">End : {{ ujian.end_time }}</h5>
+                          <h5 class="heading-large">Waktu Selesai : {{ ujian.waktu_selesai }}</h5>
                         </div>
                       </div>
-                      <div class="col-lg-3">
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-sm" type="button">
-                                <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
-                                <span class="btn-inner--text" (click)="getUjian(ujian.header_soal_id)">Materi</span>
-                              </button>
-                        </div>
-                     </div>
                     </div>
                     </div>
               <hr class="my-4">
@@ -58,7 +49,12 @@
                 <div class="row" *ngIf="top.hari === 'MONDAY'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>
+                      <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Topic : {{ top.topic }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -66,42 +62,26 @@
                       <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
                     </div>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-sm" type="button">
-                            <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
-                            <span class="btn-inner--text" (click)="getMateri(top.headerid)">Materi</span>
-                          </button>
-                    </div>
-                  </div>
                 </div>
               </div>
               <h2 class="heading-large text-muted mb-4">Quiz</h2>
-                <div class="pl-lg-4" *ngFor="let kuis of jadwal">
-                  <div class="row" *ngIf="kuis.day === 'MONDAY'">
-                    <div class="col-lg-3">
+                <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
+                  <div class="row" *ngIf="kuis.hari === 'MONDAY'">
+                    <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">TOPIC : {{ kuis.jenis }}</h5>
+                        <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
                       </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">End : {{ kuis.end_date }}</h5>
+                        <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
                       </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">Waktu : {{ kuis.jam }}</h5>
+                        <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
                       </div>
                     </div>
-                    <div class="col-lg-3">
-                      <div class="form-group">
-                          <button class="btn btn-primary btn-sm" type="button">
-                              <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
-                              <span class="btn-inner--text" (click)="getSoal(kuis.header_soal_id)">Materi</span>
-                            </button>
-                      </div>
-                   </div>
                   </div>
                   </div>
             </div>
@@ -112,7 +92,12 @@
                 <div class="row" *ngIf="top.hari === 'TUESDAY'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>
+                      <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Topic : {{ top.topic }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -120,37 +105,26 @@
                       <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
                     </div>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-sm" type="button">
-                            <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
-                            <span class="btn-inner--text" (click)="getMateri(top.headerid)">Materi</span>
-                          </button>
-                    </div>
-                 </div>
                 </div>
                 </div>
                 <h2 class="heading-large text-muted mb-4">Quiz</h2>
-                <div class="pl-lg-4" *ngFor="let kuis of jadwal">
-                  <div class="row" *ngIf="kuis.day === 'TUESDAY'">
+                <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
+                  <div class="row" *ngIf="kuis.hari === 'TUESDAY'">
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">TOPIC : {{ kuis.jenis }}</h5>
+                        <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">Waktu : {{ kuis.jam }}</h5>
+                        <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                          <button class="btn btn-primary btn-sm" type="button">
-                              <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
-                              <span class="btn-inner--text" (click)="getSoal(kuis.header_soal_id)">Materi</span>
-                            </button>
+                        <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
                       </div>
-                   </div>
+                    </div>
                   </div>
                   </div>
               </div>
@@ -161,7 +135,12 @@
                 <div class="row" *ngIf="top.hari === 'WEDNESDAY'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>
+                      <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Topic : {{ top.topic }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -169,39 +148,28 @@
                       <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
                     </div>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-sm" type="button">
-                            <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
-                            <span class="btn-inner--text" (click)="getMateri(top.headerid)">Materi</span>
-                          </button>
-                    </div>
-                 </div>
                 </div>
               </div>
               <h2 class="heading-large text-muted mb-4">Quiz</h2>
-              <div class="pl-lg-4" *ngFor="let kuis of jadwal">
-                <div class="row" *ngIf="kuis.day === 'WEDNESDAY'">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">TOPIC : {{ kuis.jenis }}</h5> 
+                <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
+                  <div class="row" *ngIf="kuis.hari === 'WEDNESDAY'">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Waktu : {{ kuis.jam }}</h5>
-                    </div>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-sm" type="button">
-                            <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
-                            <span class="btn-inner--text" (click)="getSoal(kuis.header_soal_id)">Materi</span>
-                          </button>
-                    </div>
-                 </div>
-                </div>
-                </div>
                 </div>
               <hr class="my-4" />
               <div>              
@@ -210,7 +178,12 @@
                 <div class="row" *ngIf="top.hari === 'THURSDAY'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>
+                      <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Topic : {{ top.topic }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -218,37 +191,26 @@
                       <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
                     </div>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-sm" type="button">
-                            <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
-                            <span class="btn-inner--text" (click)="getMateri(top.headerid)">Materi</span>
-                          </button>
-                    </div>
-                  </div>
                 </div>
               </div>
               <h2 class="heading-large text-muted mb-4">Quiz</h2>
-                <div class="pl-lg-4" *ngFor="let kuis of jadwal">
-                  <div class="row" *ngIf="kuis.day === 'THURSDAY'">
+                <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
+                  <div class="row" *ngIf="kuis.hari === 'THURSDAY'">
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">TOPIC : {{ kuis.jenis }}</h5>
+                        <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">Waktu : {{ kuis.jam }}</h5>
+                        <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                          <button class="btn btn-primary btn-sm" type="button">
-                              <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
-                              <span class="btn-inner--text" (click)="getSoal(kuis.header_soal_id)">Materi</span>
-                            </button>
+                        <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
                       </div>
-                   </div>
+                    </div>
                   </div>
                   </div>
               </div>
@@ -259,7 +221,12 @@
                 <div class="row" *ngIf="top.hari === 'FRIDAY'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>
+                      <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Topic : {{ top.topic }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -267,42 +234,58 @@
                       <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
                     </div>
                   </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-sm" type="button">
-                            <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
-                            <span class="btn-inner--text" (click)="getMateri(top.headerid)">Materi</span>
-                          </button>
-                    </div>
-                 </div>
                 </div>
               </div>
               <h2 class="heading-large text-muted mb-4">Quiz</h2>
-                <div class="pl-lg-4" *ngFor="let kuis of jadwal">
-                  <div class="row" *ngIf="kuis.day === 'FRIDAY'">
+                <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
+                  <div class="row" *ngIf="kuis.hari === 'FRIDAY'">
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">TOPIC : {{ kuis.jenis }}</h5>
+                        <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">Waktu : {{ kuis.jam }}</h5>
+                        <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                          <button class="btn btn-primary btn-sm" type="button">
-                              <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
-                              <span class="btn-inner--text" (click)="getSoal(kuis.header_soal_id)">Materi</span>
-                            </button>
+                        <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
                       </div>
-                   </div>
+                    </div>
                   </div>
                   </div>
               </div>
             </form>
           </div>
+          </p-tabPanel>
+          <p-tabPanel header="Nilai" leftIcon="pi pi-calendar">
+            <div class="card shadow">
+              <div class="card-header border-0">
+                <h3 class="mb-0">Card tables</h3>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Tanggal</th>
+                      <th scope="col">Jenis</th>
+                      <th scope="col">Nilai</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let nil of dataScore">
+                    <tr>
+                      <td>{{ nil.date }}</td>
+                      <td>{{ nil.jenis }}</td>
+                      <td>{{ nil.nilai }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </p-tabPanel>
+          </p-tabView>
         </div>
       </div>
     </div>

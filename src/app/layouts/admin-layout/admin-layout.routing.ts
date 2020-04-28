@@ -40,6 +40,7 @@ import { KelasComponent } from 'src/app/pages/kelas/kelas.component';
 import { ReportInputComponent } from 'src/app/pages/report-input/report-input.component';
 import { JadwalPesertaComponent } from 'src/app/pages/jadwal-peserta/jadwal-peserta.component';
 import { KelasUserComponent } from 'src/app/pages/kelas-user/kelas-user.component';
+import { UserClassComponent } from 'src/app/pages/user-class/user-class.component';
 // import { Component } from '@angular/core';
 
 export const AdminLayoutRoutes: Routes = [
@@ -89,5 +90,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'absen',              component: AbsenComponent},
     { path: 'kelas-user',         component: KelasUserComponent },
     { path: 'user-score',         component: UserScoreComponent },
+    { path: 'user-class',         component: UserClassComponent},
     
 ];

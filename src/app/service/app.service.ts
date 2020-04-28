@@ -16,7 +16,7 @@ import { Nilai } from '../layouts/model/nilai';
 })
 export class AppService {
 
-  private baseUrl = 'http://7b586237.ngrok.io'
+  private baseUrl = 'http://3be11e59.ngrok.io'
 
   constructor(private http: HttpClient) { }
   
@@ -302,6 +302,10 @@ export class AppService {
     return this.http.get<any[]>(this.baseUrl+ "/user/jadwal?kId="+kId + "&uId="+uId)
   }
 
+  getJadwalKuis(uId:string, mpId:string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+"/user/jadwal-test?uId="+uId+ "&mpId="+mpId)
+  }
+
   getKelasUser(uId:string): Observable<any[]>{
     return this.http.get<any[]>(this.baseUrl+ "/user/kelas?uId=" + uId)
   }
@@ -314,5 +318,8 @@ export class AppService {
     return this.http.get<any[]>(this.baseUrl+ "/user/nilai?uId="+ uId +"&mpId=" + mpId) 
   }
 
+  getDetailScoreKelas(mpId : string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/show/class-nilai?mpId=" + mpId)
+  }
 
 }
