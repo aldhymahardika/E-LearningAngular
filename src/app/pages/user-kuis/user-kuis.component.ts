@@ -5,6 +5,7 @@ import { Ujian } from 'src/app/layouts/model/ujian';
 import { FileUser } from 'src/app/layouts/model/file-user';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/layouts/model/users';
+import { Forum } from 'src/app/layouts/model/forum';
 
 @Component({
   selector: 'app-user-kuis',
@@ -25,10 +26,13 @@ export class UserKuisComponent implements OnInit {
   // name:string
   dataKuis : Ujian[];
   jawab = new FileUser();
-
+  forums:any[]
+  forum = new Forum()
+  
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
     this.jawab.user = new User()
     this.getAllKuis()
+    this.getForum()
    }
 
   ngOnInit(): void {
@@ -83,6 +87,27 @@ export class UserKuisComponent implements OnInit {
           }) 
         // this.selectedFiles = undefined;
     })
+  }
+
+  setForum(){
+    let uId='1'
+    this.route.queryParams
+    .subscribe(params=>{
+      this.uploadService.setForumKuis(params.hId, this.forum.isiPesan, uId).subscribe(data=>{
+        this.forum=data
+      })
+    })
+  }
+
+  getForum(){
+    this.route.queryParams
+    .subscribe(params=>{
+    this.uploadService.getForumKuis(params.hId).subscribe(data=>{
+      this.forums=data
+      console.log(data);
+      
+    })
+  })
   }
 
 }

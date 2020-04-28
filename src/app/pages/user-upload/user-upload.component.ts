@@ -7,6 +7,7 @@ import { FileUser } from 'src/app/layouts/model/file-user';
 import { Category } from 'src/app/layouts/model/category';
 import { Pengajar } from 'src/app/layouts/model/pengajar';
 import { User } from 'src/app/layouts/model/users';
+import { Forum } from 'src/app/layouts/model/forum';
 
 @Component({
   selector: 'app-user-upload',
@@ -25,13 +26,15 @@ export class UserUploadComponent implements OnInit {
   fileUrl;
   // materi: Category;
   jawab = new FileUser()
+  forum = new Forum()
+  forums:any[]
 
-  
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) { 
     // this.jawab.materi=new Category()
     this.jawab.user= new User()
     // this.jawab.pengajar=new Pengajar() 
     this.getALlMateri()
+    this.getForum()
   }
   
   ngOnInit(): void {
@@ -122,4 +125,36 @@ export class UserUploadComponent implements OnInit {
   //     // this.selectedFiles = undefined;
   // // })
   // }
+
+  setForum(){
+    this.route.queryParams
+    .subscribe(params=>{
+      let uId ='1'
+      this.forum.isiPesan
+      let ser = this.uploadService.setForum(params.hId, this.forum.isiPesan, uId );
+      ser.subscribe(data=>{
+        this.forum.isiPesan=""
+        this.loadForum(params.hId)
+      })
+      // this.getALlMateri()
+      // this.getForum()
+    })
+  }
+
+  getForum(){
+    this.route.queryParams
+    .subscribe(params=>{
+      this.uploadService.getForum(params.hId).subscribe(data=>{
+        this.forums=data
+        console.log(data);
+        
+      })
+    })
+  }
+
+  loadForum(hId:string){
+    this.uploadService.getForum(hId).subscribe(data=>{
+      this.forums=data
+    })
+  }
 }

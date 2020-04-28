@@ -10,13 +10,14 @@ import { Ujian } from '../layouts/model/ujian';
 import { Kelas } from '../layouts/model/kelas';
 import { Quiz } from '../layouts/model/quiz'; 
 import { Nilai } from '../layouts/model/nilai';
+import { Forum } from '../layouts/model/forum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  private baseUrl = 'http://3be11e59.ngrok.io'
+  private baseUrl = 'http://6dae5db2.ngrok.io'
 
   constructor(private http: HttpClient) { }
   
@@ -322,4 +323,19 @@ export class AppService {
     return this.http.get<any[]>(this.baseUrl+ "/show/class-nilai?mpId=" + mpId)
   }
 
+  setForum(topic:string, isiPesan:string, sender:string):Observable<Forum>{
+    return this.http.post<Forum>(this.baseUrl+"/send/chat?topic="+topic +"&isiPesan="+isiPesan+ "&sender="+sender, {})
+  }
+
+  getForum(topic: string):Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+"/get/chat?topic="+topic)
+  }
+
+  setForumKuis(topic:string, isiPesan:string, sender:string): Observable<Forum>{
+    return this.http.post<Forum>(this.baseUrl+"/send/chat-soal?topic="+topic +"&isiPesan="+isiPesan+ "&sender="+sender, {})
+  }
+
+  getForumKuis(topic:string): Observable<Forum[]>{
+    return this.http.get<Forum[]>(this.baseUrl+"/get/chat-soal?topic="+topic)
+  }
 }

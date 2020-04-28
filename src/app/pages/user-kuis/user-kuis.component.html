@@ -32,7 +32,32 @@
                     </div>
                   </p-tabPanel>
                   <p-tabPanel header="Forum" leftIcon="pi pi-inbox">
-                    <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize"></textarea>                  </p-tabPanel>
+                    <div class="comment-wrapper">
+                      <div class="panel panel-info">
+                        <div class="panel-body">
+                    <textarea rows="5" cols="130" pInputTextarea [(ngModel)]="forum.isiPesan" (keydown.enter)="setForum()"></textarea>
+                    <hr>
+                    <div class="clearfix"></div>
+                    <ul class="media-list" *ngFor="let forum of forums">
+                        <li class="media" >
+                          <!-- <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                            <i>A</i>
+                          </div>   -->
+                          <div class="media-body">
+                                <span class="text-muted pull-right">
+                                    <small class="text-muted">{{forum.send_Date}}</small>
+                                </span>
+                                <strong class="text-success">{{forum.sender}}</strong>
+                                <p>
+                                    {{forum.isi_Chat}}
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    </div>
+                  </div>
+                  </div>
+                </p-tabPanel>
               </p-tabView>
               </div>
           </div>
