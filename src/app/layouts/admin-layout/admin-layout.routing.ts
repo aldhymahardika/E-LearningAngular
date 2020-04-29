@@ -41,6 +41,7 @@ import { ReportInputComponent } from 'src/app/pages/report-input/report-input.co
 import { JadwalPesertaComponent } from 'src/app/pages/jadwal-peserta/jadwal-peserta.component';
 import { KelasUserComponent } from 'src/app/pages/kelas-user/kelas-user.component';
 import { UserClassComponent } from 'src/app/pages/user-class/user-class.component';
+import { ListUjianComponent } from 'src/app/pages/list-ujian/list-ujian.component';
 // import { Component } from '@angular/core';
 
 export const AdminLayoutRoutes: Routes = [
@@ -68,6 +69,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'materi-pengajar',    component: MateriPengajarComponent },
     { path: 'list-materi',        component: ListMateriComponent },
     { path: 'list-file',          component: ListFileComponent },
+    { path: 'list-ujian',         component: ListUjianComponent },
     { path: 'detail-materi',      component: DetailMateriComponent },
     { path: 'detail-file',        component: DetailFileComponent },
     { path: 'detail-ujian',       component: DetailUjianComponent },

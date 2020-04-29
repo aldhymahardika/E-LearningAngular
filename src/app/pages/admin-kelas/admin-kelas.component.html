@@ -26,13 +26,13 @@
                       <div class="col-md-8">
                         <div class="form-group">
                           <label class="form-control-label" for="input-address">Kelas</label>
-                          <input id="input-materi" class="form-control form-control-alternative" placeholder="Masukkan Kelas" type="text">
+                          <input id="input-materi" class="form-control form-control-alternative" placeholder="Masukkan Kelas" type="text" [(ngModel)]="kelas.namaKelas" [ngModelOptions]="{standalone: true}">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                             <br>
-                            <button type="button" class="btn btn-primary">Input</button>
+                            <button type="button" class="btn btn-primary" (click)="setKelas()">Input</button>
                         </div>
                       </div>
                     </div>

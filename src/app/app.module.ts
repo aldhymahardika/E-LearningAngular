@@ -58,6 +58,7 @@ import { KelasComponent } from './pages/kelas/kelas.component';
 import { KelasUserComponent } from './pages/kelas-user/kelas-user.component';
 import { JadwalPesertaComponent } from './pages/jadwal-peserta/jadwal-peserta.component';
 import { UserClassComponent } from './pages/user-class/user-class.component';
+import { ListUjianComponent } from './pages/list-ujian/list-ujian.component';
 
 @NgModule({
   imports: [
@@ -117,7 +118,8 @@ import { UserClassComponent } from './pages/user-class/user-class.component';
     KelasComponent,
     KelasUserComponent,
     JadwalPesertaComponent,
-    UserClassComponent
+    UserClassComponent,
+    ListUjianComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

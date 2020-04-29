@@ -10,6 +10,7 @@ import { Ujian } from 'src/app/layouts/model/ujian';
 import { Pengajar } from 'src/app/layouts/model/pengajar';
 import { Kelas } from 'src/app/layouts/model/kelas';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Message } from 'primeng/api/message';
 
 @Component({
   selector: 'app-upload-ujian',
@@ -39,6 +40,8 @@ export class UploadUjianComponent implements OnInit {
   kelas: Kelas[];
   show : boolean
   exampleFlag=false;
+  msgs: Message[] = [];
+  isupdated = false; 
   
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) { 
     this.ujian.category=new Category()
@@ -104,6 +107,7 @@ export class UploadUjianComponent implements OnInit {
         console.log(this.ujian)
         this.uploadService.uploadUjian(this.ujian).subscribe(
         event => {
+          this.showSuccess()
       //     if (event.type === HttpEventType.UploadProgress) {
       //       this.progress = Math.round(100 * event.loaded / event.total);
       //     } else if (event instanceof HttpResponse) {
@@ -147,5 +151,15 @@ export class UploadUjianComponent implements OnInit {
     else{
     this.exampleFlag=false;
     }
+  }
+
+  showSuccess() {
+    this.msgs = [];
+    this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+  }
+
+  showError() {
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
   }
 }

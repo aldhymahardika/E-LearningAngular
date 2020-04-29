@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/service/app.service';
+import { AdminKelas } from 'src/app/layouts/model/admin-kelas';
 
 @Component({
   selector: 'app-admin-kelas',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminKelasComponent implements OnInit {
 
-  constructor() { }
+  kelas= new AdminKelas()
+  msg:string
+  constructor(private adminService: AppService) {
+    this.getKelas()
+   }
 
   ngOnInit(): void {
   }
 
+  setKelas(){
+    this.adminService.setKelas(this.kelas).subscribe(data=>{
+      this.msg=data
+    })
+  }
+
+  getKelas(){
+    this.adminService.getKelasAdmin().subscribe(data=>{
+      console.log(data);
+      
+    })
+  }
 }

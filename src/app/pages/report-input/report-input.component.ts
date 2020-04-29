@@ -13,8 +13,10 @@ export class ReportInputComponent implements OnInit {
   details:any[]
   exampleFlag=false;
   msg:string
+  dataScore:any[]
   constructor(private uploadService: AppService, private route: ActivatedRoute, private router: Router) { 
     this.getDetailUser();
+    this.getDetailScore()
   }
 
   ngOnInit(): void {
@@ -23,6 +25,8 @@ export class ReportInputComponent implements OnInit {
   getDetailUser(){
     this.route.queryParams
     .subscribe(params=>{
+      console.log(params);
+      
       this.uploadService.getDetailUser(params.kId, params.uId).subscribe(data=>{
         this.details=data
         console.log(data);
@@ -53,5 +57,27 @@ export class ReportInputComponent implements OnInit {
     else{
     this.exampleFlag=false;
     }
+  }
+
+  downloadFileUser(datas){
+    this.route.queryParams
+    .subscribe(params => {
+   let resp = this.uploadService.downloadFileUser(datas).subscribe((data) => 
+   { const url= window.URL.createObjectURL(data)
+   window.open(url) 
+   })
+  }) 
+  }
+
+  getDetailScore(){
+    this.route.queryParams
+    .subscribe(params=>{
+      this.uploadService.getDetailScore(params.uId, params.kId).subscribe(data=>{
+        this.dataScore=data
+        console.log(data);
+        console.log(params);
+        
+      })
+    })
   }
 }

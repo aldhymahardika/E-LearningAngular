@@ -17,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AccordionModule} from 'primeng/accordion';
 import {DropdownModule} from 'primeng/dropdown';
 import {TabViewModule} from 'primeng/tabview';
+import {ToastModule} from 'primeng/toast';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -30,7 +31,8 @@ import {TabViewModule} from 'primeng/tabview';
     ClipboardModule,
     AccordionModule,
     DropdownModule,
-    TabViewModule
+    TabViewModule,
+    ToastModule
   ],
   declarations: [
     DashboardComponent,

@@ -103,15 +103,23 @@ export class UploadMateriComponent implements OnInit {
         //   console.log(event)
           this.isupdated=true;
           // this.message=event
-          this.showSuccess()
+          // if(event instanceof HttpResponse){
+
+          // }
+          if(event == true){
+            this.showSuccess()
+          }else if(event == false){
+            this.showError()
+          }
+
           // this.message='Upload Berhasil'
           // this.message=event
           // console.log(this.tanggal.judulMateri);
           // console.log(this.tanggal);
           // if (event.type === HttpEventType.UploadProgress) {
           //   this.progress = Math.round(100 * event.loaded / event.total);
-            // if (event instanceof HttpResponse) {
-            // this.message = event.body.message;
+          //   if (event instanceof HttpResponse) {
+          //   this.message = event.body.message;
           // this.fileInfos = this.uploadService.getFiles();
           // }
         },
@@ -159,7 +167,7 @@ export class UploadMateriComponent implements OnInit {
   // }
 
   getMateriList(){
-    let pId = '1'
+    let pId = '96108f94-3dbe-4187-b858-cc066124eb9c'
     this.uploadService.getMateriPengajar(pId).subscribe(data=>{
       this.cities2=data
       // this.getKelasList()
@@ -168,7 +176,7 @@ export class UploadMateriComponent implements OnInit {
   }
 
   getKelasList(selectedCity1){
-    let pId = '1'
+    let pId = '96108f94-3dbe-4187-b858-cc066124eb9c'
     // this.materi.category.id=this.selectedCity1.id;
     this.uploadService.getKelasPengajar(selectedCity1.id, pId).subscribe(data=>{
       this.kelas=data

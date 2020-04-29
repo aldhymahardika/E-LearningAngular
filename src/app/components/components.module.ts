@@ -6,13 +6,15 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AccordionModule} from 'primeng/accordion';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     NgbModule,
-    AccordionModule
+    AccordionModule,
+    ToastModule
   ],
   declarations: [
     FooterComponent,

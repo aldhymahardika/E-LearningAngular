@@ -17,7 +17,7 @@ import { Forum } from '../layouts/model/forum';
 })
 export class AppService {
 
-  private baseUrl = 'http://6dae5db2.ngrok.io'
+  private baseUrl = 'http://23535e25.ngrok.io'
 
   constructor(private http: HttpClient) { }
   
@@ -64,6 +64,10 @@ export class AppService {
   downloadUjianUser(datas){
     console.log(datas);
     return this.http.get(this.baseUrl+"/materi/find?headerfile=" + datas.file_id, {responseType: 'blob'});
+  }
+
+  downloadFileUser(datas){
+    return this.http.get(this.baseUrl+"/file-user/download?id="+ datas.id_file, {responseType: 'blob'})
   }
 
   //download file user
@@ -184,7 +188,7 @@ export class AppService {
   }
 
   //upload materi pengajar
-  upload(materi : Materi): Observable<string> {
+  upload(materi : Materi): Observable<boolean> {
     const formData: FormData = new FormData();
     formData.append('topic', materi.topic);
     formData.append('waktu', materi.jam);
@@ -194,7 +198,7 @@ export class AppService {
     formData.append('kId', materi.kelas.kelas_id); 
     // formData.append('hari', materi.hari);
     console.log(materi)
-    return this.http.post<string>(this.baseUrl+`/file-materi/upload`, formData, {
+    return this.http.post<boolean>(this.baseUrl+`/file-materi/upload`, formData, {
       responseType: 'json'
     })
   }
@@ -323,6 +327,7 @@ export class AppService {
     return this.http.get<any[]>(this.baseUrl+ "/show/class-nilai?mpId=" + mpId)
   }
 
+  //----------------------- FORUM -------------------------------
   setForum(topic:string, isiPesan:string, sender:string):Observable<Forum>{
     return this.http.post<Forum>(this.baseUrl+"/send/chat?topic="+topic +"&isiPesan="+isiPesan+ "&sender="+sender, {})
   }
@@ -338,4 +343,38 @@ export class AppService {
   getForumKuis(topic:string): Observable<Forum[]>{
     return this.http.get<Forum[]>(this.baseUrl+"/get/chat-soal?topic="+topic)
   }
+  //-------------------------------------------------------------
+
+  //----------------------- ADMIN -------------------------------
+  //----------------------- Materi -------------------------------
+  setMateri(materi): Observable<string>{
+    return this.http.post<string>(this.baseUrl+ "/materi/insert", materi)
+  }
+
+  getMateri(): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+"/materi/show")
+  }
+  //-------------------------------------------------------------
+
+  //----------------------- Kelas -------------------------------
+  setKelas(kelas):Observable<string>{
+    return this.http.post<string>(this.baseUrl+"/kelas-pengajar/insert", kelas)
+  }
+
+  getKelasAdmin(): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+"/kelas-pengajar/findall")
+  }
+
+  getKelasList(): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/kelas/view-kelas")
+  }
+  //-------------------------------------------------------------
+
+  //----------------------- Kelas -------------------------------
+  setPengajar(materiPengajars): Observable<boolean>{
+    console.log(JSON.stringify(materiPengajars));
+    
+    return this.http.post<boolean>(this.baseUrl+"/mp/insert", materiPengajars)
+  }
+
 }
