@@ -10,6 +10,8 @@ import { Pengajar } from 'src/app/layouts/model/pengajar';
 import { Hari } from 'src/app/layouts/model/hari';
 import { Kelas } from 'src/app/layouts/model/kelas';
 import { Message } from 'primeng/api/message';
+import { StorageService } from 'src/app/service/storage.service';
+import { Login } from 'src/app/layouts/model/login';
 
 
 @Component({
@@ -40,8 +42,9 @@ export class UploadMateriComponent implements OnInit {
   kelas: Kelas[];
   msgs: Message[] = [];
   isupdated = false; 
-
-  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
+  login = new Login()
+  
+  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) {
     this.materi.category=new Category()
     this.materi.pengajar=new Pengajar()
     this.materi.kelas= new Kelas()
@@ -167,8 +170,9 @@ export class UploadMateriComponent implements OnInit {
   // }
 
   getMateriList(){
-    let pId = 'e8a0a6dd-342b-4a4d-9241-b8b8b3fd8939'
-    this.uploadService.getMateriPengajar(pId).subscribe(data=>{
+    this.login = this.sessionService.getId()
+    console.log(this.login);
+    this.uploadService.getMateriPengajar(this.login.idUser).subscribe(data=>{
       this.cities2=data
       // this.getKelasList()
       console.log(data);
@@ -176,9 +180,9 @@ export class UploadMateriComponent implements OnInit {
   }
 
   getKelasList(selectedCity1){
-    let pId = 'e8a0a6dd-342b-4a4d-9241-b8b8b3fd8939'
-    // this.materi.category.id=this.selectedCity1.id;
-    this.uploadService.getKelasPengajar(selectedCity1.id, pId).subscribe(data=>{
+    this.login = this.sessionService.getId()
+    console.log(this.login);
+    this.uploadService.getKelasPengajar(selectedCity1.id, this.login.idUser).subscribe(data=>{
       this.kelas=data
       console.log(data)
     });

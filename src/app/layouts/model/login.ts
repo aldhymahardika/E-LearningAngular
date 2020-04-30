@@ -1,5 +1,6 @@
 export class Login{
-
+    idUser:string
+    nama:string
     id : string
     username : string
     email : string

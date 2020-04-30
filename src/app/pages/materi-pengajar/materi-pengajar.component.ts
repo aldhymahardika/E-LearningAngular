@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { StorageService } from 'src/app/service/storage.service';
 import { AppService } from 'src/app/service/app.service';
 import { Materi } from 'src/app/layouts/model/materi';
+import { Login } from 'src/app/layouts/model/login';
 
 @Component({
   selector: 'app-materi-pengajar',
@@ -12,16 +13,17 @@ import { Materi } from 'src/app/layouts/model/materi';
 export class MateriPengajarComponent implements OnInit {
 
   dataKelas: any[];
-
-  constructor(private uploadService: AppService, private storageService: StorageService, private route: ActivatedRoute,private router: Router) { 
+  login = new Login()
+  constructor(private sessionService: StorageService, private uploadService: AppService, private storageService: StorageService, private route: ActivatedRoute,private router: Router) { 
     this.getListKelasMateri()
   }
 
   ngOnInit(): void {
   }
   getListKelasMateri(){
-    let pId = 'e8a0a6dd-342b-4a4d-9241-b8b8b3fd8939'
-    this.uploadService.getListKelasMateri(pId).subscribe(data=>{
+    this.login = this.sessionService.getId()
+    console.log(this.login);
+    this.uploadService.getListKelasMateri(this.login.idUser).subscribe(data=>{
       this.dataKelas=data
       console.log(data);
       

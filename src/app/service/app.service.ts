@@ -15,9 +15,10 @@ import { Forum } from '../layouts/model/forum';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AppService {
 
-  private baseUrl = 'http://localhost:8080'
+  private baseUrl = 'http://b3c80481.ngrok.io' 
 
   constructor(private http: HttpClient) { }
   

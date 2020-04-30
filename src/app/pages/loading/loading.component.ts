@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 import { Category } from 'src/app/layouts/model/category';
+import { StorageService } from 'src/app/service/storage.service';
+import { Login } from 'src/app/layouts/model/login';
 
 @Component({
   selector: 'app-loading',
@@ -12,7 +14,9 @@ export class LoadingComponent implements OnInit {
 
   kondisi : boolean
   cId : Category;
-  constructor(private route: Router, private router: ActivatedRoute, private uploadService : AppService) { 
+  login = new Login()
+
+  constructor(private sessionService: StorageService, private route: Router, private router: ActivatedRoute, private uploadService : AppService) { 
     this.router.queryParams
     .subscribe(params => {
       if(params.comp == 'tables'){
@@ -40,32 +44,34 @@ export class LoadingComponent implements OnInit {
   getEnrol(kId:string, jamid:string){
     // console.log('dawda');
     // let idMateri='1'
-    let userId='1'
+    this.login = this.sessionService.getId()
+    console.log(this.login);
     // let pengajarId= '1'
     this.router.queryParams
     .subscribe(params => {
       console.log(params);
-    this.uploadService.getEnrol(userId, params.kId).subscribe(data=>{
+    this.uploadService.getEnrol(this.login.idUser, params.kId).subscribe(data=>{
       // console.log(data);
       this.kondisi=data
       // console.log(this.kondisi);
       if(this.kondisi==true){
-        this.route.navigate(['/enrol'], {queryParams: {id:params.id, kId:params.kId, jamid:params.jamid}})
+        this.route.navigate(['/enrol'], {queryParams: {id:this.login.idUser, kId:params.kId, jamid:params.jamid}})
       }else{
-        this.route.navigate(['/topic-materi'], {queryParams: {id:params.id, kId:params.kId, jamid:params.jamid}})
+        this.route.navigate(['/topic-materi'], {queryParams: {id:this.login.idUser, kId:params.kId, jamid:params.jamid}})
       }
     })
   })
   }
 
   getAbsen(){
-    let userId='1'
+    this.login = this.sessionService.getId()
+    console.log(this.login);
     this.router.queryParams
     .subscribe(params=>{
-      this.uploadService.getAbsen(userId, params.kId).subscribe(data=>{
+      this.uploadService.getAbsen(this.login.idUser, params.kId).subscribe(data=>{
         this.kondisi=data
         if(this.kondisi==false){
-          this.route.navigate(['/absen'], {queryParams: {comp: params.comp, userId: userId, kId:params.kId, hId:params.hId}})
+          this.route.navigate(['/absen'], {queryParams: {comp: params.comp, userId: this.login.idUser, kId:params.kId, hId:params.hId}})
         }else {
           if(params.comp == 'materi'){
             this.route.navigate(['/user-upload'], {queryParams: {hId: params.hId, kId:params.kId}});

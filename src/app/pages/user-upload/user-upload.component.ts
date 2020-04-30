@@ -8,6 +8,8 @@ import { Category } from 'src/app/layouts/model/category';
 import { Pengajar } from 'src/app/layouts/model/pengajar';
 import { User } from 'src/app/layouts/model/users';
 import { Forum } from 'src/app/layouts/model/forum';
+import { StorageService } from 'src/app/service/storage.service';
+import { Login } from 'src/app/layouts/model/login';
 
 @Component({
   selector: 'app-user-upload',
@@ -28,8 +30,9 @@ export class UserUploadComponent implements OnInit {
   jawab = new FileUser()
   forum = new Forum()
   forums:any[]
+  login = new Login()
 
-  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) { 
+  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) { 
     // this.jawab.materi=new Category()
     this.jawab.user= new User()
     // this.jawab.pengajar=new Pengajar() 
@@ -129,9 +132,9 @@ export class UserUploadComponent implements OnInit {
   setForum(){
     this.route.queryParams
     .subscribe(params=>{
-      let uId ='1'
+      this.login = this.sessionService.getId()
       this.forum.isiPesan
-      let ser = this.uploadService.setForum(params.hId, this.forum.isiPesan, uId );
+      let ser = this.uploadService.setForum(params.hId, this.forum.isiPesan, this.login.idUser );
       ser.subscribe(data=>{
         this.forum.isiPesan=""
         this.loadForum(params.hId)

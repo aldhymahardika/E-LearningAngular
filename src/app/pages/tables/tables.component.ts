@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/layouts/model/category';
 import { Pengajar } from 'src/app/layouts/model/pengajar';
 import { AppService } from 'src/app/service/app.service';
+import { StorageService } from 'src/app/service/storage.service';
+import { Login } from 'src/app/layouts/model/login';
 
 @Component({
   selector: 'app-tables',
@@ -14,8 +16,8 @@ export class TablesComponent implements OnInit {
   kondisi : boolean
   cId : Category;
   dataPengajar: Pengajar[];
-
-  constructor(private route: Router, private router: ActivatedRoute, private uploadService : AppService) {
+  login = new Login()
+  constructor(private sessionService: StorageService, private route: Router, private router: ActivatedRoute, private uploadService : AppService) {
     
     this.getPengajar()
    }
@@ -29,13 +31,12 @@ export class TablesComponent implements OnInit {
   }
 
   getTopic(kId:string, jam:string) {
-    this.router.queryParams
-    .subscribe(params => {
-    this.route.navigate(['/loading'], {queryParams: {comp: 'tables', id:params.id, kId:kId, jamid: jam}});
-  });
+    this.login = this.sessionService.getId() 
+    console.log(this.login);
+    this.route.navigate(['/loading'], {queryParams: {comp: 'tables', id:this.login.idUser, kId:kId, jamid: jam}});
   }
 
-  getPengajar(){
+  getPengajar(){    
     this.router.queryParams
     .subscribe(params => {
       console.log(params); 

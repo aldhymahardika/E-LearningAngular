@@ -199,13 +199,6 @@ export const AdminLayoutRoutes: Routes = [
         expectedRole : 'ROLE_PENGAJAR'
         }
     },
-    { path: 'jadwal-peserta',     component: JadwalPesertaComponent 
-    ,
-    canActivate : [AuthGuard],
-    data : {
-        expectedRole : 'ROLE_PENGAJAR'
-        }
-    },
     // { path: 'upload-update',   component: UploadUpdateComponent},
 
     //path peserta
@@ -286,6 +279,13 @@ export const AdminLayoutRoutes: Routes = [
     data : {
         expectedRole : 'ROLE_USER'
         } 
+    },
+    { path: 'jadwal-peserta',     component: JadwalPesertaComponent 
+    ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        }
     },
     
 ];

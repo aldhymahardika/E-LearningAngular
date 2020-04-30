@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Forum } from 'src/app/layouts/model/forum';
+import { StorageService } from 'src/app/service/storage.service';
+import { Login } from 'src/app/layouts/model/login';
 
 @Component({
   selector: 'app-list-file',
@@ -14,8 +16,9 @@ export class ListFileComponent implements OnInit {
   dataUjian:any[]
   forum = new Forum()
   forums:any[]
-  
-  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
+  login = new Login()
+
+  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) {
     this.getListMateri()
     // this.getDetailUjian()
     this.getForum()
@@ -97,9 +100,9 @@ export class ListFileComponent implements OnInit {
   setForum(){
     this.route.queryParams
     .subscribe(params=>{
-      let uId ='3'
+      this.login = this.sessionService.getId()
       this.forum.isiPesan
-      let ser = this.uploadService.setForum(params.idFile, this.forum.isiPesan, uId );
+      let ser = this.uploadService.setForum(params.idFile, this.forum.isiPesan, this.login.idUser );
       ser.subscribe(data=>{
         this.forum.isiPesan=""
         this.loadForum(params.hId)

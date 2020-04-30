@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
+import { StorageService } from 'src/app/service/storage.service';
+import { Login } from 'src/app/layouts/model/login';
 
 @Component({
   selector: 'app-absen',
@@ -8,10 +10,10 @@ import { AppService } from 'src/app/service/app.service';
   styleUrls: ['./absen.component.css']
 })
 export class AbsenComponent implements OnInit {
-  
+  login = new Login()
   kondisi:boolean
 
-  constructor(private route: Router, private uploadService: AppService, private router: ActivatedRoute) { }
+  constructor(private route: Router, private uploadService: AppService, private router: ActivatedRoute, private sessionService: StorageService) { }
 
   ngOnInit(): void {
   }
@@ -35,10 +37,10 @@ export class AbsenComponent implements OnInit {
   }
 
   setAbsen(){
-    let idUser='1'
+    this.login = this.sessionService.getId()
     this.router.queryParams
     .subscribe(params => {
-    this.uploadService.setAbsen(idUser, params.kId).subscribe(data=>{
+    this.uploadService.setAbsen(this.login.idUser, params.kId).subscribe(data=>{
     })
   })
   }

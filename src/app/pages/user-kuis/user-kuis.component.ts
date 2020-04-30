@@ -6,6 +6,8 @@ import { FileUser } from 'src/app/layouts/model/file-user';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/layouts/model/users';
 import { Forum } from 'src/app/layouts/model/forum';
+import { StorageService } from 'src/app/service/storage.service';
+import { Login } from 'src/app/layouts/model/login';
 
 @Component({
   selector: 'app-user-kuis',
@@ -28,8 +30,9 @@ export class UserKuisComponent implements OnInit {
   jawab = new FileUser();
   forums:any[]
   forum = new Forum()
-  
-  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
+  login = new Login()
+
+  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) {
     this.jawab.user = new User()
     this.getAllKuis()
     this.getForum()
@@ -90,10 +93,10 @@ export class UserKuisComponent implements OnInit {
   }
 
   setForum(){
-    let uId='1'
+    this.login = this.sessionService.getId()
     this.route.queryParams
     .subscribe(params=>{
-      this.uploadService.setForumKuis(params.hId, this.forum.isiPesan, uId).subscribe(data=>{
+      this.uploadService.setForumKuis(params.hId, this.forum.isiPesan, this.login.idUser).subscribe(data=>{
         this.forum=data
       })
     })

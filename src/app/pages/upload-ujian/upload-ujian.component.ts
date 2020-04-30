@@ -11,6 +11,8 @@ import { Pengajar } from 'src/app/layouts/model/pengajar';
 import { Kelas } from 'src/app/layouts/model/kelas';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Message } from 'primeng/api/message';
+import { StorageService } from 'src/app/service/storage.service';
+import { Login } from 'src/app/layouts/model/login';
 
 @Component({
   selector: 'app-upload-ujian',
@@ -42,8 +44,9 @@ export class UploadUjianComponent implements OnInit {
   exampleFlag=false;
   msgs: Message[] = [];
   isupdated = false; 
-  
-  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) { 
+  login = new Login()
+
+  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) { 
     this.ujian.category=new Category()
     this.ujian.pengajar=new Pengajar()
     this.ujian.kelas=new Kelas()
@@ -128,17 +131,17 @@ export class UploadUjianComponent implements OnInit {
   }
 
   getMateriList(){
-    let pId = '1'
-    this.uploadService.getMateriPengajar(pId).subscribe(data=>{
+    this.login = this.sessionService.getId()
+    this.uploadService.getMateriPengajar(this.login.idUser).subscribe(data=>{
       this.cities2=data
       console.log(data);
     });
   }
 
   getKelasList(selectedCity1){
-    let pId = '1'
+    this.login = this.sessionService.getId()
     // this.materi.category.id=this.selectedCity1.id;
-    this.uploadService.getKelasPengajar(selectedCity1.id, pId).subscribe(data=>{
+    this.uploadService.getKelasPengajar(selectedCity1.id, this.login.idUser).subscribe(data=>{
       this.kelas=data
       console.log(data)
     });

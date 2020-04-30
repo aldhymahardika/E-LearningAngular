@@ -3,6 +3,7 @@ import { AppService } from 'src/app/service/app.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { query } from '@angular/animations';
+import { Login } from 'src/app/layouts/model/login';
 
 @Component({
   selector: 'app-jadwal-peserta',
@@ -14,7 +15,8 @@ export class JadwalPesertaComponent implements OnInit {
   jadwal:any[]
   dataScore:any[]
   dataKuis:any[]
-  constructor(private uploadService: AppService, private storageService: StorageService, private route: ActivatedRoute, private router: Router) {
+  login = new Login()
+  constructor(private sessionService: StorageService,private uploadService: AppService, private storageService: StorageService, private route: ActivatedRoute, private router: Router) {
     this.getJadwalUser()
     this.getDetailScore()
     this.getJadwalKuis()
@@ -24,10 +26,10 @@ export class JadwalPesertaComponent implements OnInit {
   }
 
   getJadwalUser(){
-    let uId='1'
+    this.login = this.sessionService.getId()
     this.route.queryParams
     .subscribe(params=>{
-    this.uploadService.getJadwalUser(params.id, uId).subscribe(data=>{
+    this.uploadService.getJadwalUser(params.id, this.login.idUser).subscribe(data=>{
       this.jadwal=data
       console.log(data);
       console.log(params);
@@ -37,10 +39,10 @@ export class JadwalPesertaComponent implements OnInit {
   }
 
   getDetail(){
-    let uId='1'
+    this.login = this.sessionService.getId()
     this.route.queryParams
     .subscribe(params=>{
-    this.router.navigate(['/user-score'], {queryParams: {mpId:params.id, uId:uId}})
+    this.router.navigate(['/user-score'], {queryParams: {mpId:params.id, uId:this.login.idUser}})
     })
   }
 
@@ -52,10 +54,10 @@ export class JadwalPesertaComponent implements OnInit {
   }
 
   getDetailScore(){
-    let uId='1'
+    this.login = this.sessionService.getId()
     this.route.queryParams
     .subscribe(params=>{
-      this.uploadService.getDetailScore(uId, params.id).subscribe(data=>{
+      this.uploadService.getDetailScore(this.login.idUser, params.id).subscribe(data=>{
         this.dataScore=data
         console.log(data);
         console.log(params);
@@ -65,10 +67,10 @@ export class JadwalPesertaComponent implements OnInit {
   }
 
   getJadwalKuis(){
-    let uId='1'
+    this.login = this.sessionService.getId()
     this.route.queryParams
     .subscribe(params=>{
-      this.uploadService.getJadwalKuis(uId, params.id).subscribe(data=>{
+      this.uploadService.getJadwalKuis(this.login.idUser, params.id).subscribe(data=>{
         this.dataKuis=data
         console.log(data);
         
