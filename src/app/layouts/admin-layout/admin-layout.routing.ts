@@ -1,3 +1,4 @@
+import { AuthGuard } from './../../guard/auth.guard';
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
@@ -50,48 +51,241 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'icons',          component: IconsComponent },
 
     //path admin
-    { path: 'admin',              component: AdminComponent },
-    { path: 'admin-pengajar',     component: AdminPengajarComponent },
-    { path: 'admin-peserta',      component: AdminPesertaComponent },
-    { path: 'admin-listPengajar', component: AdminListPengajarComponent },
-    { path: 'admin-listPeserta',  component: AdminListPesertaComponent },
-    { path: 'admin-materi',       component: AdminMateriComponent },
-    { path: 'admin-kelas',        component: AdminKelasComponent },
-    { path: 'admin-topic',        component: AdminTopicComponent },
+    { path: 'admin',              component: AdminComponent,
+        canActivate : [AuthGuard],
+        data : {
+            expectedRole : 'ROLE_ADMIN'
+            }
+    },
+    { path: 'admin-pengajar',     component: AdminPengajarComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_ADMIN'
+        }
+    },
+    { path: 'admin-peserta',      component: AdminPesertaComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_ADMIN'
+        }
+    },
+    { path: 'admin-listPengajar', component: AdminListPengajarComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_ADMIN'
+        }
+    },
+    { path: 'admin-listPeserta',  component: AdminListPesertaComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_ADMIN'
+        }
+    },
+    { path: 'admin-materi',       component: AdminMateriComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_ADMIN'
+        }
+    },
+    { path: 'admin-kelas',        component: AdminKelasComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_ADMIN'
+        }
+    },
+    { path: 'admin-topic',        component: AdminTopicComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_ADMIN'
+        }
+    },
 
     //path pengajar
-    { path: 'upload',             component: UploadComponent }, 
-    { path: 'upload-materi',      component: UploadMateriComponent },
-    { path: 'upload-ujian',       component: UploadUjianComponent },
-    { path: 'tables-materi',      component: TablesMateriComponent },
-    { path: 'tables-report',      component: TablesReportComponent },
-    { path: 'report-user',        component: ReportUserComponent },
-    { path: 'materi-pengajar',    component: MateriPengajarComponent },
-    { path: 'list-materi',        component: ListMateriComponent },
-    { path: 'list-file',          component: ListFileComponent },
-    { path: 'list-ujian',         component: ListUjianComponent },
-    { path: 'detail-materi',      component: DetailMateriComponent },
-    { path: 'detail-file',        component: DetailFileComponent },
-    { path: 'detail-ujian',       component: DetailUjianComponent },
-    { path: 'detail-file-ujian',  component: DetailFileUjianComponent },
-    { path: 'kelas',              component: KelasComponent },
-    { path: 'report-input',       component: ReportInputComponent },
-    { path: 'jadwal-peserta',     component: JadwalPesertaComponent },
+    { path: 'upload',             component: UploadComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    }, 
+    { path: 'upload-materi',      component: UploadMateriComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'upload-ujian',       component: UploadUjianComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'tables-materi',       component: TablesMateriComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'tables-report',       component: TablesReportComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'report-user',        component: ReportUserComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'materi-pengajar',    component: MateriPengajarComponent 
+    ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'list-materi',        component: ListMateriComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'list-file',          component: ListFileComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'list-ujian',         component: ListUjianComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'detail-materi',      component: DetailMateriComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'detail-file',        component: DetailFileComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'detail-ujian',       component: DetailUjianComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'detail-file-ujian',  component: DetailFileUjianComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'kelas',              component: KelasComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'report-input',       component: ReportInputComponent 
+    ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'jadwal-peserta',     component: JadwalPesertaComponent 
+    ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
     // { path: 'upload-update',   component: UploadUpdateComponent},
 
     //path peserta
-    { path: 'materi',             component: MateriComponent },
-    { path: 'tables',             component: TablesComponent },
-    { path: 'enrol',              component: EnrolComponent },
-    { path: 'user',               component: UserComponent },
-    { path: 'user-upload',        component: UserUploadComponent},
-    { path: 'topic-materi',       component: TopicMateriComponent },
-    { path: 'user-score',         component: UserScoreComponent },
-    { path: 'loading',            component: LoadingComponent},
-    { path: 'user-kuis',          component: UserKuisComponent},
-    { path: 'absen',              component: AbsenComponent},
-    { path: 'kelas-user',         component: KelasUserComponent },
-    { path: 'user-score',         component: UserScoreComponent },
-    { path: 'user-class',         component: UserClassComponent},
+    { path: 'materi',             component: MateriComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        }   
+    },
+    { path: 'tables',             component: TablesComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        } 
+    },
+    { path: 'enrol',              component: EnrolComponent,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        }  
+    },
+    { path: 'user',               component: UserComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        } 
+    },
+    { path: 'user-upload',        component: UserUploadComponent,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        } 
+    },
+    { path: 'topic-materi',       component: TopicMateriComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        } 
+    },
+    { path: 'user-score',         component: UserScoreComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        } 
+    },
+    { path: 'loading',            component: LoadingComponent,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        } 
+    },
+    { path: 'user-kuis',          component: UserKuisComponent,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        } 
+    },
+    { path: 'absen',              component: AbsenComponent,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        } 
+    },
+    { path: 'kelas-user',         component: KelasUserComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        } 
+    },
+    { path: 'user-score',         component: UserScoreComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        } 
+    },
+    { path: 'user-class',         component: UserClassComponent,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        } 
+    },
     
 ];

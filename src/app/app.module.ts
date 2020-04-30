@@ -1,3 +1,5 @@
+import { AuthGuard } from './guard/auth.guard';
+import { authInterceptorProviders } from './layouts/_helper/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -121,7 +123,7 @@ import { ListUjianComponent } from './pages/list-ujian/list-ujian.component';
     UserClassComponent,
     ListUjianComponent
   ],
-  providers: [],
+  providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,7 +19,7 @@ export class KelasUserComponent implements OnInit {
   }
 
   getKelasUser(){
-    let uId = '1'
+    let uId = '2cd47619-d2c0-46d2-b7c2-4886b0ba9700'
     this.uploadService.getKelasUser(uId).subscribe(data=>{
       this.dataCategory=data
       console.log(data);
