@@ -7,7 +7,27 @@ import {MessageService} from 'primeng/api';
 @Component({
   selector: 'app-tables-report',
   templateUrl: './tables-report.component.html',
-  styleUrls: ['./tables-report.component.css']
+  styleUrls: ['./tables-report.component.css'],
+  providers: [MessageService],
+  styles: [`
+        :host ::ng-deep button {
+            margin-right: .25em;
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message {
+            background: #FC466B;
+            background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+            background: linear-gradient(to right, #3F5EFB, #FC466B);
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message div {
+            color: #ffffff;
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
+            color: #ffffff;
+        }
+    `]
 })
 export class TablesReportComponent implements OnInit {
 
@@ -36,6 +56,7 @@ constructor(private uploadService: AppService, private route: ActivatedRoute, pr
 
   getDeleteMateri(headerid:string){
     this.uploadService.deleteMateri(headerid).subscribe(data=>{ })
+    this.onConfirm()
   }
 
   getDeleteSoal(headerid:string){

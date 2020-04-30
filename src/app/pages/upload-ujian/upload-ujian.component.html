@@ -83,34 +83,4 @@
         </div>
 </div>
 <!-- Content -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div class="card shadow">
-                <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
-                      <thead class="thead-light">
-                        <tr>
-                          <th scope="col">Materi</th>
-                          <th scope="col">End Date</th>
-                          <th scope="col"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let file of dataMateri">
-                          <td>{{ file.judul_materi }}</td>
-                          <td>{{ file.endDate }}</td>
-                          <td>
-                            <button class="btn btn-primary" type="button" (click)="gets(file)">Actived</button>
-                            <button class="btn btn-primary" type="button" (click)="gets(file)">Deactived</button>
-                            <button class="btn btn-primary" type="button" (click)="gets(file)">Download</button>
-                            <button class="btn btn-primary" type="button" (click)="deleteFile(file.id)">Delete</button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                                                                                              

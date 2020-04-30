@@ -167,7 +167,7 @@ export class UploadMateriComponent implements OnInit {
   // }
 
   getMateriList(){
-    let pId = '96108f94-3dbe-4187-b858-cc066124eb9c'
+    let pId = 'e8a0a6dd-342b-4a4d-9241-b8b8b3fd8939'
     this.uploadService.getMateriPengajar(pId).subscribe(data=>{
       this.cities2=data
       // this.getKelasList()
@@ -176,7 +176,7 @@ export class UploadMateriComponent implements OnInit {
   }
 
   getKelasList(selectedCity1){
-    let pId = '96108f94-3dbe-4187-b858-cc066124eb9c'
+    let pId = 'e8a0a6dd-342b-4a4d-9241-b8b8b3fd8939'
     // this.materi.category.id=this.selectedCity1.id;
     this.uploadService.getKelasPengajar(selectedCity1.id, pId).subscribe(data=>{
       this.kelas=data

@@ -20,7 +20,7 @@ export class MateriPengajarComponent implements OnInit {
   ngOnInit(): void {
   }
   getListKelasMateri(){
-    let pId = '1'
+    let pId = 'e8a0a6dd-342b-4a4d-9241-b8b8b3fd8939'
     this.uploadService.getListKelasMateri(pId).subscribe(data=>{
       this.dataKelas=data
       console.log(data);
