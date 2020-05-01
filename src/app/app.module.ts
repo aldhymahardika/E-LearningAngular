@@ -19,7 +19,9 @@ import { UploadComponent } from './pages/upload/upload.component';
 import {AccordionModule} from 'primeng/accordion';
 import {DropdownModule} from 'primeng/dropdown';
 import {TabViewModule} from 'primeng/tabview';
-import {RadioButtonModule} from 'primeng/radiobutton';
+import {RadioButtonModule} from 'primeng/radiobutton'
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';;
 
 import { UploadMateriComponent } from './pages/upload-materi/upload-materi.component';
 import { TablesMateriComponent } from './pages/tables-materi/tables-materi.component';
@@ -78,7 +80,8 @@ import { ListUjianComponent } from './pages/list-ujian/list-ujian.component';
     MessagesModule,
     MessageModule,
     ToastModule,
-    InputTextareaModule
+    InputTextareaModule,
+    ConfirmDialogModule
   ],
   declarations: [
     AppComponent,

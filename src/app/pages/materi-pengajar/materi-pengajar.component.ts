@@ -24,9 +24,14 @@ export class MateriPengajarComponent implements OnInit {
     this.login = this.sessionService.getId()
     console.log(this.login);
     this.uploadService.getListKelasMateri(this.login.idUser).subscribe(data=>{
+      // window.localStorage.clear()
       this.dataKelas=data
       console.log(data);
       
     })
+  }
+
+  getSession(data){
+    window.localStorage.setItem('kId', data)
   }
 }

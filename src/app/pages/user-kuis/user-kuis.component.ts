@@ -70,10 +70,11 @@ export class UserKuisComponent implements OnInit {
   setUpload(){
       this.route.queryParams
         .subscribe(params => {
+          this.login = this.sessionService.getId()
           console.log(params);
           this.jawab.file = this.selectedFiles.item(0);
           this.jawab.headerid=params.hId
-          this.jawab.user.userId='1'
+          this.jawab.user.userId=this.login.idUser
           console.log(this.jawab)
           this.uploadService.uploadUser(this.jawab).subscribe(
           event => {
@@ -108,7 +109,6 @@ export class UserKuisComponent implements OnInit {
     this.uploadService.getForumKuis(params.hId).subscribe(data=>{
       this.forums=data
       console.log(data);
-      
     })
   })
   }

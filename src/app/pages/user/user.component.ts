@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { FileUser } from 'src/app/layouts/model/file-user';
 import { AppService } from 'src/app/service/app.service';
 import { User } from 'src/app/layouts/model/users';
+import { StorageService } from 'src/app/service/storage.service';
+import { Login } from 'src/app/layouts/model/login';
 
 @Component({
   selector: 'app-user',
@@ -27,8 +29,8 @@ export class UserComponent implements OnInit {
   // dataKuis : Ujian[];
   jawab = new FileUser();
   tanggal = new Materi()
-  
-  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) { 
+  login = new Login()
+  constructor(private sessionService: StorageService,private uploadService: AppService, private route: ActivatedRoute,private router: Router) { 
     this.jawab.user = new User()
     this.getAllUjian()
   }
@@ -75,10 +77,11 @@ export class UserComponent implements OnInit {
   setUpload(){
       this.route.queryParams
         .subscribe(params => {
+          this.login = this.sessionService.getId()
           console.log(params);
           this.jawab.file = this.selectedFiles.item(0);
           this.jawab.headerid=params.hId
-          this.jawab.user.userId='1'
+          this.jawab.user.userId=this.login.idUser
           console.log(this.jawab)
           this.uploadService.uploadUserUjian(this.jawab).subscribe(
           event => {

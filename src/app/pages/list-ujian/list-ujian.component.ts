@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 import { Forum } from 'src/app/layouts/model/forum';
+import { StorageService } from 'src/app/service/storage.service';
+import { Login } from 'src/app/layouts/model/login';
 
 @Component({
   selector: 'app-list-ujian',
@@ -12,7 +14,8 @@ export class ListUjianComponent implements OnInit {
   dataUjian:any[]
   forum = new Forum()
   forums:any[]
-  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
+  login = new Login()
+  constructor(private sessionService: StorageService ,private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
     this.getDetailUjian()
     this.getForum()
    }
@@ -51,9 +54,9 @@ export class ListUjianComponent implements OnInit {
   setForum(){
     this.route.queryParams
     .subscribe(params=>{
-      let uId ='3'
+      this.login = this.sessionService.getId()
       this.forum.isiPesan
-      let ser = this.uploadService.setForum(params.idFile, this.forum.isiPesan, uId );
+      let ser = this.uploadService.setForumKuis(params.idFile, this.forum.isiPesan, this.login.idUser );
       ser.subscribe(data=>{
         this.forum.isiPesan=""
         this.loadForum(params.hId)
@@ -66,7 +69,7 @@ export class ListUjianComponent implements OnInit {
   getForum(){
     this.route.queryParams
     .subscribe(params=>{
-      this.uploadService.getForum(params.idFile).subscribe(data=>{
+      this.uploadService.getForumKuis(params.idFile).subscribe(data=>{
         this.forums=data
         console.log(data);
         

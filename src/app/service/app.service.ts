@@ -18,7 +18,7 @@ import { Forum } from '../layouts/model/forum';
 
 export class AppService {
 
-  private baseUrl = 'http://b3c80481.ngrok.io' 
+  private baseUrl = 'http://fcb7d6f2.ngrok.io' 
 
   constructor(private http: HttpClient) { }
   
@@ -316,8 +316,8 @@ export class AppService {
     return this.http.get<any[]>(this.baseUrl+ "/user/kelas?uId=" + uId)
   }
 
-  setNilaiKuis(kelas:string, uId:string, nilai: number, jenis:string, aktif:number): Observable<any>{
-    return this.http.post<any>(this.baseUrl + "/insert/nilai?kelas="+ kelas +"&userId="+ uId +"&keaktifan="+ aktif + "&nilai="+ nilai +"&jenis="+jenis, {})
+  setNilaiKuis(kelas:string, uId:string, nilai: number, jenis:string, aktif:number, tanggal:string): Observable<any>{
+    return this.http.post<any>(this.baseUrl + "/insert/nilai?kelas="+ kelas +"&userId="+ uId +"&keaktifan="+ aktif + "&nilai="+ nilai +"&jenis="+jenis + "&tanggal="+tanggal, {})
   }
 
   getDetailScore(uId:string, mpId:string): Observable<any[]>{

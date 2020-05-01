@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import {Message} from 'primeng/api';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import {Message, ConfirmationService} from 'primeng/api';
 import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-tables-report',
   templateUrl: './tables-report.component.html',
   styleUrls: ['./tables-report.component.css'],
-  providers: [MessageService],
+  providers: [ConfirmationService, MessageService],
   styles: [`
         :host ::ng-deep button {
             margin-right: .25em;
@@ -34,8 +34,19 @@ export class TablesReportComponent implements OnInit {
   dataFile:any
   dataUjian:any
 
-constructor(private uploadService: AppService, private route: ActivatedRoute, private router: Router, private messageService: MessageService ) { 
+constructor(private confirmationService: ConfirmationService, private uploadService: AppService, private route: ActivatedRoute, private router: Router, private messageService: MessageService ) { 
     // this.getListMateri();
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+  };
+    this.router.events.subscribe(evt => {
+      if (evt instanceof NavigationEnd) {
+          // trick the Router into believing it's last link wasn't previously loaded
+          this.router.navigated = false;
+          // if you need to scroll back to top, here is the right place
+          window.scrollTo(0, 0    );
+      }
+  });
     this.getKelas();
     this.getQuiz();
   }
@@ -47,6 +58,7 @@ constructor(private uploadService: AppService, private route: ActivatedRoute, pr
   getKelas(){
     this.route.queryParams
     .subscribe(params => {
+      window.localStorage.setItem('kId', params.kId)
     this.uploadService.getKelas(params.kId).subscribe(data=>{
       this.dataFile=data
       console.log(data);
@@ -55,12 +67,16 @@ constructor(private uploadService: AppService, private route: ActivatedRoute, pr
   }
 
   getDeleteMateri(headerid:string){
-    this.uploadService.deleteMateri(headerid).subscribe(data=>{ })
-    this.onConfirm()
+    this.uploadService.deleteMateri(headerid).subscribe(data=>{
+        
+     })
+    // this.getKelas()
+    // this.getQuiz()
+    
   }
 
   getDeleteSoal(headerid:string){
-    this.uploadService.deleteSoal(headerid).subscribe(data=>{ })
+    this.uploadService.deleteSoal(headerid)
   }
 
   getQuiz(){
@@ -89,17 +105,42 @@ constructor(private uploadService: AppService, private route: ActivatedRoute, pr
     this.router.navigate(['/detail-ujian'], {queryParams: {idFile:idFile}})
   }
 
-  showConfirm() {
-    this.messageService.clear();
-    this.messageService.add({key: 'c', sticky: true, severity:'warn', summary:'Are you sure?', detail:'Confirm to proceed'});
-  }
+  confirm2(idFile) {
+    let id = window.localStorage.getItem('kId')
+    this.confirmationService.confirm({
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          this.getDeleteMateri(idFile)
+          
 
-  onConfirm() {
-    this.messageService.clear('c');
-  }
+            console.log(id);
+               
+            // this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+        },
+        reject: () => {
+            // this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+        }
+    });
 
-  onReject() {
-    this.messageService.clear('c');
-  }
+  }   
+
+  confirm1(idFile) {
+    this.confirmationService.confirm({
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          this.getDeleteSoal(idFile)
+          this.getQuiz()
+          this.getKelas()
+            // this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+        },
+        reject: () => {
+            // this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+        }
+    });
+  }  
 
 }

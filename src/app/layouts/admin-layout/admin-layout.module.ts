@@ -18,6 +18,8 @@ import {AccordionModule} from 'primeng/accordion';
 import {DropdownModule} from 'primeng/dropdown';
 import {TabViewModule} from 'primeng/tabview';
 import {ToastModule} from 'primeng/toast';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -32,7 +34,8 @@ import {ToastModule} from 'primeng/toast';
     AccordionModule,
     DropdownModule,
     TabViewModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule
   ],
   declarations: [
     DashboardComponent,

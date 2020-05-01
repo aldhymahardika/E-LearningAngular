@@ -37,16 +37,24 @@ export class ReportInputComponent implements OnInit {
   updateNilai(data:any){
     this.route.queryParams
     .subscribe(params=>{
-      this.dataNilai.jenis= data.jenis
-      this.dataNilai.kelas=params.kId
-      this.dataNilai.user=params.uId
-      this.dataNilai.nilaiUtama
-      this.dataNilai.nilaiKehadiran
-      this.uploadService.setNilaiKuis(params.kId, params.uId, this.dataNilai.nilaiKehadiran, data.jenis, this.dataNilai.nilaiUtama).subscribe(data=>{
+      this.uploadService.setNilaiKuis(params.kId, params.uId, this.dataNilai.nilaiKehadiran, this.dataNilai.jenis, this.dataNilai.nilaiUtama, this.dataNilai.tanggal).subscribe(data=>{
         this.msg=data
         console.log(this.dataNilai);
         console.log(data);        
       })
+    })
+  }
+
+  input(data, el:HTMLElement){
+    this.route.queryParams
+    .subscribe(params=>{
+      this.dataNilai.jenis= data.jenis
+      this.dataNilai.kelas=params.kId
+      this.dataNilai.user=params.uId
+      // this.dataNilai.nilaiUtama
+      // this.dataNilai.nilaiKehadiran
+      this.dataNilai.tanggal=data.tanggal
+      el.scrollIntoView({behavior : 'smooth'})
     })
   }
 
