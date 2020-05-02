@@ -14,6 +14,7 @@ export class ReportInputComponent implements OnInit {
   exampleFlag=false;
   msg:string
   dataScore:any[]
+
   constructor(private uploadService: AppService, private route: ActivatedRoute, private router: Router) { 
     this.getDetailUser();
     this.getDetailScore()
@@ -53,7 +54,7 @@ export class ReportInputComponent implements OnInit {
       this.dataNilai.user=params.uId
       // this.dataNilai.nilaiUtama
       // this.dataNilai.nilaiKehadiran
-      this.dataNilai.tanggal=data.tanggal
+      this.dataNilai.tanggal=data.tanggalSoal
       el.scrollIntoView({behavior : 'smooth'})
     })
   }

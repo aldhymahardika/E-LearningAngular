@@ -241,17 +241,17 @@
                   <div class="row" *ngIf="kuis.hari === 'FRIDAY'">
                     <div class="col-lg-4">
                       <div class="form-group">
+                        <h5 class="heading-large">Topic : {{ kuis.topic }}</h5>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
                         <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
+                        <h5 class="heading-large">Waktu : {{ kuis.waktu_mulai }} | {{ kuis.waktu_selesai }}</h5>
                       </div>
                     </div>
                   </div>
@@ -263,7 +263,31 @@
           <p-tabPanel header="Nilai" leftIcon="pi pi-calendar">
             <div class="card shadow">
               <div class="card-header border-0">
-                <h3 class="mb-0">Card tables</h3>
+                <h3 class="mb-0">Table Tugas</h3>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Tanggal</th>
+                      <th scope="col">Jenis</th>
+                      <th scope="col">Nilai</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let nil of dataScore">
+                    <tr>
+                      <td>{{ nil.date }}</td>
+                      <td>{{ nil.jenis }}</td>
+                      <td>{{ nil.nilai }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <hr class="my-4">
+            <div class="card shadow">
+              <div class="card-header border-0">
+                <h3 class="mb-0">Table Ujian</h3>
               </div>
               <div class="table-responsive">
                 <table class="table align-items-center table-flush">

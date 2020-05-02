@@ -255,7 +255,7 @@
               <div>
               <h2 class="heading-large text-muted mb-4">Jumat</h2>
               <div class="pl-lg-4" *ngFor="let top of topics">
-                <div class="row" *ngIf="top.hari === 'FRIDAY'">
+                <div class="row" *ngIf="top.hari === 'SATURDAY'">
                   <div class="col-lg-4">
                     <div class="form-group">
                       <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>
@@ -278,7 +278,7 @@
               </div>
               <h2 class="heading-large text-muted mb-4">Quiz</h2>
                 <div class="pl-lg-4" *ngFor="let kuis of quizs">
-                  <div class="row" *ngIf="kuis.day === 'FRIDAY'">
+                  <div class="row" *ngIf="kuis.day === 'SATURDAY'">
                     <div class="col-lg-4">
                       <div class="form-group">
                         <h5 class="heading-large">TOPIC : {{ kuis.jenis }}</h5>

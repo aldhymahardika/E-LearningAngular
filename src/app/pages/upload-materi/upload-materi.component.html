@@ -60,6 +60,9 @@
               <br>
               <button type="button" class="btn btn-default" (click)="upload()">Upload</button>
               </div>
+              <div class="col-sm-12" [hidden]="!isupdated">  
+                  <p-messages [(value)]="msgs"></p-messages>  
+              </div>  
               </div>
             </div>
           </div>

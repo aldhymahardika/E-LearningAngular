@@ -8,6 +8,7 @@ import { AppService } from 'src/app/service/app.service';
 import { User } from 'src/app/layouts/model/users';
 import { StorageService } from 'src/app/service/storage.service';
 import { Login } from 'src/app/layouts/model/login';
+import { Message } from 'primeng/api/message';
 
 @Component({
   selector: 'app-user',
@@ -30,6 +31,9 @@ export class UserComponent implements OnInit {
   jawab = new FileUser();
   tanggal = new Materi()
   login = new Login()
+  msgs: Message[] = [];
+  isupdated = false; 
+  
   constructor(private sessionService: StorageService,private uploadService: AppService, private route: ActivatedRoute,private router: Router) { 
     this.jawab.user = new User()
     this.getAllUjian()
@@ -85,6 +89,8 @@ export class UserComponent implements OnInit {
           console.log(this.jawab)
           this.uploadService.uploadUserUjian(this.jawab).subscribe(
           event => {
+            this.isupdated=true;
+            this.showSuccess()
         //     if (event.type === HttpEventType.UploadProgress) {
         //       this.progress = Math.round(100 * event.loaded / event.total);
         //     } else if (event instanceof HttpResponse) {
@@ -100,4 +106,13 @@ export class UserComponent implements OnInit {
     })
   }
 
+  showSuccess() {
+    this.msgs = [];
+    this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+}
+
+showError() {
+  this.msgs = [];
+  this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
+}
 }

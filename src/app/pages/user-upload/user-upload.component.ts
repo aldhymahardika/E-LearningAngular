@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Materi } from 'src/app/layouts/model/materi';
 import { Observable } from 'rxjs';
 import { AppService } from 'src/app/service/app.service';
@@ -33,6 +33,17 @@ export class UserUploadComponent implements OnInit {
   login = new Login()
 
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+  };
+    this.router.events.subscribe(evt => {
+      if (evt instanceof NavigationEnd) {
+          // trick the Router into believing it's last link wasn't previously loaded
+          this.router.navigated = false;
+          // if you need to scroll back to top, here is the right place
+          window.scrollTo(0, 0    );
+      }
+  });
     // this.jawab.materi=new Category()
     this.jawab.user= new User()
     // this.jawab.pengajar=new Pengajar() 
@@ -138,10 +149,12 @@ export class UserUploadComponent implements OnInit {
       ser.subscribe(data=>{
         this.forum.isiPesan=""
         this.loadForum(params.hId)
+        this.router.navigate(['/user-upload'], {queryParams: {hId: params.hId}})
       })
       // this.getALlMateri()
       // this.getForum()
     })
+    // this.getForum()
   }
 
   getForum(){

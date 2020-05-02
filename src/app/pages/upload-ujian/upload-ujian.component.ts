@@ -110,6 +110,7 @@ export class UploadUjianComponent implements OnInit {
         console.log(this.ujian)
         this.uploadService.uploadUjian(this.ujian).subscribe(
         event => {
+          this.isupdated=true;
           this.showSuccess()
       //     if (event.type === HttpEventType.UploadProgress) {
       //       this.progress = Math.round(100 * event.loaded / event.total);

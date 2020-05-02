@@ -76,7 +76,7 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
   }
 
   getDeleteSoal(headerid:string){
-    this.uploadService.deleteSoal(headerid)
+    this.uploadService.deleteSoal(headerid).subscribe()
   }
 
   getQuiz(){

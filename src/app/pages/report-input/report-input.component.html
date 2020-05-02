@@ -22,7 +22,7 @@
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
             <div class="col-12">
-              <h3 class="mb-0">Info Peserta</h3>
+              <!-- <h3 class="mb-0">Info Peserta</h3> -->
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Jenis</label>
-                    <input id="input-address" class="form-control form-control-alternative" placeholder="Jenis" type="text" [(ngModel)]="dataNilai.jenis" [ngModelOptions]="{standalone: true}">
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Jenis" type="text" [(ngModel)]="dataNilai.jenis" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -43,7 +43,7 @@
                     <input id="input-address" class="form-control form-control-alternative" placeholder="Nilai Utama" type="number" [(ngModel)]="dataNilai.nilaiUtama" [ngModelOptions]="{standalone: true}">
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6"> 
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Nilai Utama</label>
                     <input id="input-address" class="form-control form-control-alternative" placeholder="Nilai Kehadiran" type="number" [(ngModel)]="dataNilai.nilaiKehadiran" [ngModelOptions]="{standalone: true}">
@@ -91,7 +91,7 @@
           </form>
         </div>
         </p-tabPanel>
-        <p-tabPanel header="Nilai" leftIcon="pi pi-calendar">
+        <p-tabPanel header="Nilai Keseluruhan" leftIcon="pi pi-calendar">
           <div class="card shadow">
             <div class="card-header border-0">
               <h3 class="mb-0">Card tables</h3>
@@ -103,6 +103,7 @@
                     <th scope="col">Tanggal</th>
                     <th scope="col">Jenis</th>
                     <th scope="col">Nilai</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let nil of dataScore">
@@ -110,6 +111,10 @@
                     <td>{{ nil.date }}</td>
                     <td>{{ nil.jenis }}</td>
                     <td>{{ nil.nilai }}</td>
+                    <td class="text-center">
+                      <button type="button" class="btn btn-primary">Update</button>
+                      <button type="button" class="btn btn-primary">Delete</button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
