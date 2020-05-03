@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 import { Materi } from 'src/app/layouts/model/materi';
 import { Topic } from 'src/app/layouts/model/topic';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Quiz } from 'src/app/layouts/model/quiz';
 import { Ujian } from 'src/app/layouts/model/ujian';
 
@@ -12,7 +12,7 @@ import { Ujian } from 'src/app/layouts/model/ujian';
   templateUrl: './topic-materi.component.html',
   styleUrls: ['./topic-materi.component.css']
 })
-export class TopicMateriComponent implements OnInit {
+export class TopicMateriComponent implements OnInit, OnDestroy {
 
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) { 
     this.getTopic()
@@ -28,8 +28,18 @@ export class TopicMateriComponent implements OnInit {
   ujians: Quiz[];
   kelas:any[];
   dataScore:any[]
+  dtOptions: DataTables.Settings = {};
+  dtTrigger = new Subject();
+  
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5
+    };
+  }
 
+  ngOnDestroy(){
+    this.dtTrigger.unsubscribe();
   }
 
   // gets(datas){
@@ -106,6 +116,7 @@ export class TopicMateriComponent implements OnInit {
     this.route.queryParams
     .subscribe(params=>{
       this.uploadService.getDetailScoreKelas(params.kId).subscribe(data=>{
+        this.dtTrigger.next();
         this.kelas=data
         console.log(data);
       })

@@ -21,7 +21,10 @@ import {DropdownModule} from 'primeng/dropdown';
 import {TabViewModule} from 'primeng/tabview';
 import {RadioButtonModule} from 'primeng/radiobutton'
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';;
+import {ConfirmationService} from 'primeng/api';
+import { DataTablesModule } from 'angular-datatables';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {SplitButtonModule, SplitButton} from 'primeng/splitbutton';
 
 import { UploadMateriComponent } from './pages/upload-materi/upload-materi.component';
 import { TablesMateriComponent } from './pages/tables-materi/tables-materi.component';
@@ -81,7 +84,10 @@ import { ListUjianComponent } from './pages/list-ujian/list-ujian.component';
     MessageModule,
     ToastModule,
     InputTextareaModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DataTablesModule,
+    ProgressSpinnerModule,
+    SplitButtonModule
   ],
   declarations: [
     AppComponent,

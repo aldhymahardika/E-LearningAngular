@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import {Message, ConfirmationService} from 'primeng/api';
+import {Message, ConfirmationService, MenuItem} from 'primeng/api';
 import {MessageService} from 'primeng/api';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-tables-report',
@@ -29,10 +30,13 @@ import {MessageService} from 'primeng/api';
         }
     `]
 })
-export class TablesReportComponent implements OnInit {
+export class TablesReportComponent implements OnInit, OnDestroy {
 
   dataFile:any
   dataUjian:any
+  items: MenuItem[];
+  dtOptions: DataTables.Settings = {};
+  dtTrigger = new Subject();
 
 constructor(private confirmationService: ConfirmationService, private uploadService: AppService, private route: ActivatedRoute, private router: Router, private messageService: MessageService ) { 
     // this.getListMateri();
@@ -51,15 +55,51 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
     this.getQuiz();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5
+    };
   }
 
+  ngOnDestroy(){
+    this.dtTrigger.unsubscribe();
+  }
+
+  getMenu(headerid:string):MenuItem[]{
+    return [
+      {label: 'Update', icon: 'pi pi-refresh', command: () => {
+          this.getUpdateMateri(headerid);
+      }},
+      {label: 'Delete', icon: 'pi pi-times', command: () => {
+        this.confirm2(headerid);
+      }}
+      // {label: 'Angular.io', icon: 'pi pi-info', url: 'http://angular.io'},
+      // {separator: true},
+      // {label: 'Setup', icon: 'pi pi-cog', routerLink: ['/setup']}
+  ];
+  }
+
+  getMenuKuis(headerid):MenuItem[]{
+    return [
+      {label: 'Update', icon: 'pi pi-refresh', command: () => {
+          this.getUpdateUjian(headerid);
+      }},
+      {label: 'Delete', icon: 'pi pi-times', command: () => {
+        this.confirm1(headerid);
+      }}
+      // {label: 'Angular.io', icon: 'pi pi-info', url: 'http://angular.io'},
+      // {separator: true},
+      // {label: 'Setup', icon: 'pi pi-cog', routerLink: ['/setup']}
+    ];
+  }
 
   getKelas(){
     this.route.queryParams
     .subscribe(params => {
       window.localStorage.setItem('kId', params.kId)
     this.uploadService.getKelas(params.kId).subscribe(data=>{
+      this.dtTrigger.next();
       this.dataFile=data
       console.log(data);
     })
@@ -83,6 +123,7 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
     this.route.queryParams
     .subscribe(params=>{
       this.uploadService.getListQuiz(params.kId).subscribe(data=>{
+        // this.dtTrigger.next();
         this.dataUjian=data
         console.log(data);
       })
@@ -142,5 +183,10 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
         }
     });
   }  
+  
+  private extractData(res: Response) {
+    const body = res.json();
+    // return body.data || {};
+  }
 
 }

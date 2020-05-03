@@ -1,316 +1,326 @@
-<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
-    <div class="container-fluid">
-      <div class="header-body">
-        <!-- Card stats -->
-        
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--7">
+  <div class="row">
+      <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <p-tabView>
+          <p-tabPanel header="Jadwal" leftIcon="pi pi-calendar">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <h3 class="mb-0">Info Jadwal</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <h2 class="heading-large text-muted mb-4">Ujian</h2>
+                <div class="pl-lg-4" *ngFor="let ujian of dataKuis">
+                  <div class="row" *ngIf="ujian.jenis === 'UJIAN'">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <h5 class="heading-large">Tanggal : {{ ujian.tanggal }}</h5>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <h5 class="heading-large">Waktu Mulai : {{ ujian.waktu_mulai }}</h5>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <h5 class="heading-large">Waktu Selesai : {{ ujian.waktu_selesai }}</h5>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+            <hr class="my-4">
+            <div>
+            <h2 class="heading-large text-muted mb-4">Senin</h2>
+            <div class="pl-lg-4" *ngFor="let top of jadwal">
+              <div class="row" *ngIf="top.hari === 'MONDAY'">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Topic : {{ top.topic }}</h5>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 class="heading-large text-muted mb-4">Quiz</h2>
+              <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
+                <div class="row" *ngIf="kuis.hari === 'MONDAY'">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
+                    </div>
+                  </div>
+                </div>
+                </div>
+          </div>
+            <hr class="my-4" />
+            <div>
+            <h2 class="heading-large text-muted mb-4">Selasa</h2>
+            <div class="pl-lg-4" *ngFor="let top of jadwal">
+              <div class="row" *ngIf="top.hari === 'TUESDAY'">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Topic : {{ top.topic }}</h5>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <h2 class="heading-large text-muted mb-4">Quiz</h2>
+              <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
+                <div class="row" *ngIf="kuis.hari === 'TUESDAY'">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
+                    </div>
+                  </div>
+                </div>
+                </div>
+            </div>
+            <hr class="my-4" /> 
+            <div>             
+            <h2 class="heading-large text-muted mb-4">Rabu</h2>
+            <div class="pl-lg-4" *ngFor="let top of jadwal">
+              <div class="row" *ngIf="top.hari === 'WEDNESDAY'">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Topic : {{ top.topic }}</h5>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 class="heading-large text-muted mb-4">Quiz</h2>
+              <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
+                <div class="row" *ngIf="kuis.hari === 'WEDNESDAY'">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            <hr class="my-4" />
+            <div>              
+            <h2 class="heading-large text-muted mb-4">Kamis</h2>
+            <div class="pl-lg-4" *ngFor="let top of jadwal">
+              <div class="row" *ngIf="top.hari === 'THURSDAY'">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Topic : {{ top.topic }}</h5>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 class="heading-large text-muted mb-4">Quiz</h2>
+              <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
+                <div class="row" *ngIf="kuis.hari === 'THURSDAY'">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
+                    </div>
+                  </div>
+                </div>
+                </div>
+            </div>
+            <hr class="my-4" />
+            <div>
+            <h2 class="heading-large text-muted mb-4">Jumat</h2>
+            <div class="pl-lg-4" *ngFor="let top of jadwal">
+              <div class="row" *ngIf="top.hari === 'FRIDAY'">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Topic : {{ top.topic }}</h5>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 class="heading-large text-muted mb-4">Quiz</h2>
+              <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
+                <div class="row" *ngIf="kuis.hari === 'FRIDAY'">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Topic : {{ kuis.topic }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <h5 class="heading-large">Waktu : {{ kuis.waktu_mulai }} | {{ kuis.waktu_selesai }}</h5>
+                    </div>
+                  </div>
+                </div>
+                </div>
+            </div>
+          </form>
+        </div>
+        </p-tabPanel>
+        <p-tabPanel header="Nilai" leftIcon="pi pi-calendar">
+          <div class="container-fluid">
+            <!-- Table -->
+            <div class="row">
+              <div class="col s12 m9 l12">
+                <div class=" dataTables_wrapper "> 
+                  <div class="card-header border-0">
+                    <h3 class="mb-0">Data Nilai Kuis</h3>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger" >
+                      <thead>
+                        <tr style="color: white;" class="bg-gradient-primary">
+                          <th scope="col">Tanggal</th>
+                          <th scope="col">Nilai</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let nil of dataScore">
+                    <tr>
+                      <td>{{ nil.date }}</td>
+                      <td>{{ nil.nilai }}</td>
+                    </tr>
+                      </tbody>
+                    </table>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+          <hr class="my-4">
+          <div class="container-fluid">
+            <!-- Table -->
+            <div class="row">
+              <div class="col s12 m9 l12">
+                <div class=" dataTables_wrapper "> 
+                  <div class="card-header border-0">
+                    <h3 class="mb-0">Data Nilai Ujian</h3>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
+                      <thead>
+                        <tr style="color: white;" class="bg-gradient-primary">
+                          <th scope="col">Tanggal</th>
+                          <th scope="col">Nilai</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let nil of dataUjian">
+                    <tr>
+                      <td>{{ nil.date }}</td>
+                      <td>{{ nil.nilai }}</td>
+                    </tr>
+                      </tbody>
+                    </table>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+        </p-tabPanel>
+        </p-tabView>
       </div>
     </div>
   </div>
-
-<div class="container-fluid mt--7">
-    <div class="row">
-        <div class="col-xl-12 order-xl-1">
-        <div class="card bg-secondary shadow">
-          <p-tabView>
-            <p-tabPanel header="Jadwal" leftIcon="pi pi-calendar">
-          <div class="card-header bg-white border-0">
-            <div class="row align-items-center">
-              <div class="col-12">
-                <h3 class="mb-0">Info Jadwal</h3>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <form>
-              <h2 class="heading-large text-muted mb-4">Ujian</h2>
-                  <div class="pl-lg-4" *ngFor="let ujian of dataKuis">
-                    <div class="row" *ngIf="ujian.jenis === 'UJIAN'">
-                      <div class="col-lg-4">
-                        <div class="form-group">
-                          <h5 class="heading-large">Tanggal : {{ ujian.tanggal }}</h5>
-                        </div>
-                      </div>
-                      <div class="col-lg-4">
-                        <div class="form-group">
-                          <h5 class="heading-large">Waktu Mulai : {{ ujian.waktu_mulai }}</h5>
-                        </div>
-                      </div>
-                      <div class="col-lg-4">
-                        <div class="form-group">
-                          <h5 class="heading-large">Waktu Selesai : {{ ujian.waktu_selesai }}</h5>
-                        </div>
-                      </div>
-                    </div>
-                    </div>
-              <hr class="my-4">
-              <div>
-              <h2 class="heading-large text-muted mb-4">Senin</h2>
-              <div class="pl-lg-4" *ngFor="let top of jadwal">
-                <div class="row" *ngIf="top.hari === 'MONDAY'">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Topic : {{ top.topic }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="heading-large text-muted mb-4">Quiz</h2>
-                <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                  <div class="row" *ngIf="kuis.hari === 'MONDAY'">
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-            </div>
-              <hr class="my-4" />
-              <div>
-              <h2 class="heading-large text-muted mb-4">Selasa</h2>
-              <div class="pl-lg-4" *ngFor="let top of jadwal">
-                <div class="row" *ngIf="top.hari === 'TUESDAY'">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Topic : {{ top.topic }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
-                    </div>
-                  </div>
-                </div>
-                </div>
-                <h2 class="heading-large text-muted mb-4">Quiz</h2>
-                <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                  <div class="row" *ngIf="kuis.hari === 'TUESDAY'">
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-              </div>
-              <hr class="my-4" /> 
-              <div>             
-              <h2 class="heading-large text-muted mb-4">Rabu</h2>
-              <div class="pl-lg-4" *ngFor="let top of jadwal">
-                <div class="row" *ngIf="top.hari === 'WEDNESDAY'">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Topic : {{ top.topic }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="heading-large text-muted mb-4">Quiz</h2>
-                <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                  <div class="row" *ngIf="kuis.hari === 'WEDNESDAY'">
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
-              <hr class="my-4" />
-              <div>              
-              <h2 class="heading-large text-muted mb-4">Kamis</h2>
-              <div class="pl-lg-4" *ngFor="let top of jadwal">
-                <div class="row" *ngIf="top.hari === 'THURSDAY'">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Topic : {{ top.topic }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="heading-large text-muted mb-4">Quiz</h2>
-                <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                  <div class="row" *ngIf="kuis.hari === 'THURSDAY'">
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-              </div>
-              <hr class="my-4" />
-              <div>
-              <h2 class="heading-large text-muted mb-4">Jumat</h2>
-              <div class="pl-lg-4" *ngFor="let top of jadwal">
-                <div class="row" *ngIf="top.hari === 'FRIDAY'">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Topic : {{ top.topic }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="heading-large text-muted mb-4">Quiz</h2>
-                <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                  <div class="row" *ngIf="kuis.hari === 'FRIDAY'">
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Topic : {{ kuis.topic }}</h5>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Waktu : {{ kuis.waktu_mulai }} | {{ kuis.waktu_selesai }}</h5>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-              </div>
-            </form>
-          </div>
-          </p-tabPanel>
-          <p-tabPanel header="Nilai" leftIcon="pi pi-calendar">
-            <div class="card shadow">
-              <div class="card-header border-0">
-                <h3 class="mb-0">Table Tugas</h3>
-              </div>
-              <div class="table-responsive">
-                <table class="table align-items-center table-flush">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Tanggal</th>
-                      <th scope="col">Jenis</th>
-                      <th scope="col">Nilai</th>
-                    </tr>
-                  </thead>
-                  <tbody *ngFor="let nil of dataScore">
-                    <tr>
-                      <td>{{ nil.date }}</td>
-                      <td>{{ nil.jenis }}</td>
-                      <td>{{ nil.nilai }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <hr class="my-4">
-            <div class="card shadow">
-              <div class="card-header border-0">
-                <h3 class="mb-0">Table Ujian</h3>
-              </div>
-              <div class="table-responsive">
-                <table class="table align-items-center table-flush">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Tanggal</th>
-                      <th scope="col">Jenis</th>
-                      <th scope="col">Nilai</th>
-                    </tr>
-                  </thead>
-                  <tbody *ngFor="let nil of dataScore">
-                    <tr>
-                      <td>{{ nil.date }}</td>
-                      <td>{{ nil.jenis }}</td>
-                      <td>{{ nil.nilai }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </p-tabPanel>
-          </p-tabView>
-        </div>
-      </div>
-    </div>
 </div>

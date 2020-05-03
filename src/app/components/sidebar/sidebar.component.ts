@@ -43,7 +43,7 @@ export const PESERTA : RouteInfo[] =[
   // { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
   // { path: '/user', title: 'Materi', icon:'ni ni-book-bookmark text-blue', class:''},
   // { path: '/topic-materi', title: 'Topic Materi', icon:'ni ni-book-bookmark text-blue', class:''},
-  { path: '/user-score', title:'Scores', icon:'ni ni-trophy text-yellow', class:''},
+  // { path: '/user-score', title:'Scores', icon:'ni ni-trophy text-yellow', class:''},
 ]
 
 @Component({

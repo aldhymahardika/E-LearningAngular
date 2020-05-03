@@ -20,6 +20,9 @@ import {TabViewModule} from 'primeng/tabview';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
+import { DataTablesModule } from 'angular-datatables';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {SplitButtonModule} from 'primeng/splitbutton';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -35,7 +38,10 @@ import {ConfirmationService} from 'primeng/api';
     DropdownModule,
     TabViewModule,
     ToastModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DataTablesModule,
+    ProgressSpinnerModule,
+    SplitButtonModule
   ],
   declarations: [
     DashboardComponent,

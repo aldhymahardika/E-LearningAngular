@@ -18,7 +18,7 @@ import { Forum } from '../layouts/model/forum';
 
 export class AppService {
 
-  private baseUrl = 'http://9e05ef55.ngrok.io' 
+  private baseUrl = 'http://33fceec6.ngrok.io' 
 
   constructor(private http: HttpClient) { }
   
@@ -320,8 +320,20 @@ export class AppService {
     return this.http.post<any>(this.baseUrl + "/insert/nilai?kelas="+ kelas +"&userId="+ uId +"&keaktifan="+ aktif + "&nilai="+ nilai +"&jenis="+jenis + "&tanggal="+tanggal, {})
   }
 
+  setUpdateKuis(id:string, kelas:string, uId:string, nilai: number, jenis:string, aktif:number){
+    return this.http.post<any>(this.baseUrl + "/update/nilai?kelas="+ kelas +"&userId="+ uId +"&keaktifan="+ aktif + "&nilai="+ nilai +"&jenis="+jenis + "&id="+id, {})
+  }
+
+  getDeleteUjian(id:string, kelas:string, uId:string, jenis:string){
+    return this.http.post<any>(this.baseUrl + "/delete/nilai?kelas="+ kelas +"&userId="+ uId +"&jenis="+jenis + "&id="+id, {})
+  }
+
   getDetailScore(uId:string, mpId:string): Observable<any[]>{
-    return this.http.get<any[]>(this.baseUrl+ "/user/nilai?uId="+ uId +"&mpId=" + mpId) 
+    return this.http.get<any[]>(this.baseUrl+ "/user/nilai-tugas?uId="+ uId +"&mpId=" + mpId) 
+  }
+
+  getDetailUjian(uId:string, mpId:string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/user/nilai-ujian?uId="+ uId +"&mpId=" + mpId) 
   }
 
   getDetailScoreKelas(mpId : string): Observable<any[]>{
