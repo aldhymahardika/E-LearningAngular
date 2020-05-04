@@ -39,6 +39,9 @@
               <br>
               <button type="button" class="btn btn-default" (click)="getUpdateQuiz(data)">Submit</button>
               </div>
+              <div class="col-sm-12" [hidden]="!isupdated">  
+                <p-messages [(value)]="msgs"></p-messages>  
+              </div>
             </div>
             </div>
           </div>

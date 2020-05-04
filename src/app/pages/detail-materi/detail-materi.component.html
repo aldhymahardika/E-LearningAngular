@@ -29,6 +29,9 @@
             <br>
             <button type="button" class="btn btn-default" (click)="updateTopik(updt)">Submit</button>
             </div>
+            <div class="col-md-12" [hidden]="!isupdated">  
+              <p-messages [(value)]="msgs"></p-messages>  
+            </div>
           </div>
           </div>
         </div>

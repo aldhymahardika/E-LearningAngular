@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
-const AUTH_API = 'http://33fceec6.ngrok.io/api/auth/'
+const AUTH_API = 'http://1bcbd246.ngrok.io/api/auth/'
 
 const httpOptions = {
   headers : new HttpHeaders({ 'Content-Type' : 'application/json'})
@@ -29,6 +29,10 @@ export class AuthService {
       email : user.email,
       password : user.password 
     }, httpOptions);
+  }
+
+  registerPengajar(user) : Observable<any>{
+    return this.http.post(AUTH_API+ 'signup', user , httpOptions);
   }
 
   isLogin() : boolean {

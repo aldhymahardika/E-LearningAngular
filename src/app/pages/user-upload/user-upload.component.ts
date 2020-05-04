@@ -98,6 +98,8 @@ export class UserUploadComponent implements OnInit {
       console.log(params);
     this.uploadService.getAllMateri(params.hId).subscribe(data=>{
       this.dataMateri=data
+      console.log(data);
+      
       })
     })
   }

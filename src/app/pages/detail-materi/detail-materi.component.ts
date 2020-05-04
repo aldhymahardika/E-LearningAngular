@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 import { Materi } from 'src/app/layouts/model/materi';
+import { Message } from 'primeng/api/message';
 
 @Component({
   selector: 'app-detail-materi',
@@ -12,6 +13,8 @@ export class DetailMateriComponent implements OnInit {
 
   updt = new Materi();
   message:string
+  msgs: Message[] = [];
+  isupdated = false;
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
 
    }
@@ -28,8 +31,14 @@ export class DetailMateriComponent implements OnInit {
         this.updt.jam=data.jam
         console.log(params);
         this.uploadService.updateTopik(params.idFile, data.tanggal, data.jam).subscribe(data=>{
+          this.showSuccess()
           this.message=data
         })
       })
+  }
+
+  showSuccess() {
+    this.msgs = [];
+	  this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
   }
 }

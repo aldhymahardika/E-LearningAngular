@@ -35,10 +35,10 @@
                   </thead>
                   <tbody *ngFor="let data of dataFile">
                     <tr >
-                      <td>{{data.hari}}</td>
+                      <td>{{data.day}}</td>
                       <td>{{data.topic}}</td>
-                      <td>{{data.waktu}}</td>
-                      <td>{{data.tanggal}}</td>                  
+                      <td>{{data.time}}</td>
+                      <td>{{data.date}}</td>                  
                       <td>
                         <p-splitButton label="Info" icon="pi pi-info" (onClick)="getDetailMateri(data.id)" [model]="getMenu(data.id)"></p-splitButton>
                       </td>
@@ -53,25 +53,27 @@
           <div class="col s12 m9 l12">
             <div class=" dataTables_wrapper "> 
               <div class="card-header border-0">
-                <h3 class="mb-0">Data Pengajar</h3>
+                <h3 class="mb-0">Data Kuis</h3>
               </div>
               <div class="table-responsive">
                 <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
                   <thead>
                     <tr style="color: white;" class="bg-gradient-primary">
-                    <th scope="col">Jenis</th>
-                    <th scope="col">Start Date</th>
-                    <th scope="col">End Date</th>
-                    <th scope="col">Start Time</th>
-                    <th scope="col">End Time</th>
-                    <th scope="col"></th>
+                      <th scope="col">Judul</th>
+                      <th scope="col">Jenis</th>
+                      <th scope="col">Start Date</th>
+                      <th scope="col">End Date</th>
+                      <th scope="col">Start Time</th>
+                      <th scope="col">End Time</th>
+                      <th scope="col"></th>
                       <!-- <th scope="col"></th> -->
                       <!-- <th scope="col"></th> -->
                     </tr>
                   </thead>
                   <tbody *ngFor="let data of dataUjian">
-                    <tr >
-                      <td>{{data.jenis}}</td>
+                    <tr *ngIf="data.type === 'TUGAS'">
+                      <td>{{data.title}}</td>
+                      <td>{{data.type}}</td>
                       <td>{{data.startDate}}</td>
                       <td>{{data.endDate}}</td>
                       <td>{{data.startTime}}</td>
@@ -85,6 +87,44 @@
           </div>
         </div>
       </div>
+      <hr class="my-4">
+      <div class="col s12 m9 l12">
+        <div class=" dataTables_wrapper "> 
+          <div class="card-header border-0">
+            <h3 class="mb-0">Data Ujian</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
+              <thead>
+                <tr style="color: white;" class="bg-gradient-primary" >
+                  <th scope="col">Judul</th>
+                  <th scope="col">Jenis</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">Start Time</th>
+                  <th scope="col">End Time</th>
+                  <th scope="col"></th>
+                  <!-- <th scope="col"></th> -->
+                  <!-- <th scope="col"></th> -->
+                </tr>
+              </thead>
+              <tbody *ngFor="let data of dataUjian">
+                <tr *ngIf="data.type === 'UJIAN'">
+                  <td>{{data.title}}</td>
+                  <td>{{data.type}}</td>
+                  <td>{{data.startDate}}</td>
+                  <td>{{data.endDate}}</td>
+                  <td>{{data.startTime}}</td>
+                  <td>{{data.endTime}}</td>                
+                  <td>
+                    <p-splitButton label="Info" icon="pi pi-info" (onClick)="getDetailKuis(data.header_id)" [model]="getMenuKuis(data.header_id)"></p-splitButton>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
           </p-tabPanel>
         </p-tabView>
       </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 import { AdminKelas } from 'src/app/layouts/model/admin-kelas';
+import { Message } from 'primeng/api/message';
 
 @Component({
   selector: 'app-admin-kelas',
@@ -10,7 +11,10 @@ import { AdminKelas } from 'src/app/layouts/model/admin-kelas';
 export class AdminKelasComponent implements OnInit {
 
   kelas= new AdminKelas()
-  msg:string
+  msg:boolean
+  msgs: Message[] = [];
+  isupdated = false;
+
   constructor(private adminService: AppService) {
     this.getKelas()
    }
@@ -21,6 +25,12 @@ export class AdminKelasComponent implements OnInit {
   setKelas(){
     this.adminService.setKelas(this.kelas).subscribe(data=>{
       this.msg=data
+      this.isupdated=true;
+      if(this.msg==true){
+        this.showSuccess()
+      }else{
+        this.showError()
+      }
     })
   }
 
@@ -29,5 +39,15 @@ export class AdminKelasComponent implements OnInit {
       console.log(data);
       
     })
+  }
+
+  showSuccess() {
+    this.msgs = [];
+	  this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+  }
+
+  showError() {
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
   }
 }

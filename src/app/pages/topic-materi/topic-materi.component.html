@@ -27,7 +27,7 @@
                   <div class="row">
                     <div class="col-lg-3">
                       <div class="form-group">
-                        <h5 class="heading-large">{{ ujian.jenis }}</h5>
+                        <h5 class="heading-large">Title : {{ ujian.title }}</h5>
                       </div>
                     </div>
                     <div class="col-lg-3">
@@ -53,19 +53,51 @@
             <hr class="my-4">
             <div>
             <h2 class="heading-large text-muted mb-4">Senin</h2>
+            <div class="pl-lg-4" >
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Title :</h5>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large">Waktu :</h5>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <h5 class="heading-large"></h5>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="form-group">
+                      <!-- <button class="btn btn-primary btn-sm" type="button">
+                          <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
+                          <span class="btn-inner--text" (click)="getMateri(top.headerid)">Materi</span>
+                        </button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="pl-lg-4" *ngFor="let top of topics">
-              <div class="row" *ngIf="top.hari === 'MONDAY'">
-                <div class="col-lg-4">
+              <div class="row" *ngIf="top.day === 'MONDAY'">
+                <div class="col-lg-3">
                   <div class="form-group">
-                    <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>
+                    <h5 class="heading-large">{{ top.topic }}</h5>
                   </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                   <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                    <h5 class="heading-large"></h5>
                   </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <h5 class="heading-large">&nbsp; {{ top.time }}</h5>
+                  </div>
+                </div>
+                <div class="col-lg-3">
                   <div class="form-group">
                       <button class="btn btn-primary btn-sm" type="button">
                           <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
@@ -80,17 +112,18 @@
                 <div class="row" *ngIf="kuis.day === 'MONDAY'">
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <h5 class="heading-large">TOPIC : {{ kuis.jenis }}</h5>
+                      <h5 class="heading-large">Title : {{ kuis.title }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <h5 class="heading-large">Tanggal : {{ kuis.start_date }} | {{ kuis.end_date }}</h5>
+                      <h5 class="heading-large">Tanggal : </h5><br>
+                      <h5 class="heading-large">{{ kuis.start_date }} | {{ kuis.end_date }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <h5 class="heading-large">Waktu : {{ kuis.jam }}</h5>
+                      <h5 class="heading-large">Waktu : {{ kuis.time }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-3">
@@ -108,7 +141,7 @@
             <div>
             <h2 class="heading-large text-muted mb-4">Selasa</h2>
             <div class="pl-lg-4" *ngFor="let top of topics">
-              <div class="row" *ngIf="top.hari === 'TUESDAY'">
+              <div class="row" *ngIf="top.day === 'TUESDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
                     <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>
@@ -162,7 +195,7 @@
             <div>             
             <h2 class="heading-large text-muted mb-4">Rabu</h2>
             <div class="pl-lg-4" *ngFor="let top of topics">
-              <div class="row" *ngIf="top.hari === 'WEDNESDAY'">
+              <div class="row" *ngIf="top.day === 'WEDNESDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
                     <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>
@@ -216,7 +249,7 @@
             <div>              
             <h2 class="heading-large text-muted mb-4">Kamis</h2>
             <div class="pl-lg-4" *ngFor="let top of topics">
-              <div class="row" *ngIf="top.hari === 'THURSDAY'">
+              <div class="row" *ngIf="top.day === 'THURSDAY'">
                 <div class="col-lg-3">
                   <div class="form-group">
                     <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>
@@ -275,7 +308,7 @@
             <div>
             <h2 class="heading-large text-muted mb-4">Jumat</h2>
             <div class="pl-lg-4" *ngFor="let top of topics">
-              <div class="row" *ngIf="top.hari === 'SATURDAY'">
+              <div class="row" *ngIf="top.day === 'SATURDAY'">
                 <div class="col-lg-3">
                   <div class="form-group">
                     <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>

@@ -1,4 +1,5 @@
 export class AdminKelas{
     id:string
-    namaKelas:string
+    code:string
+    name:string
 }

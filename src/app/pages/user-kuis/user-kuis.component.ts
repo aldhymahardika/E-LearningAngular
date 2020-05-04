@@ -8,6 +8,7 @@ import { User } from 'src/app/layouts/model/users';
 import { Forum } from 'src/app/layouts/model/forum';
 import { StorageService } from 'src/app/service/storage.service';
 import { Login } from 'src/app/layouts/model/login';
+import { Message } from 'primeng/api/message';
 
 @Component({
   selector: 'app-user-kuis',
@@ -31,6 +32,8 @@ export class UserKuisComponent implements OnInit {
   forums:any[]
   forum = new Forum()
   login = new Login()
+  msgs: Message[] = [];
+  isupdated = false;
 
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) {
     this.jawab.user = new User()
@@ -78,6 +81,8 @@ export class UserKuisComponent implements OnInit {
           console.log(this.jawab)
           this.uploadService.uploadUser(this.jawab).subscribe(
           event => {
+            this.isupdated=true   
+            this.showSuccess()
         //     if (event.type === HttpEventType.UploadProgress) {
         //       this.progress = Math.round(100 * event.loaded / event.total);
         //     } else if (event instanceof HttpResponse) {
@@ -106,11 +111,15 @@ export class UserKuisComponent implements OnInit {
   getForum(){
     this.route.queryParams
     .subscribe(params=>{
-    this.uploadService.getForumKuis(params.hId).subscribe(data=>{
-      this.forums=data
-      console.log(data);
+      this.uploadService.getForumKuis(params.hId).subscribe(data=>{
+        this.forums=data
+        console.log(data);
+      })
     })
-  })
   }
 
+  showSuccess() {
+    this.msgs = [];
+	  this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+  }
 }

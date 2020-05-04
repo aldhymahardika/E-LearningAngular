@@ -106,7 +106,7 @@ export class UploadUjianComponent implements OnInit {
         // this.ujian.pengajar.pengajar_id='1'
         this.ujian.file = this.selectedFiles.item(0);
         // this.ujian.category.id=this.selectedCity1.id;
-        this.ujian.kelas.kelas_id=this.setKelas.kelas_id;
+        this.ujian.kelas.class_id=this.setKelas.class_id;
         console.log(this.ujian)
         this.uploadService.uploadUjian(this.ujian).subscribe(
         event => {

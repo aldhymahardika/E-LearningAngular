@@ -98,7 +98,7 @@ export class UploadMateriComponent implements OnInit {
         // this.materi.pengajar.pengajar_id='1'
         this.materi.file = this.selectedFiles.item(0);
         // this.materi.category.id=this.selectedCity1.id;
-        this.materi.kelas.kelas_id=this.setKelas.kelas_id
+        this.materi.kelas.class_id=this.setKelas.class_id
         // console.log(this.tanggal);
         console.log(this.setKelas)
         this.uploadService.upload(this.materi).subscribe(

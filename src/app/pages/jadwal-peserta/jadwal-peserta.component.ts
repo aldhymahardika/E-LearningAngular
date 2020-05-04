@@ -24,7 +24,7 @@ export class JadwalPesertaComponent implements OnInit, OnDestroy {
   constructor(private sessionService: StorageService,private uploadService: AppService, private storageService: StorageService, private route: ActivatedRoute, private router: Router) {
     this.getJadwalUser()
     this.getDetailScore()
-    this,this.getDetailUjian()
+    this.getDetailUjian()
     this.getJadwalKuis()
    }
 
@@ -43,6 +43,7 @@ export class JadwalPesertaComponent implements OnInit, OnDestroy {
     this.login = this.sessionService.getId()
     this.route.queryParams
     .subscribe(params=>{
+      
     this.uploadService.getJadwalUser(params.id, this.login.idUser).subscribe(data=>{
       this.jadwal=data
       console.log(data);

@@ -23,7 +23,13 @@
                 <form>
                   <div class="pl-lg-12">
                     <div class="row">
-                      <div class="col-md-8">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-address">Code Materi</label>
+                          <input id="input-materi" class="form-control form-control-alternative" placeholder="Masukkan Code Materi" type="text" [(ngModel)]="admin.code" [ngModelOptions]="{standalone: true}">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
                         <div class="form-group">
                           <label class="form-control-label" for="input-address">Materi</label>
                           <input id="input-materi" class="form-control form-control-alternative" placeholder="Masukkan Materi" type="text" [(ngModel)]="admin.name" [ngModelOptions]="{standalone: true}">
@@ -34,6 +40,9 @@
                             <br>
                             <button type="button" class="btn btn-primary" (click)="setMateri()">Input</button>
                         </div>
+                      </div>
+                      <div class="col-md-12" [hidden]="!isupdated">  
+                        <p-messages [(value)]="msgs"></p-messages>  
                       </div>
                     </div>
                 </div>

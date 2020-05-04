@@ -100,6 +100,8 @@ export const AdminLayoutRoutes: Routes = [
         }
     },
 
+    //---------------------------------------------------------------------------
+
     //path pengajar
     { path: 'upload',             component: UploadComponent ,
     canActivate : [AuthGuard],
@@ -200,6 +202,8 @@ export const AdminLayoutRoutes: Routes = [
         }
     },
     // { path: 'upload-update',   component: UploadUpdateComponent},
+
+    //---------------------------------------------------------------------------
 
     //path peserta
     { path: 'materi',             component: MateriComponent ,

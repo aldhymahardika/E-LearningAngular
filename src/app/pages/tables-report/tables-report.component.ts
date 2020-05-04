@@ -60,6 +60,8 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
       pagingType: 'full_numbers',
       pageLength: 5
     };
+    // this.getKelas();
+    // this.getQuiz();
   }
 
   ngOnDestroy(){
@@ -99,7 +101,7 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
     .subscribe(params => {
       window.localStorage.setItem('kId', params.kId)
     this.uploadService.getKelas(params.kId).subscribe(data=>{
-      this.dtTrigger.next();
+      // this.dtTrigger.next();
       this.dataFile=data
       console.log(data);
     })
@@ -123,7 +125,7 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
     this.route.queryParams
     .subscribe(params=>{
       this.uploadService.getListQuiz(params.kId).subscribe(data=>{
-        // this.dtTrigger.next();
+        this.dtTrigger.next();
         this.dataUjian=data
         console.log(data);
       })
@@ -154,10 +156,10 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
         icon: 'pi pi-info-circle',
         accept: () => {
           this.getDeleteMateri(idFile)
-          
-
+          this.route.queryParams.subscribe(params => {
+            this.router.navigate(['/tables-report'], {queryParams:{kId: params.kId}})
             console.log(id);
-               
+          })
             // this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
         },
         reject: () => {

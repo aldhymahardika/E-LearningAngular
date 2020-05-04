@@ -1,5 +1,5 @@
-export class Pengajar{
-    userId:string
+export class Account{
+    accountId:string
     role:string[]
     nama:string
     username : string

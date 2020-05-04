@@ -18,18 +18,22 @@
         <div class="table-responsive">
           <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
             <thead>
-              <tr style="color: white;" class="bg-gradient-primary">
+              <tr style="color: white; text-align: center;" class="bg-gradient-primary " >
                 <th scope="col">Kelas</th>
                 <th scope="col">Pengajar</th>
                 <th scope="col">Jam</th>
+                <th scope="col">Tanggal Mulai</th>
+                <th scope="col">Tanggal Selesai</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody *ngFor="let pengajar of dataPengajar">
-              <tr>
-                <td>{{ pengajar.kelas }}</td>
+              <tr style="text-align: center;">
+                <td>{{ pengajar.class }}</td>
                 <td>{{ pengajar.nama }}</td>
-                <td>{{ pengajar.jam }}</td>
+                <td>{{ pengajar.time }}</td>
+                <td>{{ pengajar.start_Date }}</td>
+                <td>{{ pengajar.end_Date }}</td>
                 <td class="text-center">
                   <button type="button" class="btn btn-primary" (click)="getTopic(pengajar.kelas_id, pengajar.jam)">Info</button>
                   

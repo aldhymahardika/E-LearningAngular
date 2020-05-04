@@ -31,16 +31,14 @@
           <div class="table-responsive">
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
-                <tr>
+                <tr style="color: white;" class="bg-gradient-primary">
                   <th scope="col">Materi</th>
-                  <th scope="col">End Date</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let file of dataMateri">
-                  <td>{{ file.judul_materi }}</td>
-                  <td>{{ file.endDate }}</td>
+                  <td>{{ file.title }}</td>
                   <td class="text-center">
                     <button class="btn btn-icon btn-3 btn-primary" type="button">
                       <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
@@ -70,7 +68,7 @@
                   </span>
                   <strong class="text-success">{{forum.sender}}</strong>
                   <p>
-                      {{forum.isi_Chat}}
+                      {{forum.chat_content}}
                   </p>
               </div>
               </li>

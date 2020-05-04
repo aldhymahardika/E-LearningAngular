@@ -24,20 +24,20 @@
           <form>
             <h2 class="heading-large text-muted mb-4">Ujian</h2>
                 <div class="pl-lg-4" *ngFor="let ujian of dataKuis">
-                  <div class="row" *ngIf="ujian.jenis === 'UJIAN'">
+                  <div class="row" *ngIf="ujian.type === 'UJIAN'">
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">Tanggal : {{ ujian.tanggal }}</h5>
+                        <h5 class="heading-large">Tanggal Mulai : {{ ujian.startdate }}</h5>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">Waktu Mulai : {{ ujian.waktu_mulai }}</h5>
+                        <h5 class="heading-large">Waktu Mulai : {{ ujian.start_time }}</h5>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">Waktu Selesai : {{ ujian.waktu_selesai }}</h5>
+                        <h5 class="heading-large">Waktu Selesai : {{ ujian.end_time }}</h5>
                       </div>
                     </div>
                   </div>
@@ -46,10 +46,10 @@
             <div>
             <h2 class="heading-large text-muted mb-4">Senin</h2>
             <div class="pl-lg-4" *ngFor="let top of jadwal">
-              <div class="row" *ngIf="top.hari === 'MONDAY'">
+              <div class="row" *ngIf="top.day === 'MONDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                    <h5 class="heading-large">Tanggal : {{ top.date }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -59,27 +59,27 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
                   </div>
                 </div>
               </div>
             </div>
             <h2 class="heading-large text-muted mb-4">Quiz</h2>
               <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                <div class="row" *ngIf="kuis.hari === 'MONDAY'">
+                <div class="row" *ngIf="kuis.day === 'MONDAY' && kuis.type === 'TUGAS'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
+                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">Waktu Mulai : {{ kuis.waktu_mulai }}</h5>
+                      <h5 class="heading-large">Tanggal Selesai : {{ kuis.enddate }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">Waktu Selesai : {{ kuis.waktu_selesai }}</h5>
+                      <h5 class="heading-large">Waktu Mulai : {{ kuis.start_time }}</h5>
                     </div>
                   </div>
                 </div>
@@ -89,10 +89,10 @@
             <div>
             <h2 class="heading-large text-muted mb-4">Selasa</h2>
             <div class="pl-lg-4" *ngFor="let top of jadwal">
-              <div class="row" *ngIf="top.hari === 'TUESDAY'">
+              <div class="row" *ngIf="top.day === 'TUESDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                    <h5 class="heading-large">date : {{ top.date }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -102,17 +102,17 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                    <h5 class="heading-large">time : {{ top.time }}</h5>
                   </div>
                 </div>
               </div>
               </div>
               <h2 class="heading-large text-muted mb-4">Quiz</h2>
               <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                <div class="row" *ngIf="kuis.hari === 'TUESDAY'">
+                <div class="row" *ngIf="kuis.day === 'TUESDAY'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
+                      <h5 class="heading-large">date : {{ kuis.date }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -132,10 +132,10 @@
             <div>             
             <h2 class="heading-large text-muted mb-4">Rabu</h2>
             <div class="pl-lg-4" *ngFor="let top of jadwal">
-              <div class="row" *ngIf="top.hari === 'WEDNESDAY'">
+              <div class="row" *ngIf="top.day === 'WEDNESDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                    <h5 class="heading-large">date : {{ top.date }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -145,17 +145,17 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
                   </div>
                 </div>
               </div>
             </div>
             <h2 class="heading-large text-muted mb-4">Quiz</h2>
               <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                <div class="row" *ngIf="kuis.hari === 'WEDNESDAY'">
+                <div class="row" *ngIf="kuis.day === 'WEDNESDAY'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
+                      <h5 class="heading-large">date : {{ kuis.date }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -175,10 +175,10 @@
             <div>              
             <h2 class="heading-large text-muted mb-4">Kamis</h2>
             <div class="pl-lg-4" *ngFor="let top of jadwal">
-              <div class="row" *ngIf="top.hari === 'THURSDAY'">
+              <div class="row" *ngIf="top.day === 'THURSDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                    <h5 class="heading-large">date : {{ top.date }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -188,17 +188,17 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
                   </div>
                 </div>
               </div>
             </div>
             <h2 class="heading-large text-muted mb-4">Quiz</h2>
               <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                <div class="row" *ngIf="kuis.hari === 'THURSDAY'">
+                <div class="row" *ngIf="kuis.day === 'THURSDAY'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
+                      <h5 class="heading-large">date : {{ kuis.date }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -218,10 +218,10 @@
             <div>
             <h2 class="heading-large text-muted mb-4">Jumat</h2>
             <div class="pl-lg-4" *ngFor="let top of jadwal">
-              <div class="row" *ngIf="top.hari === 'FRIDAY'">
+              <div class="row" *ngIf="top.day === 'FRIDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.tanggal }}</h5>
+                    <h5 class="heading-large">date : {{ top.date }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -231,14 +231,14 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
                   </div>
                 </div>
               </div>
             </div>
             <h2 class="heading-large text-muted mb-4">Quiz</h2>
               <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                <div class="row" *ngIf="kuis.hari === 'FRIDAY'">
+                <div class="row" *ngIf="kuis.day === 'FRIDAY'">
                   <div class="col-lg-4">
                     <div class="form-group">
                       <h5 class="heading-large">Topic : {{ kuis.topic }}</h5>
@@ -246,7 +246,7 @@
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">Tanggal : {{ kuis.tanggal }}</h5>
+                      <h5 class="heading-large">date : {{ kuis.date }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -273,7 +273,7 @@
                     <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger" >
                       <thead>
                         <tr style="color: white;" class="bg-gradient-primary">
-                          <th scope="col">Tanggal</th>
+                          <th scope="col">date</th>
                           <th scope="col">Nilai</th>
                     </tr>
                   </thead>

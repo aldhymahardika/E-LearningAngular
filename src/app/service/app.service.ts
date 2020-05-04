@@ -17,8 +17,8 @@ import { Forum } from '../layouts/model/forum';
 })
 
 export class AppService {
-
-  private baseUrl = 'http://33fceec6.ngrok.io' 
+ 
+  private baseUrl = 'http://1bcbd246.ngrok.io' 
 
   constructor(private http: HttpClient) { }
   
@@ -196,7 +196,7 @@ export class AppService {
     formData.append('tanggal', materi.tanggal);
     formData.append('file', materi.file );
     formData.append('name', materi.judul_materi );
-    formData.append('kId', materi.kelas.kelas_id); 
+    formData.append('kId', materi.kelas.class_id); 
     // formData.append('hari', materi.hari);
     console.log(materi)
     return this.http.post<boolean>(this.baseUrl+`/file-materi/upload`, formData, {
@@ -215,7 +215,7 @@ export class AppService {
     formData.append('endTime', ujian.endTime);
     formData.append('startDate', ujian.start_date);
     formData.append('endDate', ujian.end_date);
-    formData.append('kId', ujian.kelas.kelas_id); 
+    formData.append('kId', ujian.kelas.class_id); 
     const req = new HttpRequest('POST', this.baseUrl+`/file-soal/upload`,formData, { 
       reportProgress: true,
       responseType: 'json'
@@ -358,10 +358,12 @@ export class AppService {
   }
   //-------------------------------------------------------------
 
+
+  
   //----------------------- ADMIN -------------------------------
   //----------------------- Materi -------------------------------
-  setMateri(materi): Observable<string>{
-    return this.http.post<string>(this.baseUrl+ "/materi/insert", materi)
+  setMateri(materi): Observable<boolean>{
+    return this.http.post<boolean>(this.baseUrl+ "/materi/insert", materi)
   }
 
   getMateri(): Observable<any[]>{
@@ -370,8 +372,8 @@ export class AppService {
   //-------------------------------------------------------------
 
   //----------------------- Kelas -------------------------------
-  setKelas(kelas):Observable<string>{
-    return this.http.post<string>(this.baseUrl+"/kelas-pengajar/insert", kelas)
+  setKelas(kelas):Observable<boolean>{
+    return this.http.post<boolean>(this.baseUrl+"/kelas-pengajar/insert", kelas)
   }
 
   getKelasAdmin(): Observable<any[]>{
@@ -383,11 +385,15 @@ export class AppService {
   }
   //-------------------------------------------------------------
 
-  //----------------------- Kelas -------------------------------
+  //----------------------- Pengajar -------------------------------
   setPengajar(materiPengajars): Observable<boolean>{
-    console.log(JSON.stringify(materiPengajars));
+    // console.log(JSON.stringify(materiPengajars));
     
     return this.http.post<boolean>(this.baseUrl+"/mp/insert", materiPengajars)
   }
 
+  getPengajar(): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/trainer/findall")
+  }
+  //-------------------------------------------------------------
 }

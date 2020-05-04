@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminMateri } from 'src/app/layouts/model/admin-materi';
 import { AppService } from 'src/app/service/app.service';
+import { Message } from 'primeng/api/message';
 
 @Component({
   selector: 'app-admin-materi',
@@ -9,7 +10,9 @@ import { AppService } from 'src/app/service/app.service';
 })
 export class AdminMateriComponent implements OnInit {
   admin = new AdminMateri()
-  msg:string
+  msg:boolean
+  msgs: Message[] = [];
+  isupdated = false;
   constructor(private adminService : AppService) {
     this.getMateri()
    }
@@ -20,6 +23,14 @@ export class AdminMateriComponent implements OnInit {
   setMateri(){
     this.adminService.setMateri(this.admin).subscribe(data=>{
       this.msg=data
+      this.isupdated=true;
+      if(this.msg==true){
+        this.showSuccess()
+      }else{
+        this.showError()
+      }
+      
+
     })
   }
 
@@ -28,5 +39,15 @@ export class AdminMateriComponent implements OnInit {
       console.log(data);
       
     })
+  }
+
+  showSuccess() {
+    this.msgs = [];
+  	this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+  }
+
+  showError() {
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
   }
 }

@@ -23,18 +23,18 @@ export const ROUTES: RouteInfo[] = [
     {  path: '/admin-listPengajar', title: 'List Pengajar', icon:'ni ni-bullet-list-67 text-blue', class:''},
     {  path: '/admin-listPeserta', title: 'List Peserta', icon:'ni ni-bullet-list-67 text-blue', class:''},
 
-    { path: '', title:'-------', icon:'', class:''},
+    // { path: '', title:'-------', icon:'', class:''},
 ]
 
 export const PENGAJAR : RouteInfo[] = [
   //Path Pengajar
-  { path: '/materi-pengajar', title:'List Materi', icon:'ni ni-book-bookmark text-blue', class:''},
   { path: '/upload-materi', title: 'Upload', icon:'ni-cloud-upload-96 text-blue', class: '' },
   { path: '/upload-ujian', title: 'Upload Ujian', icon:'ni-cloud-upload-96 text-blue', class: '' },
-  { path: '/table-report', title:'Scores', icon:'ni ni-trophy text-yellow', class:''},
+  // { path: '/table-report', title:'Scores', icon:'ni ni-trophy text-yellow', class:''},
+  { path: '/materi-pengajar', title:'List Materi', icon:'ni ni-book-bookmark text-blue', class:''},
   { path: '/kelas', title: 'List Kelas', icon:'ni-cloud-upload-96 text-blue', class: '' },
 
-  { path: '', title:'-------', icon:'', class:''},
+  // { path: '', title:'-------', icon:'', class:''},
 ]
 export const PESERTA : RouteInfo[] =[
   //Path Peserta

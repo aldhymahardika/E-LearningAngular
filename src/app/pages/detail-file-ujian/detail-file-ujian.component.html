@@ -27,7 +27,8 @@
               <br>
               <button type="button" class="btn btn-default" (click)="getUpdateDetail(ujian)">Upload</button>
               </div>
-              <div class="col-md-12">
+              <div class="col-sm-12" [hidden]="!isupdated">  
+                <p-messages [(value)]="msgs"></p-messages>  
               </div>
               </div>
             </div> 
