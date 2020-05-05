@@ -38,7 +38,7 @@
                       <td>{{data.day}}</td>
                       <td>{{data.topic}}</td>
                       <td>{{data.time}}</td>
-                      <td>{{data.date}}</td>                  
+                      <td>{{data.date | date : 'dd-MM-yyyy'}}</td>                  
                       <td>
                         <p-splitButton label="Info" icon="pi pi-info" (onClick)="getDetailMateri(data.id)" [model]="getMenu(data.id)"></p-splitButton>
                       </td>
@@ -74,8 +74,8 @@
                     <tr *ngIf="data.type === 'TUGAS'">
                       <td>{{data.title}}</td>
                       <td>{{data.type}}</td>
-                      <td>{{data.startDate}}</td>
-                      <td>{{data.endDate}}</td>
+                      <td>{{data.startDate | date : 'dd-MM-yyyy'}}</td>
+                      <td>{{data.endDate | date : 'dd-MM-yyyy'}}</td>
                       <td>{{data.startTime}}</td>
                       <td>{{data.endTime}}</td>                
                       <td>
@@ -112,8 +112,8 @@
                 <tr *ngIf="data.type === 'UJIAN'">
                   <td>{{data.title}}</td>
                   <td>{{data.type}}</td>
-                  <td>{{data.startDate}}</td>
-                  <td>{{data.endDate}}</td>
+                  <td>{{data.startDate | date : 'dd-MM-yyyy'}}</td>
+                  <td>{{data.endDate | date : 'dd-MM-yyyy'}}</td>
                   <td>{{data.startTime}}</td>
                   <td>{{data.endTime}}</td>                
                   <td>

@@ -50,8 +50,8 @@
                   <td>{{ data.kelas }}</td>
                   <td>{{ data.pengajar }}</td>
                   <td>{{ data.jam }}</td>
-                  <td>{{ data.startdate }}</td>
-                  <td>{{ data.enddate }}</td>
+                  <td>{{ data.startdate | date : 'dd-MM-yyyy' }}</td>
+                  <td>{{ data.enddate | date : 'dd-MM-yyyy' }}</td>
                 </tr>
               </tbody>
             </table>

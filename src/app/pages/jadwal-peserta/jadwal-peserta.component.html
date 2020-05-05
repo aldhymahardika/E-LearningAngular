@@ -27,7 +27,7 @@
                   <div class="row" *ngIf="ujian.type === 'UJIAN'">
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <h5 class="heading-large">Tanggal Mulai : {{ ujian.startdate }}</h5>
+                        <h5 class="heading-large">Tanggal Mulai : {{ ujian.startdate | date : 'dd-MM-yyyy'}}</h5>
                       </div>
                     </div>
                     <div class="col-lg-4">
@@ -49,7 +49,7 @@
               <div class="row" *ngIf="top.day === 'MONDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.date }}</h5>
+                    <h5 class="heading-large">Tanggal : {{ top.date | date : 'dd-MM-yyyy'}}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -69,7 +69,7 @@
                 <div class="row" *ngIf="kuis.day === 'MONDAY' && kuis.type === 'TUGAS'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate }}</h5>
+                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate | date : 'dd-MM-yyyy'}}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -92,7 +92,7 @@
               <div class="row" *ngIf="top.day === 'TUESDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.date }}</h5>
+                    <h5 class="heading-large">Tanggal : {{ top.date | date : 'dd-MM-yyyy'}}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -112,7 +112,7 @@
                 <div class="row" *ngIf="kuis.day === 'TUESDAY' && kuis.type === 'TUGAS'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate }}</h5>
+                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate | date : 'dd-MM-yyyy'}}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -135,7 +135,7 @@
               <div class="row" *ngIf="top.day === 'WEDNESDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.date }}</h5>
+                    <h5 class="heading-large">Tanggal : {{ top.date | date : 'dd-MM-yyyy'}}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -155,7 +155,7 @@
                 <div class="row" *ngIf="kuis.day === 'WEDNESDAY' && kuis.type === 'TUGAS'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate }}</h5>
+                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate | date : 'dd-MM-yyyy'}}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -178,7 +178,7 @@
               <div class="row" *ngIf="top.day === 'THURSDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.date }}</h5>
+                    <h5 class="heading-large">Tanggal : {{ top.date | date : 'dd-MM-yyyy'}}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -198,7 +198,7 @@
                 <div class="row" *ngIf="kuis.day === 'THURSDAY' && kuis.type === 'TUGAS'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate }}</h5>
+                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate | date : 'dd-MM-yyyy'}}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -221,7 +221,7 @@
               <div class="row" *ngIf="top.day === 'FRIDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.date }}</h5>
+                    <h5 class="heading-large">Tanggal : {{ top.date | date : 'dd-MM-yyyy'}}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -241,7 +241,7 @@
                 <div class="row" *ngIf="kuis.day === 'FRIDAY' && kuis.type === 'TUGAS'">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate }}</h5>
+                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate | date : 'dd-MM-yyyy'}}</h5>
                     </div>
                   </div>
                   <div class="col-lg-4">
@@ -280,7 +280,7 @@
                   </thead>
                   <tbody *ngFor="let nil of dataScore">
                     <tr>
-                      <td>{{ nil.date }}</td>
+                      <td>{{ nil.date | date : 'dd-MM-yyyy'}}</td>
                       <td>{{ nil.title }}</td>
                       <td>{{ nil.score }}</td>
                     </tr>
@@ -311,7 +311,7 @@
                   </thead>
                   <tbody *ngFor="let nil of dataUjian">
                     <tr>
-                      <td>{{ nil.date }}</td>
+                      <td>{{ nil.date | date : 'dd-MM-yyyy'}}</td>
                       <td>{{ nil.title }}</td>
                       <td>{{ nil.score }}</td>
                     </tr>

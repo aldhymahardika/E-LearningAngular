@@ -18,7 +18,7 @@
           <div class="card-header border-0 shadow">
             <h3 class="mb-0">Data Pengajar</h3>
           </div>
-          <div style="float: left;">
+          <div style="float: right;">
             <br>
             <div class="sejajar">
                 <p-dropdown  placeholder="Pilih Materi" [options]="materi" [(ngModel)]="dataMateri" optionLabel="name" [showClear]="true" [ngModelOptions]="{standalone: true}"></p-dropdown>
@@ -46,7 +46,7 @@
               <tbody *ngFor="let data of mapels">
                 <tr style="text-align: center;">
                   <td>{{ data.pelajaran }}</td>
-                  <td>{{ data.tanggal }}</td>
+                  <td>{{ data.tanggal | date : 'dd-MM-yyyy' }}</td>
                   <td>{{ data.waktu }}</td>
                 </tr>
               </tbody>

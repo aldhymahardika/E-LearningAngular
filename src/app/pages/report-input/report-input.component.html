@@ -84,7 +84,7 @@
                           <td>{{ data.day }}</td>
                           <td>{{ data.type }}</td>
                           <td>{{ data.title }}</td>
-                          <td>{{ data.question_date }}</td>
+                          <td>{{ data.question_date | date : 'dd-MM-yyyy'}}</td>
                           <td class="text-center">
                             <button type="button" class="btn btn-primary" (click)="downloadFileUser(data)">Download</button>
                             <button type="button" class="btn btn-primary" (click)="input(data, target)">Input Nilai</button>
@@ -146,7 +146,7 @@
                   </thead>
                   <tbody *ngFor="let nil of dataScore">
                     <tr>
-                      <td>{{ nil.date }}</td>
+                      <td>{{ nil.date | date : 'dd-MM-yyyy'}}</td>
                       <td>{{ nil.title }}</td>
                       <td>{{ nil.score }}</td>
                       <td>
@@ -176,7 +176,7 @@
               </thead>
               <tbody *ngFor="let uji of dataUjian">
                 <tr>
-                  <td>{{ uji.date }}</td>
+                  <td>{{ uji.date | date : 'dd-MM-yyyy'}}</td>
                   <td>{{ uji.title }}</td>
                   <td>{{ uji.score }}</td>
                   <td>

@@ -32,8 +32,8 @@
                 <td>{{ pengajar.class }}</td>
                 <td>{{ pengajar.nama }}</td>
                 <td>{{ pengajar.time }}</td>
-                <td>{{ pengajar.start_Date }}</td>
-                <td>{{ pengajar.end_Date }}</td>
+                <td>{{ pengajar.start_Date | date : 'dd-MM-yyyy'}}</td>
+                <td>{{ pengajar.end_Date | date : 'dd-MM-yyyy'}}</td>
                 <td class="text-center">
                   <button type="button" class="btn btn-primary" (click)="getTopic(pengajar.kelas_id, pengajar.time)">Info</button>
                   
