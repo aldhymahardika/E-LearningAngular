@@ -1,0 +1,61 @@
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        
+      </div>
+    </div>
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid">
+    <!-- Table -->
+    <div class="row">
+      <div class="col s12 m9 l12">
+        <!-- <div class="col-xl-12 order-xl-1"> -->
+            <div class="card bg-secondary shadow">
+              <div class="card-header bg-white border-0">
+        <div class=" dataTables_wrapper "> 
+          <div class="card-header border-0 shadow">
+            <h3 class="mb-0">Data Pengajar</h3>
+          </div>
+          <div style="float: left;">
+            <br>
+            <div class="sejajar">
+                <p-dropdown  placeholder="Pilih Materi" [options]="materi" [(ngModel)]="dataMateri" optionLabel="name" [showClear]="true" [ngModelOptions]="{standalone: true}"></p-dropdown>
+              </div>
+              <div class="sejajar">
+                <p-dropdown  placeholder="Pilih Kelas" [options]="kelas" [(ngModel)]="dataKelas" optionLabel="name" [showClear]="true" [ngModelOptions]="{standalone: true}"></p-dropdown>
+              </div>
+            <div class="sejajar">
+                <p-button icon="pi pi-search" (click)="getReportMapel()"></p-button>
+                &nbsp;
+                <p-button icon="pi pi-refresh" (click)="getReportAllMapel()"></p-button>
+              <!-- <button type="button" class="btn btn-primary" (click)="getReportMapel()">Search</button> -->
+            </div>
+            
+          </div>
+          <div class="table-responsive">
+            <table class="row-border hover dataTable no-footer">
+              <thead>
+                <tr style="color: white; text-align: center;" class="bg-gradient-primary " >
+                  <th scope="col">Pelajaran</th>
+                  <th scope="col">Tanggal</th>
+                  <th scope="col">Waktu</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let data of mapels">
+                <tr style="text-align: center;">
+                  <td>{{ data.pelajaran }}</td>
+                  <td>{{ data.tanggal }}</td>
+                  <td>{{ data.waktu }}</td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>
+</div>
+  

@@ -43,6 +43,9 @@ import { JadwalPesertaComponent } from 'src/app/pages/jadwal-peserta/jadwal-pese
 import { KelasUserComponent } from 'src/app/pages/kelas-user/kelas-user.component';
 import { UserClassComponent } from 'src/app/pages/user-class/user-class.component';
 import { ListUjianComponent } from 'src/app/pages/list-ujian/list-ujian.component';
+import { ReportJadwalComponent } from 'src/app/pages/report-jadwal/report-jadwal.component';
+import { ReportMenuComponent } from 'src/app/pages/report-menu/report-menu.component';
+import { ReportJadwalMataPelajaranComponent } from 'src/app/pages/report-jadwal-mata-pelajaran/report-jadwal-mata-pelajaran.component';
 // import { Component } from '@angular/core';
 
 export const AdminLayoutRoutes: Routes = [
@@ -94,6 +97,24 @@ export const AdminLayoutRoutes: Routes = [
         }
     },
     { path: 'admin-topic',        component: AdminTopicComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_ADMIN'
+        }
+    },
+    { path: 'report-jadwal',        component: ReportJadwalComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_ADMIN'
+        }
+    },
+    { path: 'report-menu',        component: ReportMenuComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_ADMIN'
+        }
+    }, 
+    { path: 'report-jadwal-mata-pelajaran',        component: ReportJadwalMataPelajaranComponent ,
     canActivate : [AuthGuard],
     data : {
         expectedRole : 'ROLE_ADMIN'

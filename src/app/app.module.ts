@@ -25,6 +25,8 @@ import {ConfirmationService} from 'primeng/api';
 import { DataTablesModule } from 'angular-datatables';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {SplitButtonModule, SplitButton} from 'primeng/splitbutton';
+import {ButtonModule} from 'primeng/button';
+import {CalendarModule} from 'primeng/calendar';
 
 import { UploadMateriComponent } from './pages/upload-materi/upload-materi.component';
 import { TablesMateriComponent } from './pages/tables-materi/tables-materi.component';
@@ -66,6 +68,9 @@ import { KelasUserComponent } from './pages/kelas-user/kelas-user.component';
 import { JadwalPesertaComponent } from './pages/jadwal-peserta/jadwal-peserta.component';
 import { UserClassComponent } from './pages/user-class/user-class.component';
 import { ListUjianComponent } from './pages/list-ujian/list-ujian.component';
+import { ReportJadwalComponent } from './pages/report-jadwal/report-jadwal.component';
+import { ReportMenuComponent } from './pages/report-menu/report-menu.component';
+import { ReportJadwalMataPelajaranComponent } from './pages/report-jadwal-mata-pelajaran/report-jadwal-mata-pelajaran.component';
 
 @NgModule({
   imports: [
@@ -87,7 +92,9 @@ import { ListUjianComponent } from './pages/list-ujian/list-ujian.component';
     ConfirmDialogModule,
     DataTablesModule,
     ProgressSpinnerModule,
-    SplitButtonModule
+    SplitButtonModule,
+    ButtonModule,
+    CalendarModule
   ],
   declarations: [
     AppComponent,
@@ -130,7 +137,10 @@ import { ListUjianComponent } from './pages/list-ujian/list-ujian.component';
     KelasUserComponent,
     JadwalPesertaComponent,
     UserClassComponent,
-    ListUjianComponent
+    ListUjianComponent,
+    ReportJadwalComponent,
+    ReportMenuComponent,
+    ReportJadwalMataPelajaranComponent
   ],
   providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]

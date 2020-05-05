@@ -11,7 +11,7 @@ import { IconsComponent } from '../../pages/icons/icons.component';
 import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
-
+import {CalendarModule} from 'primeng/calendar';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AccordionModule} from 'primeng/accordion';
@@ -23,6 +23,7 @@ import {ConfirmationService} from 'primeng/api';
 import { DataTablesModule } from 'angular-datatables';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {SplitButtonModule} from 'primeng/splitbutton';
+import {ButtonModule} from 'primeng/button';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -41,7 +42,9 @@ import {SplitButtonModule} from 'primeng/splitbutton';
     ConfirmDialogModule,
     DataTablesModule,
     ProgressSpinnerModule,
-    SplitButtonModule
+    SplitButtonModule,
+    ButtonModule,
+    CalendarModule
   ],
   declarations: [
     DashboardComponent,

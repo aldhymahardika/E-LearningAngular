@@ -8,12 +8,12 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <span class="h2 font-weight-bold mb-0"><a routerLink='/list-materi' [queryParams]="{ kId:data.kId }">{{data.materi}} <br> Kelas {{data.kelas}}</a></span>
+                  <span class="h2 font-weight-bold mb-0"><a routerLink='/list-materi' [queryParams]="{ kId:data.kId }">{{data.materi}} <br>{{data.class}}</a></span>
                   <!-- <button></button> -->
                 </div>
                 <div class="col-auto">
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                    <i>{{data.kelas}}</i>
+                  <div class="icon icon-shape bg-primary text-white rounded-circle shadow">
+                    <i class="ni ni-tag"></i>
                   </div>
                 </div>
               </div>

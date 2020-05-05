@@ -1,3 +1,4 @@
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
   <!-- Mask -->
   <!-- <span class="mask bg-gradient-danger opacity-8"></span> -->
@@ -31,10 +32,16 @@
             <h6 class="heading-small text-muted mb-4" #target>Scores</h6>
             <div class="pl-lg-4">
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Jenis</label>
                     <input id="input-address" class="form-control form-control-alternative" placeholder="Jenis" type="text" [(ngModel)]="dataNilai.jenis" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Judul</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Judul" type="text" [(ngModel)]="dataNilai.title" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -67,17 +74,17 @@
                         <tr>
                           <th scope="col">Hari</th>
                           <th scope="col">Jenis</th>
-                          <th scope="col">Nama File</th>
+                          <th scope="col">Judul</th>
                           <th scope="col">Tanggal</th>
                           <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody *ngFor="let data of details">
                         <tr>
-                          <td>{{ data.hari }}</td>
-                          <td>{{ data.jenis }}</td>
-                          <td>{{ data.file_name }}</td>
-                          <td>{{ data.tanggal }}</td>
+                          <td>{{ data.day }}</td>
+                          <td>{{ data.type }}</td>
+                          <td>{{ data.title }}</td>
+                          <td>{{ data.question_date }}</td>
                           <td class="text-center">
                             <button type="button" class="btn btn-primary" (click)="downloadFileUser(data)">Download</button>
                             <button type="button" class="btn btn-primary" (click)="input(data, target)">Input Nilai</button>
@@ -132,6 +139,7 @@
                   <thead>
                     <tr style="color: white;" class="bg-gradient-primary">
                       <th scope="col">Tanggal</th>
+                      <th scope="col">Judul</th>
                       <th scope="col">Nilai</th>
                       <th scope="col"></th>
                     </tr>
@@ -139,7 +147,8 @@
                   <tbody *ngFor="let nil of dataScore">
                     <tr>
                       <td>{{ nil.date }}</td>
-                      <td>{{ nil.nilai }}</td>
+                      <td>{{ nil.title }}</td>
+                      <td>{{ nil.score }}</td>
                       <td>
                         <p-splitButton label="Update" icon="pi pi-refresh" (onClick)="getUpdateKuis(nil, update)" [model]="getMenuTugas(nil)"></p-splitButton>
                       </td>
@@ -160,6 +169,7 @@
               <thead>
                 <tr style="color: white;" class="bg-gradient-primary">
                   <th scope="col">Tanggal</th>
+                  <th scope="col">Judul</th>
                   <th scope="col">Nilai</th>
                   <th scope="col"></th>
                 </tr>
@@ -167,7 +177,8 @@
               <tbody *ngFor="let uji of dataUjian">
                 <tr>
                   <td>{{ uji.date }}</td>
-                  <td>{{ uji.nilai }}</td>
+                  <td>{{ uji.title }}</td>
+                  <td>{{ uji.score }}</td>
                   <td>
                     <p-splitButton label="Update" icon="pi pi-refresh" (onClick)="getUpdateUJian(uji, update, 1)" [model]="getMenuUjian(uji)"></p-splitButton>
                   </td>

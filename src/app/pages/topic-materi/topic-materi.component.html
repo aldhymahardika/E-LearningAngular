@@ -144,12 +144,12 @@
               <div class="row" *ngIf="top.day === 'TUESDAY'">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>
+                    <h5 class="heading-large">Topic : {{ top.topic }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -167,7 +167,7 @@
                 <div class="row" *ngIf="kuis.day === 'TUESDAY'">
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <h5 class="heading-large">TOPIC : {{ kuis.jenis }}</h5>
+                      <h5 class="heading-large">TOPIC : {{ kuis.title }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-3">
@@ -177,7 +177,7 @@
                   </div>
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <h5 class="heading-large">Waktu : {{ kuis.jam }}</h5>
+                      <h5 class="heading-large">Waktu : {{ kuis.time }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-3">
@@ -203,7 +203,7 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -221,7 +221,7 @@
               <div class="row" *ngIf="kuis.day === 'WEDNESDAY'">
                 <div class="col-lg-3">
                   <div class="form-group">
-                    <h5 class="heading-large">TOPIC : {{ kuis.jenis }}</h5>
+                    <h5 class="heading-large">TOPIC : {{ kuis.title }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-3">
@@ -231,7 +231,7 @@
                 </div>
                 <div class="col-lg-3">
                   <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ kuis.jam }}</h5>
+                    <h5 class="heading-large">Waktu : {{ kuis.time }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-3">
@@ -262,7 +262,7 @@
                 </div>
                 <div class="col-lg-3">
                   <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-3">
@@ -280,7 +280,7 @@
                 <div class="row" *ngIf="kuis.day === 'THURSDAY'">
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <h5 class="heading-large">TOPIC : {{ kuis.jenis }}</h5>
+                      <h5 class="heading-large">Judul : {{ kuis.title }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-3">
@@ -290,7 +290,7 @@
                   </div>
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <h5 class="heading-large">Waktu : {{ kuis.jam }}</h5>
+                      <h5 class="heading-large">Waktu : {{ kuis.time }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-3">
@@ -311,7 +311,7 @@
               <div class="row" *ngIf="top.day === 'SATURDAY'">
                 <div class="col-lg-3">
                   <div class="form-group">
-                    <h5 class="heading-large">TOPIC : {{ top.topic }}</h5>
+                    <h5 class="heading-large">Topic : {{ top.title }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-3">
@@ -321,7 +321,7 @@
                 </div>
                 <div class="col-lg-3">
                   <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.waktu }}</h5>
+                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
                   </div>
                 </div>
                 <div class="col-lg-3">
@@ -339,7 +339,7 @@
                 <div class="row" *ngIf="kuis.day === 'FRIDAY'">
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <h5 class="heading-large">TOPIC : {{ kuis.jenis }}</h5>
+                      <h5 class="heading-large">Judul : {{ kuis.title }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-3">
@@ -349,7 +349,7 @@
                   </div>
                   <div class="col-lg-3">
                     <div class="form-group">
-                      <h5 class="heading-large">Waktu : {{ kuis.jam }}</h5>
+                      <h5 class="heading-large">Waktu : {{ kuis.time }}</h5>
                     </div>
                   </div>
                   <div class="col-lg-3">
@@ -383,8 +383,8 @@
                     </thead>
                     <tbody *ngFor="let kel of kelas">
                       <tr>
-                        <td>{{ kel.nama }}</td>
-                        <td>{{ kel.nilai_akhir }}</td>
+                        <td>{{ kel.name }}</td>
+                        <td>{{ kel.final_score }}</td>
                       </tr>
                     </tbody>
                   </table>

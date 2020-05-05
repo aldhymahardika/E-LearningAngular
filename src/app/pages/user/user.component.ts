@@ -9,6 +9,7 @@ import { User } from 'src/app/layouts/model/users';
 import { StorageService } from 'src/app/service/storage.service';
 import { Login } from 'src/app/layouts/model/login';
 import { Message } from 'primeng/api/message';
+import { Forum } from 'src/app/layouts/model/forum';
 
 @Component({
   selector: 'app-user',
@@ -33,9 +34,12 @@ export class UserComponent implements OnInit {
   login = new Login()
   msgs: Message[] = [];
   isupdated = false; 
-  
+  forum = new Forum()
+  forums:any[]
+
   constructor(private sessionService: StorageService,private uploadService: AppService, private route: ActivatedRoute,private router: Router) { 
     this.jawab.user = new User()
+    this.getForum()
     this.getAllUjian()
   }
   
@@ -109,10 +113,30 @@ export class UserComponent implements OnInit {
   showSuccess() {
     this.msgs = [];
     this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
-}
+  }
 
-showError() {
-  this.msgs = [];
-  this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
-}
+  showError() {
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
+  }
+
+  setForum(){
+    this.login = this.sessionService.getId()
+    this.route.queryParams
+    .subscribe(params=>{
+      this.uploadService.setForumKuis(params.hId, this.forum.isiPesan, this.login.idUser).subscribe(data=>{
+        this.forum=data
+      })
+    })
+  }
+
+  getForum(){
+    this.route.queryParams
+    .subscribe(params=>{
+      this.uploadService.getForumKuis(params.hId).subscribe(data=>{
+        this.forums=data
+        console.log(data);
+      })
+    })
+  }
 }

@@ -16,7 +16,7 @@ export class JadwalPesertaComponent implements OnInit, OnDestroy {
   jadwal:any[]
   dataScore:any[]
   dataKuis:any[]
-  dataUjian: any[]
+  dataUjian: any[] 
   login = new Login()
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();

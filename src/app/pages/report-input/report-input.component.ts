@@ -35,7 +35,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       pagingType: 'full_numbers',
       pageLength: 5
     };
-  }
+  } 
 
   ngOnDestroy(){
     this.dtTrigger.unsubscribe();
@@ -45,7 +45,6 @@ export class ReportInputComponent implements OnInit, OnDestroy {
     this.route.queryParams
     .subscribe(params=>{
       console.log(params);
-      
       this.uploadService.getDetailUser(params.kId, params.uId).subscribe(data=>{
         this.details=data
         console.log(data);
@@ -56,7 +55,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   updateNilai(data:any){
     this.route.queryParams
     .subscribe(params=>{
-      this.uploadService.setNilaiKuis(params.kId, params.uId, this.dataNilai.nilaiUtama, this.dataNilai.jenis, this.dataNilai.nilaiKehadiran, this.dataNilai.tanggal).subscribe(data=>{
+      this.uploadService.setNilaiKuis(params.kId, params.uId, this.dataNilai.nilaiUtama, this.dataNilai.jenis, this.dataNilai.nilaiKehadiran, this.dataNilai.tanggal, this.dataNilai.title).subscribe(data=>{
         this.msg=data
         console.log(this.dataNilai);
         console.log(data);        
@@ -67,12 +66,13 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   input(data, el:HTMLElement){
     this.route.queryParams
     .subscribe(params=>{
-      this.dataNilai.jenis= data.jenis
+      this.dataNilai.title=data.title
+      this.dataNilai.jenis= data.type
       this.dataNilai.kelas=params.kId
       this.dataNilai.user=params.uId
       // this.dataNilai.nilaiUtama
       // this.dataNilai.nilaiKehadiran
-      this.dataNilai.tanggal=data.tanggalSoal
+      this.dataNilai.tanggal=data.question_date
       el.scrollIntoView({behavior : 'smooth'})
     })
   }
@@ -126,10 +126,10 @@ export class ReportInputComponent implements OnInit, OnDestroy {
     ];
   }
 
-  getMenuUjian(nilai):MenuItem[]{
+  getMenuUjian(nilai:string):MenuItem[]{
     return [
       {label: 'Delete', icon: 'pi pi-times', command: () => {
-        this.getDeleteUJian(nilai);
+        this.confirm2(nilai);
       }}
     ];
   }
@@ -161,7 +161,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
         header: 'Delete Confirmation',
         icon: 'pi pi-info-circle',
         accept: () => {
-          this.getDeleteKuis(data)
+          this.getDeleteUJian(data)
           
 
             console.log(id);
@@ -181,7 +181,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       this.dataKuis.jenis= "TUGAS"
       this.dataKuis.kelas=params.kId
       this.dataKuis.user=params.uId
-      this.dataKuis.tanggal=data.tanggalSoal
+      this.dataKuis.tanggal=data.question_date
     this.uploadService.getDeleteUjian(this.dataKuis.id, params.kId, params.uId, this.dataKuis.jenis).subscribe()
     })
   }
@@ -193,7 +193,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       this.dataKuis.jenis= "Ujian"
       this.dataKuis.kelas=params.kId
       this.dataKuis.user=params.uId
-      this.dataKuis.tanggal=data.tanggalSoal
+      this.dataKuis.tanggal=data.question_date
     this.uploadService.getDeleteUjian(this.dataKuis.id, params.kId, params.uId, this.dataKuis.jenis).subscribe()
     })
   }
@@ -205,7 +205,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       this.dataKuis.jenis= "TUGAS"
       this.dataKuis.kelas=params.kId
       this.dataKuis.user=params.uId
-      this.dataKuis.tanggal=data.tanggalSoal
+      this.dataKuis.tanggal=data.question_date
       el.scrollIntoView({behavior : 'smooth'})
     })
   }
@@ -217,7 +217,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       this.dataKuis.jenis= "UJIAN"
       this.dataKuis.kelas=params.kId
       this.dataKuis.user=params.uId
-      this.dataKuis.tanggal=data.tanggalSoal
+      this.dataKuis.tanggal=data.question_date
       el.scrollIntoView({behavior : 'smooth'})
       if(x==1){
         this.exampleFlag=true;

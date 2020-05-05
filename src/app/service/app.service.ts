@@ -18,7 +18,7 @@ import { Forum } from '../layouts/model/forum';
 
 export class AppService {
  
-  private baseUrl = 'http://1bcbd246.ngrok.io' 
+  private baseUrl = 'http://73abcd9e.ngrok.io' 
 
   constructor(private http: HttpClient) { }
   
@@ -283,7 +283,7 @@ export class AppService {
     console.log(jamId);
     console.log(uId);
     console.log(kId);
-    return this.http.get<boolean>(this.baseUrl + "/cek/class?uId=" + uId +"&waktu=" + jamId+ "&kId=" + kId)
+    return this.http.get<boolean>(this.baseUrl + "/cek/class?uId=" + uId +"&waktu=" + jamId)
   }
 
   getAbsen(uId:string, mpId:string): Observable<boolean> { 
@@ -316,8 +316,8 @@ export class AppService {
     return this.http.get<any[]>(this.baseUrl+ "/user/kelas?uId=" + uId)
   }
 
-  setNilaiKuis(kelas:string, uId:string, nilai: number, jenis:string, aktif:number, tanggal:string): Observable<any>{
-    return this.http.post<any>(this.baseUrl + "/insert/nilai?kelas="+ kelas +"&userId="+ uId +"&keaktifan="+ aktif + "&nilai="+ nilai +"&jenis="+jenis + "&tanggal="+tanggal, {})
+  setNilaiKuis(kelas:string, uId:string, nilai: number, jenis:string, aktif:number, tanggal:string, title:string): Observable<any>{
+    return this.http.post<any>(this.baseUrl + "/insert/nilai?kelas="+ kelas +"&userId="+ uId +"&keaktifan="+ aktif + "&nilai="+ nilai +"&jenis="+jenis + "&tanggal="+tanggal+ "&title=" + title, {})
   }
 
   setUpdateKuis(id:string, kelas:string, uId:string, nilai: number, jenis:string, aktif:number){
@@ -396,4 +396,24 @@ export class AppService {
     return this.http.get<any[]>(this.baseUrl+ "/trainer/findall")
   }
   //-------------------------------------------------------------
+
+  //----------------------- REPORT ADMIN -------------------------------
+  //----------------------- REPORT JADWAL -------------------------------
+  getReportAllJadwal(): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/report/all-jadwal")
+  }
+
+  getReportJadwal(tgl1:string, tgl2:string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/report/jadwals?tgl1="+ tgl1 +"&tgl2=" + tgl2)
+  }
+  //-------------------------------------------------------------
+
+  //----------------------- REPORT JADWAL -------------------------------
+  getReportAllMapel(): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/report/all-mapel")
+  }
+
+  getReportMapel(cId:string, mId:string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/report/mapels?cId="+ cId +"&mId=" + mId)
+  }
 }

@@ -37,10 +37,10 @@ export class EnrolComponent implements OnInit {
         this.kondisi=data
         console.log(data)
       if(this.kondisi==false){
-        this.route.navigate(['/tables'], {queryParams: {id:params.id, kId:params.kId, jamid:params.jamid}})
+        this.route.navigate(['/tables'], {queryParams: {uId:this.login.idUser, id: params.id,kId:params.kId, jamid:params.jamid}})
       }else{
         this.uploadService.setEnrol(params.kId, this.login.idUser).subscribe(data=>{
-        this.route.navigate(['/topic-materi'], {queryParams: {id:params.id, kId:params.kId, jamid:params.jamid}})
+        this.route.navigate(['/topic-materi'], {queryParams: {uId:this.login.idUser, id: params.id,kId:params.kId, jamid:params.jamid}})
     })
   }
   })
