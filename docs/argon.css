@@ -15462,7 +15462,7 @@ button.section-darker:focus
 
 .fill-primary
 {
-    fill: #5e72e4;
+    fill: linear-gradient(87deg, #825ee4 0, #5e72e4 100%) !important;
 }
 
 .stroke-primary

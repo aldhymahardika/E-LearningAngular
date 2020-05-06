@@ -18,7 +18,7 @@ import { Forum } from '../layouts/model/forum';
 
 export class AppService {
  
-  private baseUrl = 'http://607d58e4.ngrok.io' 
+  private baseUrl = 'http://bf3fdba6.ngrok.io' 
 
   constructor(private http: HttpClient) { }
   
@@ -403,9 +403,15 @@ export class AppService {
     return this.http.get<any[]>(this.baseUrl+ "/report/all-jadwal")
   }
 
+  getDownloadAllJadwal(tgl1:string, tgl2:string){
+    return this.http.get(this.baseUrl+ "/report/jadwals/download?tgl1="+ tgl1 +"&tgl2=" + tgl2, {responseType: 'blob'})
+  }
+
   getReportJadwal(tgl1:string, tgl2:string): Observable<any[]>{
     return this.http.get<any[]>(this.baseUrl+ "/report/jadwals?tgl1="+ tgl1 +"&tgl2=" + tgl2)
   }
+
+  
   //-------------------------------------------------------------
 
   //----------------------- REPORT JADWAL -------------------------------
@@ -415,5 +421,9 @@ export class AppService {
 
   getReportMapel(cId:string, mId:string): Observable<any[]>{
     return this.http.get<any[]>(this.baseUrl+ "/report/mapels?cId="+ cId +"&mId=" + mId)
+  }
+
+  getDownloadMapel(cId:string, mId:string){
+    return this.http.get(this.baseUrl+ "/report/mapels/download?cId="+ cId +"&mId=" + mId, {responseType: 'blob'})
   }
 }

@@ -63,4 +63,7 @@ export class TablesComponent implements OnInit, OnDestroy {
     // return body.data || {};
   }
 
+  getBack(){
+    this.route.navigate(['/materi'])
+  }
 }

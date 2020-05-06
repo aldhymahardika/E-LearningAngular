@@ -51,8 +51,6 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
           window.scrollTo(0, 0    );
       }
   });
-    this.getKelas();
-    this.getQuiz();
   }
 
   ngOnInit() {
@@ -60,8 +58,8 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
       pagingType: 'full_numbers',
       pageLength: 5
     };
-    // this.getKelas();
-    // this.getQuiz();
+    this.getKelas();
+    this.getQuiz();
   }
 
   ngOnDestroy(){
@@ -75,10 +73,8 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
       }},
       {label: 'Delete', icon: 'pi pi-times', command: () => {
         this.confirm2(headerid);
+        console.log(headerid);
       }}
-      // {label: 'Angular.io', icon: 'pi pi-info', url: 'http://angular.io'},
-      // {separator: true},
-      // {label: 'Setup', icon: 'pi pi-cog', routerLink: ['/setup']}
   ];
   }
 
@@ -88,11 +84,10 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
           this.getUpdateUjian(headerid);
       }},
       {label: 'Delete', icon: 'pi pi-times', command: () => {
+        console.log(headerid);
+        
         this.confirm1(headerid);
       }}
-      // {label: 'Angular.io', icon: 'pi pi-info', url: 'http://angular.io'},
-      // {separator: true},
-      // {label: 'Setup', icon: 'pi pi-cog', routerLink: ['/setup']}
     ];
   }
 
@@ -110,15 +105,18 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
 
   getDeleteMateri(headerid:string){
     this.uploadService.deleteMateri(headerid).subscribe(data=>{
-        
-     })
-    // this.getKelas()
-    // this.getQuiz()
-    
+      this.route.queryParams.subscribe(params => {
+        this.router.navigate(['/tables-report'], {queryParams:{kId: params.kId}})
+      })
+     }) 
   }
 
   getDeleteSoal(headerid:string){
-    this.uploadService.deleteSoal(headerid).subscribe()
+    this.uploadService.deleteSoal(headerid).subscribe(data=>{
+      this.route.queryParams.subscribe(params => {
+        this.router.navigate(['/tables-report'], {queryParams:{kId: params.kId}})
+      })
+    })
   }
 
   getQuiz(){
@@ -133,19 +131,31 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
   }
 
   getDetailMateri(idFile:string){
-    this.router.navigate(['/list-file'], {queryParams: {idFile:idFile}})
+    this.route.queryParams
+    .subscribe(params => {
+    this.router.navigate(['/list-file'], {queryParams: {idFile:idFile, kId:params.kId}})
+    })
   }
 
   getDetailKuis(idFile:string){
-    this.router.navigate(['/list-ujian'], {queryParams: {idFile:idFile}})
+    this.route.queryParams
+    .subscribe(params => {
+    this.router.navigate(['/list-ujian'], {queryParams: {idFile:idFile, kId:params.kId}})
+    })
   }
 
   getUpdateMateri(idFile:string){
-    this.router.navigate(['/detail-materi'], {queryParams: {idFile:idFile}})
+    this.route.queryParams
+    .subscribe(params => {
+    this.router.navigate(['/detail-materi'], {queryParams: {idFile:idFile, kId:params.kId}})
+    })
   }
 
   getUpdateUjian(idFile:string){
-    this.router.navigate(['/detail-ujian'], {queryParams: {idFile:idFile}})
+    this.route.queryParams
+    .subscribe(params => {
+    this.router.navigate(['/detail-ujian'], {queryParams: {idFile:idFile, kId:params.kId}})
+    })
   }
 
   confirm2(idFile) {
@@ -156,10 +166,7 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
         icon: 'pi pi-info-circle',
         accept: () => {
           this.getDeleteMateri(idFile)
-          this.route.queryParams.subscribe(params => {
-            this.router.navigate(['/tables-report'], {queryParams:{kId: params.kId}})
-            console.log(id);
-          })
+          // let id = this.route.snapshot.params.
             // this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
         },
         reject: () => {
@@ -176,8 +183,6 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
         icon: 'pi pi-info-circle',
         accept: () => {
           this.getDeleteSoal(idFile)
-          this.getQuiz()
-          this.getKelas()
             // this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
         },
         reject: () => {
@@ -191,4 +196,7 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
     // return body.data || {};
   }
 
+  getBack(){
+    this.router.navigate(['/materi-pengajar'])
+  }
 }

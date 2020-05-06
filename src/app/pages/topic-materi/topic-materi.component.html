@@ -23,7 +23,9 @@
         <div class="card-body">
           <form>
             <h2 class="heading-large text-muted mb-4">Ujian</h2>
+            <!-- <div class="coba"> -->
                 <div class="pl-lg-4" *ngFor="let ujian of ujians">
+                  <!-- <div class="bg-gradient-primary"> -->
                   <div class="row">
                     <div class="col-lg-3">
                       <div class="form-group">
@@ -50,6 +52,9 @@
                    </div>
                   </div>
                   </div>
+                  <!-- </div> -->
+                  <!-- </div> -->
+                <!-- </div> -->
             <hr class="my-4">
             <div>
             <h2 class="heading-large text-muted mb-4">Senin</h2>
@@ -381,8 +386,8 @@
                         <th scope="col">Nilai Akhir</th>
                       </tr>
                     </thead>
-                    <tbody *ngFor="let kel of kelas">
-                      <tr>
+                    <tbody >
+                      <tr *ngFor="let kel of kelas">
                         <td>{{ kel.name }}</td>
                         <td>{{ kel.final_score }}</td>
                       </tr>

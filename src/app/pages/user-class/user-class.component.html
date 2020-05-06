@@ -23,8 +23,8 @@
                 <th scope="col">Nilai Akhir</th>
               </tr>
             </thead>
-            <tbody *ngFor="let kel of kelas">
-              <tr>
+            <tbody >
+              <tr *ngFor="let kel of kelas">
                 <td>{{ kel.nama }}</td>
                 <td>{{ kel.nilai_akhir }}</td>
               </tr>

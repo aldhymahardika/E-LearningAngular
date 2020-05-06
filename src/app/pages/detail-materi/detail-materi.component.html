@@ -1,40 +1,62 @@
+<!-- <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog> -->
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
   <!-- Mask -->
-  <span class="mask bg-gradient-primary opacity-8"></span>
+  <span class="mask bg-lawen opacity-8"></span>
   <!-- Header container -->
   <div class="container-fluid d-flex align-items-center">
     <div class="row">
-      <div class="col-lg-7 col-md-10">
-
+      <div class="row align-items-center">
+        <div class="col-12">
+          <h1 class="display-1" style="color: white;">List Topic Materi & Kuis</h1>
+        </div>
       </div>
     </div>
   </div>
 </div>
 <div class="container-fluid mt--7">
-        <!-- Card stats -->
-        <div class="row">
-          <div class="col">
-          <div class="card shadow">
-            <div class="col-md-6">
-              <br>
-                <label>Tanggal</label>
-                <input type="date" class="form-control form-control-alternative" [(ngModel)]="updt.tanggal">            
+  <div class="row">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <button class="btn btn-icon btn-3 btn-primary" type="button" (click)="getBack()">
+                <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+                <span class="btn-inner--text">Kembali</span>
+              </button>
             </div>
-            <div class="col-md-6">
-              <br>
-                <label>Waktu</label>
-                <input type="time" class="form-control form-control-alternative" [(ngModel)]="updt.jam">            
-            </div>
-            <div class="col-md-12">
-            <br>
-            <button type="button" class="btn btn-default" (click)="updateTopik(updt)">Submit</button>
-            </div>
-            <div class="col-md-12" [hidden]="!isupdated">  
-              <p-messages [(value)]="msgs"></p-messages>  
-            </div>
-          </div>
           </div>
         </div>
+        <div class="card-body">
+          <div class="card shadow">
+            <div class="pl-lg-12">
+              <div class="row">
+                <div class="col">
+                  <div class="card shadow">
+                    <div class="col-md-6">
+                      <!-- <br> -->
+                        <label>Tanggal</label>
+                        <input type="date" class="form-control form-control-alternative" [(ngModel)]="updt.tanggal">            
+                    </div>
+                    <div class="col-md-6">
+                      <!-- <br> -->
+                        <label>Waktu</label>
+                        <input type="time" class="form-control form-control-alternative" [(ngModel)]="updt.jam">            
+                    </div>
+                    <div class="col-md-12">
+                    <br>
+                    <button type="button" class="btn btn-default" (click)="updateTopik(updt)">Submit</button>
+                    </div>
+                    <div class="col-md-12" [hidden]="!isupdated">  
+                      <p-messages [(value)]="msgs"></p-messages>  
+                    </div>
+                  </div>
+        </div>
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- Content -->
-

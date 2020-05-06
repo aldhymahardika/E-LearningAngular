@@ -38,8 +38,8 @@ export const PENGAJAR : RouteInfo[] = [
 ]
 export const PESERTA : RouteInfo[] =[
   //Path Peserta
-  { path: '/materi', title:'List Materi', icon:'ni ni-book-bookmark text-blue', class:'' },
-  { path: '/kelas-user', title:'Jadwal', icon:'ni ni-book-bookmark text-blue', class:'' },
+  { path: '/materi', title:'List Materi', icon:'ni ni-books text-blue', class:'' },
+  { path: '/kelas-user', title:'Jadwal', icon:'ni ni-calendar-grid-58 text-success', class:'' },
   // { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
   // { path: '/user', title: 'Materi', icon:'ni ni-book-bookmark text-blue', class:''},
   // { path: '/topic-materi', title: 'Topic Materi', icon:'ni ni-book-bookmark text-blue', class:''},
@@ -58,7 +58,7 @@ export class SidebarComponent implements OnInit {
   login = new Login()
 
   constructor(private router: Router) {
-    this.login = (JSON.parse(window.sessionStorage.getItem('auth-user')));
+    this.login = (JSON.parse(window.localStorage.getItem('auth-user')));
     this.masuk()
   }
 

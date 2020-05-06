@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   login = new Login()
 
   constructor(private router : Router, private tokenStorage : TokenStorageService, private authService : AuthService) {
-    if(window.sessionStorage.getItem('auth-user') != null){
-        this.login = (JSON.parse(window.sessionStorage.getItem('auth-user')));
+    if(window.localStorage.getItem('auth-user') != null){
+        this.login = (JSON.parse(window.localStorage.getItem('auth-user')));
         this.masuk()
     }
   }
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.tokenStorage.saveUser(data);
 
         this.roles = this.tokenStorage.getUser().roles;
-        this.login = (JSON.parse(window.sessionStorage.getItem('auth-user')));
+        this.login = (JSON.parse(window.localStorage.getItem('auth-user')));
         console.log(this.login)
         this.masuk()
       },

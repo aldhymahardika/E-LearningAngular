@@ -79,8 +79,8 @@
                           <th scope="col"></th>
                         </tr>
                       </thead>
-                      <tbody *ngFor="let data of details">
-                        <tr>
+                      <tbody>
+                        <tr *ngFor="let data of details">
                           <td>{{ data.day }}</td>
                           <td>{{ data.type }}</td>
                           <td>{{ data.title }}</td>
@@ -144,8 +144,8 @@
                       <th scope="col"></th>
                     </tr>
                   </thead>
-                  <tbody *ngFor="let nil of dataScore">
-                    <tr>
+                  <tbody>
+                    <tr *ngFor="let nil of dataScore">
                       <td>{{ nil.date | date : 'dd-MM-yyyy'}}</td>
                       <td>{{ nil.title }}</td>
                       <td>{{ nil.score }}</td>
@@ -174,8 +174,8 @@
                   <th scope="col"></th>
                 </tr>
               </thead>
-              <tbody *ngFor="let uji of dataUjian">
-                <tr>
+              <tbody>
+                <tr *ngFor="let uji of dataUjian">
                   <td>{{ uji.date | date : 'dd-MM-yyyy'}}</td>
                   <td>{{ uji.title }}</td>
                   <td>{{ uji.score }}</td>

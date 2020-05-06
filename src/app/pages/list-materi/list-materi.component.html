@@ -23,8 +23,8 @@
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody *ngFor="let pes of peserta">
-              <tr style="text-align: center;">
+            <tbody>
+              <tr style="text-align: center;" *ngFor="let pes of peserta">
                 <td>{{ pes.name }}</td>
                 <td class="text-center">
                   <button type="button" class="btn btn-primary" (click)="getNilai(pes.user_id)">Info</button>

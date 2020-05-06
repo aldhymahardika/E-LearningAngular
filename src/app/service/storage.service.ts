@@ -17,10 +17,10 @@ export class StorageService {
   }
 
   getToken():string{
-    return sessionStorage.getItem(this.TOKEN_KEY)
+    return localStorage.getItem(this.TOKEN_KEY)
   }
 
   getId():Login{
-    return (JSON.parse(window.sessionStorage.getItem('auth-user')))
+    return (JSON.parse(window.localStorage.getItem('auth-user')))
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 import { Materi } from 'src/app/layouts/model/materi';
 import { Message } from 'primeng/api/message';
@@ -16,7 +16,17 @@ export class DetailMateriComponent implements OnInit {
   msgs: Message[] = [];
   isupdated = false;
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
-
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+  };
+    this.router.events.subscribe(evt => {
+      if (evt instanceof NavigationEnd) {
+          // trick the Router into believing it's last link wasn't previously loaded
+          this.router.navigated = false;
+          // if you need to scroll back to top, here is the right place
+          window.scrollTo(0, 0    );
+      }
+  });
    }
 
   ngOnInit(): void {
@@ -31,8 +41,13 @@ export class DetailMateriComponent implements OnInit {
         this.updt.jam=data.jam
         console.log(params);
         this.uploadService.updateTopik(params.idFile, data.tanggal, data.jam).subscribe(data=>{
+          this.isupdated=true
           this.showSuccess()
-          this.message=data
+          // this.message=data
+          this.router.navigate(['/tables-report'], {queryParams: {kId:params.kId}})
+        },
+        err=>{
+          this.showError()
         })
       })
   }
@@ -40,5 +55,17 @@ export class DetailMateriComponent implements OnInit {
   showSuccess() {
     this.msgs = [];
 	  this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+  }
+
+  showError() {
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
+  }
+
+  getBack(){
+    this.route.queryParams
+    .subscribe(params=>{
+    this.router.navigate(['/tables-report'], {queryParams: {kId:params.kId}})
+    })
   }
 }

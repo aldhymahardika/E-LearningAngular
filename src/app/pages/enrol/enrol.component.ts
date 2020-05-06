@@ -4,6 +4,7 @@ import { AppService } from 'src/app/service/app.service';
 import { Category } from 'src/app/layouts/model/category';
 import { StorageService } from 'src/app/service/storage.service';
 import { Login } from 'src/app/layouts/model/login';
+import { Message } from 'primeng/api/message';
 
 @Component({
   selector: 'app-enrol',
@@ -13,6 +14,8 @@ import { Login } from 'src/app/layouts/model/login';
 export class EnrolComponent implements OnInit {
   login = new Login()
   kondisi:boolean
+  msgs: Message[] = [];
+  isupdated = false;
   constructor(private sessionService: StorageService,private route: Router, private uploadService: AppService, private router: ActivatedRoute) { }
 
   // idMateri:Category
@@ -27,8 +30,6 @@ export class EnrolComponent implements OnInit {
   // }
 
   enrol(){
-    // let idMateri = '1'
-    let idPengajar='1'
     this.login = this.sessionService.getId()
     this.router.queryParams
     .subscribe(params => {
@@ -36,28 +37,22 @@ export class EnrolComponent implements OnInit {
       this.uploadService.cekClass(this.login.idUser, params.jamid, params.kId).subscribe(data=>{
         this.kondisi=data
         console.log(data)
-      if(this.kondisi==false){
-        this.route.navigate(['/tables'], {queryParams: {uId:this.login.idUser, id: params.id,kId:params.kId, jamid:params.jamid}})
-      }else{
-        this.uploadService.setEnrol(params.kId, this.login.idUser).subscribe(data=>{
-        this.route.navigate(['/topic-materi'], {queryParams: {uId:this.login.idUser, id: params.id,kId:params.kId, jamid:params.jamid}})
-    })
-  }
-  })
-  })
+        if(this.kondisi==false){
+          this.isupdated = true
+          this.showError()
+          this.route.navigate(['/tables'], {queryParams: {uId:this.login.idUser, id: params.id,kId:params.kId, jamid:params.jamid}})
+        }else{
+          this.uploadService.setEnrol(params.kId, this.login.idUser).subscribe(data=>{
+          this.route.navigate(['/topic-materi'], {queryParams: {uId:this.login.idUser, id: params.id,kId:params.kId, jamid:params.jamid}})
+          })
+        }
+      })
+     })
   }
 
-  // cek(){
-  //   let idUser='1'
-  //   this.router.queryParams
-  //   .subscribe(params => {
-  //     this.uploadService.cekClass(idUser, params.jamid, params.kId).subscribe(data=>{
-  //       this.kondisi=data
-  //       console.log(data)
-  //     if(this.kondisi==false){
-  //       this.route.navigate(['/tables'], {queryParams: {id:params.id}})
-  //     }
-  //   })
-  
-  // }
+  showError() {
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'Error Message', detail:'Cannot enrol, because you have been added in another class'});
+  }
+
 }
