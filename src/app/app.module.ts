@@ -27,6 +27,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {SplitButtonModule, SplitButton} from 'primeng/splitbutton';
 import {ButtonModule} from 'primeng/button';
 import {CalendarModule} from 'primeng/calendar';
+import {TableModule} from 'primeng/table';
 
 import { UploadMateriComponent } from './pages/upload-materi/upload-materi.component';
 import { TablesMateriComponent } from './pages/tables-materi/tables-materi.component';
@@ -94,7 +95,8 @@ import { ReportJadwalMataPelajaranComponent } from './pages/report-jadwal-mata-p
     ProgressSpinnerModule,
     SplitButtonModule,
     ButtonModule,
-    CalendarModule
+    CalendarModule,
+    TableModule
   ],
   declarations: [
     AppComponent,

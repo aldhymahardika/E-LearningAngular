@@ -2,7 +2,25 @@
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
-      
+      <div class="card bg-secondary shadow">
+      <div class="card-header border-0">
+        <h3 class="mb-0">Upload Jawaban</h3>
+      </div>
+  <div class="col-md-12">
+    <!-- <label>File</label> -->
+    <br>
+    <input type="file" class="form-control form-control-alternative" id="upload" (change)="selectFile($event)" [(ngModel)]="jawab.file">
+</div>
+<div class="col-md-12">
+  <br>
+  <button type="button" class="btn btn-default" (click)="setUpload()">Upload</button>
+  <br><br>
+</div>
+<div class="col-sm-12" [hidden]="!isupdated">  
+  <p-messages [(value)]="msgs"></p-messages>  
+  <br><br>
+</div>
+</div>
     </div>
   </div>
 </div>
@@ -13,23 +31,7 @@
   <div class="row">
     <div class="col-xl-12 order-xl-1">
       <div class="card bg-secondary shadow">
-        <div class="card-header border-0">
-          <h3 class="mb-0">Upload Jawaban</h3>
-        </div>
-    <div class="col-md-12">
-      <!-- <label>File</label> -->
-      <br>
-      <input type="file" class="form-control form-control-alternative" id="upload" (change)="selectFile($event)" [(ngModel)]="jawab.file">
-  </div>
-  <div class="col-md-12">
-    <br>
-    <button type="button" class="btn btn-default" (click)="setUpload()">Upload</button>
-    <br><br>
-  </div>
-  <div class="col-sm-12" [hidden]="!isupdated">  
-    <p-messages [(value)]="msgs"></p-messages>  
-    <br><br>
-  </div>
+        
 
 <p-tabView>
   <p-tabPanel header="Materi" leftIcon="pi pi-cloud-download">

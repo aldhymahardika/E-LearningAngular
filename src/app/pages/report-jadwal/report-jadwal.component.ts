@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 import { ReportJadwal } from 'src/app/layouts/model/reportJadwal';
 import { parse } from 'querystring';
 import { DatePipe } from '@angular/common';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-report-jadwal',
   templateUrl: './report-jadwal.component.html',
-  styleUrls: ['./report-jadwal.component.css']
+  styleUrls: ['./report-jadwal.component.scss']
 })
 export class ReportJadwalComponent implements OnInit {
   jadwal = new ReportJadwal()
@@ -15,6 +16,7 @@ export class ReportJadwalComponent implements OnInit {
   date:Date = null
   data1:string
   data2:string
+  @ViewChild('dt') table: Table;
   constructor(private uploadService: AppService) {
     this.getReportAllJadwal()
    }
@@ -34,14 +36,11 @@ export class ReportJadwalComponent implements OnInit {
     var datePipe = new DatePipe('en-US')
     this.data1= datePipe.transform(this.jadwal.tgl1, 'yyyy-MM-dd')
     this.data2= datePipe.transform(this.jadwal.tgl2, 'yyyy-MM-dd')
-    // console.log(this.data1);
-    
-    // var momentVariable = moment(this.jadwal.tgl1, 'MM-DD-YYYY');
-    // var stringvalue = momentVariable.format('YYYY-MM-DD');
-    // this.date = parse(this.jadwal.tgl1, 'YYYY-MM-DD', new Date())
     this.uploadService.getReportJadwal(this.data1, this.data2).subscribe(data=>{
       this.reportAll=data
     })
   }
+
+
 
 }

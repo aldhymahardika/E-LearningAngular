@@ -12,6 +12,7 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import {CalendarModule} from 'primeng/calendar';
+import {TableModule} from 'primeng/table';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AccordionModule} from 'primeng/accordion';
@@ -44,7 +45,8 @@ import {ButtonModule} from 'primeng/button';
     ProgressSpinnerModule,
     SplitButtonModule,
     ButtonModule,
-    CalendarModule
+    CalendarModule,
+    TableModule
   ],
   declarations: [
     DashboardComponent,

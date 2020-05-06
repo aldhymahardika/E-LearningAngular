@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
-const AUTH_API = 'http://73abcd9e.ngrok.io/api/auth/'
+const AUTH_API = 'http://607d58e4.ngrok.io/api/auth/'
 
 const httpOptions = {
   headers : new HttpHeaders({ 'Content-Type' : 'application/json'})

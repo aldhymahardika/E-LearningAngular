@@ -28,11 +28,11 @@ export const ROUTES: RouteInfo[] = [
 
 export const PENGAJAR : RouteInfo[] = [
   //Path Pengajar
-  { path: '/upload-materi', title: 'Upload', icon:'ni-cloud-upload-96 text-blue', class: '' },
-  { path: '/upload-ujian', title: 'Upload Ujian', icon:'ni-cloud-upload-96 text-blue', class: '' },
+  { path: '/upload-materi', title: 'Upload Materi', icon:'ni ni-cloud-upload-96 text-blue', class: '' },
+  { path: '/upload-ujian', title: 'Upload Ujian', icon:'ni ni-cloud-upload-96 text-blue', class: '' },
   // { path: '/table-report', title:'Scores', icon:'ni ni-trophy text-yellow', class:''},
   { path: '/materi-pengajar', title:'List Materi', icon:'ni ni-book-bookmark text-blue', class:''},
-  { path: '/kelas', title: 'List Kelas', icon:'ni-cloud-upload-96 text-blue', class: '' },
+  { path: '/kelas', title: 'Input Nilai', icon:'ni ni-trophy text-yellow', class: '' },
 
   // { path: '', title:'-------', icon:'', class:''},
 ]

@@ -11,53 +11,74 @@
     <!-- Table -->
     <div class="row">
       <div class="col s12 m9 l12">
-        <div class=" dataTables_wrapper "> 
+        <div class=" dataTables_wrapper ">
           <div class="card-header border-0 shadow">
             <h3 class="mb-0">Data Pengajar</h3>
           </div>
-          <div style="float: right;">
-            <br>
-            <div class="sejajar">
-              <p-calendar [(ngModel)]="jadwal.tgl1" placeholder="Tanggal Mulai" [ngModelOptions]="{standalone: true}" dateFormat="dd-mm-yy"></p-calendar>
-                <!-- <input class="form-control form-control-alternative" type="date" placeholder="Tanggal Mulai" [ngModelOptions]="{standalone: true}" [(ngModel)]="jadwal.tgl1" required pattern="\d{2}-\d{2}-\d{4}"> -->
-            </div>
-            <div class="sejajar">
-              <p-calendar [(ngModel)]="jadwal.tgl2" placeholder="Tanggal Mulai" [ngModelOptions]="{standalone: true}" dateFormat="dd-mm-yy"></p-calendar>
-                <!-- <input class="form-control form-control-alternative" type="date" placeholder="Tanggal Selesai" [ngModelOptions]="{standalone: true}" [(ngModel)]="jadwal.tgl2" required pattern="\d{2}-\d{2}-\d{4}"> -->
-            </div>
-            <div class="sejajar">
-              <p-button icon="pi pi-search" (click)="getReportJadwal()"></p-button>
-                &nbsp;
-                <p-button icon="pi pi-refresh" (click)="getReportAllJadwal()"></p-button>
-            </div>
-          </div>
-          <div class="table-responsive">
-            <table class="row-border hover dataTable no-footer">
-              <thead>
-                <tr style="color: white; text-align: center;" class="bg-gradient-primary " >
-                  <th scope="col">Materi</th>
-                  <th scope="col">Kelas</th>
-                  <th scope="col">Pengajar</th>
-                  <th scope="col">Waktu</th>
-                  <th scope="col">Tanggal Mulai</th>
-                  <th scope="col">Tanggal Selesai</th>
-                  <!-- <th scope="col"></th> -->
-                </tr>
-              </thead>
-              <tbody *ngFor="let data of reportAll">
-                <tr style="text-align: center;">
-                  <td>{{ data.materi }}</td>
-                  <td>{{ data.kelas }}</td>
-                  <td>{{ data.pengajar }}</td>
-                  <td>{{ data.jam }}</td>
-                  <td>{{ data.startdate | date : 'dd-MM-yyyy' }}</td>
-                  <td>{{ data.enddate | date : 'dd-MM-yyyy' }}</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="table-responsive"> 
+      <p-table #dt [value]="reportAll" [(selection)]="reportAll" dataKey="id" styleClass="ui-table-customers" [rowHover]="true"
+    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']" class="row-border hover dataTable no-footer">
+    <ng-template pTemplate="caption">
+      <div style="float: right;">  
+      <div class="sejajar">
+        <p-calendar [(ngModel)]="jadwal.tgl1" placeholder="Tanggal Mulai" [ngModelOptions]="{standalone: true}" dateFormat="dd-mm-yy"></p-calendar>
+          <!-- <input class="form-control form-control-alternative" type="date" placeholder="Tanggal Mulai" [ngModelOptions]="{standalone: true}" [(ngModel)]="jadwal.tgl1" required pattern="\d{2}-\d{2}-\d{4}"> -->
+      </div>
+      <div class="sejajar">
+        <p-calendar [(ngModel)]="jadwal.tgl2" placeholder="Tanggal Mulai" [ngModelOptions]="{standalone: true}" dateFormat="dd-mm-yy"></p-calendar>
+          <!-- <input class="form-control form-control-alternative" type="date" placeholder="Tanggal Selesai" [ngModelOptions]="{standalone: true}" [(ngModel)]="jadwal.tgl2" required pattern="\d{2}-\d{2}-\d{4}"> -->
+      </div>
+      <div class="sejajar">
+        <p-button icon="pi pi-search" (click)="getReportJadwal()"></p-button>
+          &nbsp;
+          <p-button icon="pi pi-refresh" (click)="getReportAllJadwal()"></p-button>
       </div>
     </div>
-  </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="name">Materi <p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="country.name">Kelas <p-sortIcon field="country.name"></p-sortIcon></th>
+            <th pSortableColumn="representative.name">Pengajar <p-sortIcon field="representative.name"></p-sortIcon></th>
+            <th pSortableColumn="date">Waktu <p-sortIcon field="date"></p-sortIcon></th>
+            <th pSortableColumn="status">Tanggal Mulai <p-sortIcon field="status"></p-sortIcon></th>
+            <th pSortableColumn="activity">Tanggal Selesai <p-sortIcon field="activity"></p-sortIcon></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-reportAll>
+        <tr class="ui-selectable-row">
+            <td>
+                <span class="ui-column-title">{{ reportAll.materi }}</span>
+                
+            </td>
+            <td>
+                <span class="ui-column-title">{{ reportAll.kelas }}</span>
+            </td>
+            <td>
+                <span class="ui-column-title">{{ reportAll.pengajar }}</span>
+            </td>
+            <td>
+                <span class="ui-column-title">{{ reportAll.jam }}</span>
+            </td>
+            <td>
+                <span class="ui-column-title">{{ reportAll.startdate | date : 'dd-MM-yyyy' }}</span>
+            </td>
+            <td>
+                <span class="ui-column-title">{{ reportAll.enddate | date : 'dd-MM-yyyy' }}</span>
+            </td>
+        </tr>
+    </ng-template>
+    <!-- <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="8" style="text-align:left">No customers found.</td>
+        </tr>
+    </ng-template> -->
+</p-table>
+</div>
+</div>
+</div>
   </div>
   </div>
   
