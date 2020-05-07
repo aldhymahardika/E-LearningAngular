@@ -46,6 +46,9 @@ import { ListUjianComponent } from 'src/app/pages/list-ujian/list-ujian.componen
 import { ReportJadwalComponent } from 'src/app/pages/report-jadwal/report-jadwal.component';
 import { ReportMenuComponent } from 'src/app/pages/report-menu/report-menu.component';
 import { ReportJadwalMataPelajaranComponent } from 'src/app/pages/report-jadwal-mata-pelajaran/report-jadwal-mata-pelajaran.component';
+import { ReportPesertaComponent } from 'src/app/pages/report-peserta/report-peserta.component';
+import { ReportMenuPengajarComponent } from 'src/app/pages/report-menu-pengajar/report-menu-pengajar.component';
+import { ReportNilaiPesertaComponent } from 'src/app/pages/report-nilai-peserta/report-nilai-peserta.component';
 // import { Component } from '@angular/core';
 
 export const AdminLayoutRoutes: Routes = [
@@ -115,6 +118,12 @@ export const AdminLayoutRoutes: Routes = [
         }
     }, 
     { path: 'report-jadwal-mata-pelajaran',        component: ReportJadwalMataPelajaranComponent ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_ADMIN'
+        }
+    },
+    { path: 'report-peserta',        component: ReportPesertaComponent ,
     canActivate : [AuthGuard],
     data : {
         expectedRole : 'ROLE_ADMIN'
@@ -222,6 +231,14 @@ export const AdminLayoutRoutes: Routes = [
         expectedRole : 'ROLE_PENGAJAR'
         }
     },
+    { path: 'report-menu-pengajar',       component: ReportMenuPengajarComponent 
+    ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    
     // { path: 'upload-update',   component: UploadUpdateComponent},
 
     //---------------------------------------------------------------------------
@@ -311,6 +328,12 @@ export const AdminLayoutRoutes: Routes = [
     data : {
         expectedRole : 'ROLE_USER'
         }
+    },
+    { path: 'report-nilai-peserta',         component: ReportNilaiPesertaComponent,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_USER'
+        } 
     },
     
 ];

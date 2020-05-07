@@ -72,6 +72,9 @@ import { ListUjianComponent } from './pages/list-ujian/list-ujian.component';
 import { ReportJadwalComponent } from './pages/report-jadwal/report-jadwal.component';
 import { ReportMenuComponent } from './pages/report-menu/report-menu.component';
 import { ReportJadwalMataPelajaranComponent } from './pages/report-jadwal-mata-pelajaran/report-jadwal-mata-pelajaran.component';
+import { ReportPesertaComponent } from './pages/report-peserta/report-peserta.component';
+import { ReportMenuPengajarComponent } from './pages/report-menu-pengajar/report-menu-pengajar.component';
+import { ReportNilaiPesertaComponent } from './pages/report-nilai-peserta/report-nilai-peserta.component';
 
 @NgModule({
   imports: [
@@ -142,7 +145,10 @@ import { ReportJadwalMataPelajaranComponent } from './pages/report-jadwal-mata-p
     ListUjianComponent,
     ReportJadwalComponent,
     ReportMenuComponent,
-    ReportJadwalMataPelajaranComponent
+    ReportJadwalMataPelajaranComponent,
+    ReportPesertaComponent,
+    ReportMenuPengajarComponent,
+    ReportNilaiPesertaComponent
   ],
   providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]

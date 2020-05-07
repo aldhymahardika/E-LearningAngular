@@ -1,0 +1,98 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+    <!-- Mask -->
+    <span class="mask bg-lawen opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+      <div class="row">
+        <div class="row align-items-center">
+          <div class="col-12">
+            <h1 class="display-1" style="color: white;">Report Peserta</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col-xl-12 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-12">
+                <button type="button" class="btn btn-primary" (click)="getBack()">
+                  <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+                  <span class="btn-inner--text">Kembali</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card shadow">
+              <div class="pl-lg-12">
+                <div class="row">
+                  <div class="col ">
+                    <div style="float: left;">
+                      <br>  
+                      <div class="sejajar">
+                        <p-dropdown  placeholder="Pilih Materi" [options]="materi" [(ngModel)]="dataMateri" optionLabel="name" [showClear]="true" [ngModelOptions]="{standalone: true}"></p-dropdown>
+                      </div>
+                      <div class="sejajar">
+                        <p-dropdown  placeholder="Pilih Kelas" [options]="kelas" [(ngModel)]="dataKelas" optionLabel="name" [showClear]="true" [ngModelOptions]="{standalone: true}"></p-dropdown>                      </div>
+                      <div class="sejajar" style="float: right;">
+                        <p-button icon="pi pi-search" (click)="getReportPeserta(); localClick(2)"></p-button>
+                          &nbsp;
+                          <p-button icon="pi pi-refresh" (click)="getReportAllPeserta(); localClick(1)"></p-button>
+                          &nbsp;
+                          <button pButton type="button" label="Print" class="ui-button-primary" (click)="getDownloadPeserta()" [disabled]="exampleFlag"></button>
+                      </div>
+                    </div>
+                    <!-- <div style="float: right;" >
+                      <br>
+                      <div class="sejajar">
+                        <button pButton type="button" label="Download" class="ui-button-primary" (click)="getDownloadAllJadwal()" [disabled]="exampleFlag"></button>
+                         <p-button icon="pi pi-refresh" ></p-button> 
+                      </div>
+                    </div> -->
+                  <div class=" dataTables_wrapper ">
+                  <div class="table-responsive">
+                    <p-table #dt [value]="peserta" [(selection)]="peserta" dataKey="id" styleClass="ui-table-customers" [rowHover]="true"
+                    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+                    [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']" class="row-border hover dataTable no-footer">
+                    <!-- <ng-template pTemplate="caption">
+                    
+                    </ng-template> -->
+                    <ng-template pTemplate="header">
+                        <tr style="color: white; text-align: center;" class="bg-gradient-primary ">
+                            <th pSortableColumn="name">Nama <p-sortIcon field="name"></p-sortIcon></th>
+                            <th pSortableColumn="country.name">Email <p-sortIcon field="country.name"></p-sortIcon></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-peserta>
+                        <tr class="ui-selectable-row">
+                            <td>
+                                <span class="ui-column-title">{{ peserta.name }}</span>
+                                
+                            </td>
+                            <td>
+                                <span class="ui-column-title">{{ peserta.email }}</span>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <!-- <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="8" style="text-align:left">No customers found.</td>
+                        </tr>
+                    </ng-template> -->
+                </p-table>
+              </div>  
+          </div>
+          </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>

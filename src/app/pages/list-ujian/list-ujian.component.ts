@@ -1,26 +1,58 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 import { Forum } from 'src/app/layouts/model/forum';
 import { StorageService } from 'src/app/service/storage.service';
 import { Login } from 'src/app/layouts/model/login';
+import { MessageService, ConfirmationService, MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-list-ujian',
   templateUrl: './list-ujian.component.html',
-  styleUrls: ['./list-ujian.component.css']
+  styleUrls: ['./list-ujian.component.css'],
+  providers: [ConfirmationService, MessageService],
+  styles: [`
+        :host ::ng-deep button {
+            margin-right: .25em;
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message {
+            background: #FC466B;
+            background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+            background: linear-gradient(to right, #3F5EFB, #FC466B);
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message div {
+            color: #ffffff;
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
+            color: #ffffff;
+        }
+    `]
 })
 export class ListUjianComponent implements OnInit {
   dataUjian:any[]
   forum = new Forum()
   forums:any[]
   login = new Login()
-  constructor(private sessionService: StorageService ,private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
-    this.getDetailUjian()
-    this.getForum()
-   }
+  constructor(private confirmationService: ConfirmationService, private sessionService: StorageService ,private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+    };
+    this.router.events.subscribe(evt => {
+      if (evt instanceof NavigationEnd) {
+          // trick the Router into believing it's last link wasn't previously loaded
+          this.router.navigated = false;
+          // if you need to scroll back to top, here is the right place
+          window.scrollTo(0, 0    );
+      }
+    });
+  }
 
   ngOnInit(): void {
+    this.getDetailUjian()
+    this.getForum()
   }
 
   getDetailUjian(){
@@ -34,7 +66,11 @@ export class ListUjianComponent implements OnInit {
   }
 
   deleteDetailSoal(id:string){
-    this.uploadService.deleteDetailSoal(id).subscribe(data=>{ })
+    this.route.queryParams.subscribe(params=>{
+      this.uploadService.deleteDetailSoal(id).subscribe(data=>{
+        this.router.navigate(['/list-ujian'], {queryParams:{idFile:params.idFile}})
+      })
+    })
   }
 
   updateUjian(idFile:string){
@@ -49,6 +85,32 @@ export class ListUjianComponent implements OnInit {
    window.open(url) 
    })
   }) 
+  }
+
+  getMenu(headerid:string):MenuItem[]{
+    return [
+      {label: 'Update', icon: 'pi pi-refresh', command: () => {
+          this.updateUjian(headerid);
+      }},
+      {label: 'Delete', icon: 'pi pi-times', command: () => {
+        this.confirm(headerid);
+      }}
+  ];
+  }
+
+  confirm(idFile) {
+    this.confirmationService.confirm({
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          this.deleteDetailSoal(idFile)
+            // this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+        },
+        reject: () => {
+            // this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+        }
+    });
   }
 
   setForum(){
@@ -80,6 +142,12 @@ export class ListUjianComponent implements OnInit {
   loadForum(hId:string){
     this.uploadService.getForum(hId).subscribe(data=>{
       this.forums=data
+    })
+  }
+
+  getBack(){
+    this.route.queryParams.subscribe(params=>{
+      this.router.navigate(['/tables-report'], {queryParams: {kId:params.kId}})
     })
   }
 }

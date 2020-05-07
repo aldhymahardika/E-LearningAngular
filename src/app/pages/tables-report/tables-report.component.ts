@@ -32,8 +32,9 @@ import { Subject } from 'rxjs';
 })
 export class TablesReportComponent implements OnInit, OnDestroy {
 
-  dataFile:any
-  dataUjian:any
+  dataFile:any[]
+  dataUjian:any[]
+  dataKuis:any[]
   items: MenuItem[];
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
@@ -60,6 +61,7 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
     };
     this.getKelas();
     this.getQuiz();
+    this.getUjian();
   }
 
   ngOnDestroy(){
@@ -124,6 +126,17 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
     .subscribe(params=>{
       this.uploadService.getListQuiz(params.kId).subscribe(data=>{
         this.dtTrigger.next();
+        this.dataKuis=data
+        console.log(data);
+      })
+    })
+  }
+
+  getUjian(){
+    this.route.queryParams
+    .subscribe(params=>{
+      this.uploadService.getListUjian(params.kId).subscribe(data=>{
+        // this.dtTrigger.next();
         this.dataUjian=data
         console.log(data);
       })

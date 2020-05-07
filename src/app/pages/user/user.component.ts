@@ -94,7 +94,12 @@ export class UserComponent implements OnInit {
           this.uploadService.uploadUserUjian(this.jawab).subscribe(
           event => {
             this.isupdated=true;
-            this.showSuccess()
+            if(event==true){
+              this.showSuccess()
+            }else{
+              this.showError()
+            }
+
         //     if (event.type === HttpEventType.UploadProgress) {
         //       this.progress = Math.round(100 * event.loaded / event.total);
         //     } else if (event instanceof HttpResponse) {

@@ -1,108 +1,129 @@
 <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
   <!-- Mask -->
-  <!-- <span class="mask bg-gradient-danger opacity-8"></span> -->
+  <span class="mask bg-lawen opacity-8"></span>
   <!-- Header container -->
   <div class="container-fluid d-flex align-items-center">
-    <!-- <div class="row">
-      <div class="col-lg-7 col-md-10">
-        <h1 class="display-2 text-white">Hello Jesse</h1>
-        <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-        <a href="#!" class="btn btn-info">Edit profile</a>
+    <div class="row">
+      <div class="row align-items-center">
+        <div class="col-12">
+          <h1 class="display-1" style="color: white;">List File User</h1>
+        </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>
 <div class="container-fluid mt--7">
-  <span class="mask bg-gradient-primary opacity-8"></span>
   <div class="row">
     <div class="col-xl-12 order-xl-1">
       <div class="card bg-secondary shadow">
-        <p-tabView>
-        <p-tabPanel header="File Soal / Ujian" leftIcon="pi pi-calendar">
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
             <div class="col-12">
-              <!-- <h3 class="mb-0">Info Peserta</h3> -->
+              <button class="btn btn-icon btn-3 btn-primary" type="button" (click)="getBack()">
+                <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+                <span class="btn-inner--text">Kembali</span>
+              </button>
             </div>
           </div>
         </div>
-        <div class="card-body" >
-          <form>
-            <h6 class="heading-small text-muted mb-4" #target>Scores</h6>
+        <div class="card-body">
+          <div class="card shadow">
+            <div class="pl-lg-12">
+              <div class="row">
+                <div class="col">
+                <p-tabView>
+                  <p-tabPanel header="Materi" leftIcon="pi pi-calendar">
+                    <div class="col s12 m12 l12">
+                      <div class=" dataTables_wrapper "> 
+                        <div class="card-header border-0">
+                          <!-- <h3 class="mb-0">Data Materi</h3> -->
+                        </div>
+                        <form>
+                          <h6 class="heading-small text-muted mb-4" #target>Scores</h6>
+                          <div class="pl-lg-4">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="form-control-label" for="input-address">Jenis</label>
+                                  <input id="input-address" class="form-control form-control-alternative" placeholder="Jenis" type="text" [(ngModel)]="dataNilai.jenis" [ngModelOptions]="{standalone: true}" [disabled]="true">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="form-control-label" for="input-address">Judul</label>
+                                  <input id="input-address" class="form-control form-control-alternative" placeholder="Judul" type="text" [(ngModel)]="dataNilai.title" [ngModelOptions]="{standalone: true}" [disabled]="true">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label class="form-control-label" for="input-address">Nilai Utama</label>
+                                  <input id="input-address" class="form-control form-control-alternative" placeholder="Nilai Utama" type="number" [(ngModel)]="dataNilai.nilaiUtama" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag">
+                                </div>
+                              </div>
+                              <div class="col-md-6"> 
+                                <div class="form-group">
+                                  <label class="form-control-label" for="input-address">Nilai Kehadiran</label>
+                                  <input id="input-address" class="form-control form-control-alternative" placeholder="Nilai Kehadiran" type="number" [(ngModel)]="dataNilai.nilaiKehadiran" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag">
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <button type="button" class="btn btn-primary btn-lg btn-block" (click)="updateNilai(dataNilai)">Submit Nilai</button>
+                                </div>
+                              </div>
+                              <div class="col-sm-12" [hidden]="!isupdated">  
+                                <p-messages [(value)]="msgs"></p-messages>  
+                              </div> 
+                            </div> 
+                          </div>
+                          <!-- List Upload -->
+                          <br>
+                          <hr class="my-4" />
+                          <h6 class="heading-small text-muted mb-4">List Upload</h6>
+                            <div class="pl-lg-4">
+                              <div class="row">
+                                <div class="table-responsive">
+                                  <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
+                                    <thead>
+                                      <tr style="color: white;" class="bg-gradient-primary">
+                                        <th scope="col">Hari</th>
+                                        <th scope="col">Jenis</th>
+                                        <th scope="col">Judul</th>
+                                        <th scope="col">Tanggal</th>
+                                        <th scope="col"></th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="let data of details">
+                                        <td>{{ data.day }}</td>
+                                        <td>{{ data.type }}</td>
+                                        <td>{{ data.title }}</td>
+                                        <td>{{ data.question_date | date : 'dd-MM-yyyy'}}</td>
+                                        <td class="text-center">
+                                          <button type="button" class="btn btn-primary" (click)="downloadFileUser(data)">Download</button>
+                                          <button type="button" class="btn btn-primary" (click)="input(data, target); localClick(2)">Input Nilai</button>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                        </form>
+                  </div>
+                </div>
+                  </p-tabPanel>
+                  <p-tabPanel header="Quiz" leftIcon="pi pi-calendar">
+                    <div class="col s12 m12 l12">
+                      <div class=" dataTables_wrapper "> 
+                        <div class="card-header border-0">
+                          <h3 class="mb-0">Data Kuis</h3>
+                        </div>
+                        <h6 class="heading-small text-muted mb-4" #update>Scores</h6>
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-address">Jenis</label>
-                    <input id="input-address" class="form-control form-control-alternative" placeholder="Jenis" type="text" [(ngModel)]="dataNilai.jenis" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-address">Judul</label>
-                    <input id="input-address" class="form-control form-control-alternative" placeholder="Judul" type="text" [(ngModel)]="dataNilai.title" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-address">Nilai Utama</label>
-                    <input id="input-address" class="form-control form-control-alternative" placeholder="Nilai Utama" type="number" [(ngModel)]="dataNilai.nilaiUtama" [ngModelOptions]="{standalone: true}">
-                  </div>
-                </div>
-                <div class="col-md-6"> 
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-address">Nilai Kehadiran</label>
-                    <input id="input-address" class="form-control form-control-alternative" placeholder="Nilai Kehadiran" type="number" [(ngModel)]="dataNilai.nilaiKehadiran" [ngModelOptions]="{standalone: true}">
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <button type="button" class="btn btn-primary btn-lg btn-block" (click)="updateNilai(dataNilai)">Submit Nilai</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- List Upload -->
-            <hr class="my-4" />
-            <h6 class="heading-small text-muted mb-4">List Upload</h6>
-              <div class="pl-lg-4">
-                <div class="row">
-                  <div class="table-responsive">
-                    <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
-                      <thead>
-                        <tr style="color: white;" class="bg-gradient-primary">
-                          <th scope="col">Hari</th>
-                          <th scope="col">Jenis</th>
-                          <th scope="col">Judul</th>
-                          <th scope="col">Tanggal</th>
-                          <th scope="col"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let data of details">
-                          <td>{{ data.day }}</td>
-                          <td>{{ data.type }}</td>
-                          <td>{{ data.title }}</td>
-                          <td>{{ data.question_date | date : 'dd-MM-yyyy'}}</td>
-                          <td class="text-center">
-                            <button type="button" class="btn btn-primary" (click)="downloadFileUser(data)">Download</button>
-                            <button type="button" class="btn btn-primary" (click)="input(data, target)">Input Nilai</button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-          </form>
-        </div>
-        </p-tabPanel>
-        <p-tabPanel header="Nilai Keseluruhan" leftIcon="pi pi-calendar">
-          <h6 class="heading-small text-muted mb-4" #update>Scores</h6>
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-md-12">
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Jenis</label>
                     <input id="input-address" class="form-control form-control-alternative" placeholder="Jenis" type="text" [(ngModel)]="dataKuis.jenis" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag">
@@ -110,20 +131,29 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
+                    <label class="form-control-label" for="input-address">Judul</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Judul" type="text" [(ngModel)]="dataKuis.title" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
                     <label class="form-control-label" for="input-address">Nilai Utama</label>
-                    <input id="input-address" class="form-control form-control-alternative" placeholder="Nilai Utama" type="number" [(ngModel)]="dataKuis.nilaiUtama" [ngModelOptions]="{standalone: true}">
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Nilai Utama" type="number" [(ngModel)]="dataKuis.nilaiUtama" [ngModelOptions]="{standalone: true} " [disabled]="exampleFlag2">
                   </div>
                 </div>
                 <div class="col-md-6"> 
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Nilai Kehadiran</label>
-                    <input id="input-address" class="form-control form-control-alternative" placeholder="Nilai Kehadiran" type="number" [(ngModel)]="dataKuis.nilaiKehadiran" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag">
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Nilai Kehadiran" type="number" [(ngModel)]="dataKuis.nilaiKehadiran" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag2">
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <button type="button" class="btn btn-primary btn-lg btn-block" (click)="setUpdateKuis(dataKuis)">Submit Nilai</button>
                   </div>
+                </div>
+                <div class="col-sm-12" [hidden]="!isupdate">  
+                  <p-messages [(value)]="msgs"></p-messages>  
                 </div>
               </div>
             </div>
@@ -150,7 +180,7 @@
                       <td>{{ nil.title }}</td>
                       <td>{{ nil.score }}</td>
                       <td>
-                        <p-splitButton label="Update" icon="pi pi-refresh" (onClick)="getUpdateKuis(nil, update)" [model]="getMenuTugas(nil)"></p-splitButton>
+                        <p-splitButton label="Update" icon="pi pi-refresh" (onClick)="getUpdateKuis(nil, update); globalClick(2)" [model]="getMenuTugas(nil)"></p-splitButton>
                       </td>
                     </tr>
                   </tbody>
@@ -180,7 +210,7 @@
                   <td>{{ uji.title }}</td>
                   <td>{{ uji.score }}</td>
                   <td>
-                    <p-splitButton label="Update" icon="pi pi-refresh" (onClick)="getUpdateUJian(uji, update, 1)" [model]="getMenuUjian(uji)"></p-splitButton>
+                    <p-splitButton label="Update" icon="pi pi-refresh" (onClick)="getUpdateUJian(uji, update, 1); globalClick(2)" [model]="getMenuUjian(uji)"></p-splitButton>
                   </td>
                 </tr>
               </tbody>
@@ -188,8 +218,15 @@
       </div>
     </div>
   </div>
-        </p-tabPanel>
-        </p-tabView>
+                  </div>
+                </div>
+                    </p-tabPanel>
+                  </p-tabView> 
+        </div>
+      </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

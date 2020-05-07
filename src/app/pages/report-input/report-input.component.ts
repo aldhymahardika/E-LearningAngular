@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 import { Nilai } from 'src/app/layouts/model/nilai';
 import { Subject } from 'rxjs';
 import { MenuItem } from 'primeng/api/menuitem';
-import { MessageService, ConfirmationService } from 'primeng/api';
+import { MessageService, ConfirmationService, Message } from 'primeng/api';
 
 @Component({
   selector: 'app-report-input',
@@ -17,17 +17,28 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   dataKuis = new Nilai()
   dataUji = new Nilai()
   details:any[]
-  exampleFlag=false;
+  exampleFlag=true;
+  exampleFlag2=true;
   msg:boolean
   dataScore:any[]
   dataUjian:any[]
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
-
+  msgs: Message[] = [];
+  isupdated=false
+  isupdate=false
   constructor(private uploadService: AppService, private route: ActivatedRoute, private router: Router, private confirmationService: ConfirmationService) { 
-    this.getDetailUser();
-    this.getDetailScore();
-    this.getDetailUjian();
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+  };
+    this.router.events.subscribe(evt => {
+      if (evt instanceof NavigationEnd) {
+          // trick the Router into believing it's last link wasn't previously loaded
+          this.router.navigated = false;
+          // if you need to scroll back to top, here is the right place
+          window.scrollTo(0, 0    );
+      }
+  });
   }
 
   ngOnInit(): void {
@@ -35,6 +46,9 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       pagingType: 'full_numbers',
       pageLength: 5
     };
+    this.getDetailUser();
+    this.getDetailScore();
+    this.getDetailUjian();
   } 
 
   ngOnDestroy(){
@@ -55,10 +69,15 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   updateNilai(data:any){
     this.route.queryParams
     .subscribe(params=>{
+      this.isupdated=true
       this.uploadService.setNilaiKuis(params.kId, params.uId, this.dataNilai.nilaiUtama, this.dataNilai.jenis, this.dataNilai.nilaiKehadiran, this.dataNilai.tanggal, this.dataNilai.title).subscribe(data=>{
         this.msg=data
-        console.log(this.dataNilai);
-        console.log(data);        
+
+        this.showSuccess()        
+      },
+      err=>{
+        this.showSuccess()
+        this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:params.uId}})
       })
     })
   }
@@ -70,8 +89,6 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       this.dataNilai.jenis= data.type
       this.dataNilai.kelas=params.kId
       this.dataNilai.user=params.uId
-      // this.dataNilai.nilaiUtama
-      // this.dataNilai.nilaiKehadiran
       this.dataNilai.tanggal=data.question_date
       el.scrollIntoView({behavior : 'smooth'})
     })
@@ -182,7 +199,12 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       this.dataKuis.kelas=params.kId
       this.dataKuis.user=params.uId
       this.dataKuis.tanggal=data.question_date
-    this.uploadService.getDeleteUjian(this.dataKuis.id, params.kId, params.uId, this.dataKuis.jenis).subscribe()
+      this.uploadService.getDeleteUjian(this.dataKuis.id, params.kId, params.uId, this.dataKuis.jenis).subscribe(data=>{
+
+      },
+      err=>{
+        this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:params.uId}})
+      })
     })
   }
 
@@ -194,13 +216,19 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       this.dataKuis.kelas=params.kId
       this.dataKuis.user=params.uId
       this.dataKuis.tanggal=data.question_date
-    this.uploadService.getDeleteUjian(this.dataKuis.id, params.kId, params.uId, this.dataKuis.jenis).subscribe()
+      this.uploadService.getDeleteUjian(this.dataKuis.id, params.kId, params.uId, this.dataKuis.jenis).subscribe(data=>{
+        
+      },
+      err=>{
+        this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:params.uId}})
+      })
     })
   }
 
   getUpdateKuis(data, el:HTMLElement){
     this.route.queryParams
     .subscribe(params=>{
+      this.dataKuis.title=data.title
       this.dataKuis.id=data.id
       this.dataKuis.jenis= "TUGAS"
       this.dataKuis.kelas=params.kId
@@ -213,6 +241,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   getUpdateUJian(data, el:HTMLElement, x){
     this.route.queryParams
     .subscribe(params=>{
+      this.dataKuis.title=data.title
       this.dataKuis.id=data.id
       this.dataKuis.jenis= "UJIAN"
       this.dataKuis.kelas=params.kId
@@ -231,9 +260,50 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   setUpdateKuis(dataKuis){
     this.route.queryParams
     .subscribe(params=>{
+      this.isupdate=true
       this.uploadService.setUpdateKuis(this.dataKuis.id, params.kId, params.uId, this.dataKuis.nilaiUtama, this.dataKuis.jenis, this.dataKuis.nilaiKehadiran).subscribe(data=>{
         this.msg=data
+        this.showSuccess()
+      },
+      err=>{
+        this.showSuccess()
+        this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:params.uId}})
       })
     })
+  }
+
+  getBack(){
+    this.route.queryParams
+    .subscribe(params=>{
+      this.router.navigate(['/list-materi'], {queryParams: {kId: params.kId}})
+    })
+  }
+
+  localClick(x) {
+    if(x==1){
+    this.exampleFlag=true;
+    }
+    else{
+    this.exampleFlag=false;
+    }
+  }
+
+  globalClick(x) {
+    if(x==1){
+    this.exampleFlag2=true;
+    }
+    else{
+    this.exampleFlag2=false;
+    }
+  }
+
+  showSuccess() {
+    this.msgs = [];
+    this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+  }
+
+  showError() {
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
   }
 }

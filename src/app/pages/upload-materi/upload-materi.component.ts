@@ -103,12 +103,7 @@ export class UploadMateriComponent implements OnInit {
         console.log(this.setKelas)
         this.uploadService.upload(this.materi).subscribe(
         event => {
-        //   console.log(event)
           this.isupdated=true;
-          // this.message=event
-          // if(event instanceof HttpResponse){
-
-          // }
           if(event == true){
             this.showSuccess()
           }else if(event == false){
@@ -187,20 +182,6 @@ export class UploadMateriComponent implements OnInit {
       console.log(data)
     });
   }
-
-  getActive(){
-
-  }
-
-  getDeactive(){
-
-  }
-
-  // updateFile(id:number){
-  //   this.router.navigate(['/upload-update'], {queryParams: {id: id}});
-  //   console.log(id);
-    
-  // }
 
   deleteFile(idMateri:string){ 
     console.log('idmateri =' + idMateri);

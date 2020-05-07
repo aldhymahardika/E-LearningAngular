@@ -50,4 +50,8 @@ export class ListMateriComponent implements OnInit, OnDestroy {
     const body = res.json();
     // return body.data || {};
   }
+
+  getBack(){
+    this.router.navigate(['/kelas'])
+  }
 }

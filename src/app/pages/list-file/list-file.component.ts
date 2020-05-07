@@ -1,14 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Forum } from 'src/app/layouts/model/forum';
 import { StorageService } from 'src/app/service/storage.service';
 import { Login } from 'src/app/layouts/model/login';
+import { MenuItem } from 'primeng/api/menuitem';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-list-file',
   templateUrl: './list-file.component.html',
-  styleUrls: ['./list-file.component.css']
+  styleUrls: ['./list-file.component.css'],
+  providers: [ConfirmationService, MessageService],
+  styles: [`
+        :host ::ng-deep button {
+            margin-right: .25em;
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message {
+            background: #FC466B;
+            background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+            background: linear-gradient(to right, #3F5EFB, #FC466B);
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message div {
+            color: #ffffff;
+        }
+
+        :host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
+            color: #ffffff;
+        }
+    `]
 })
 export class ListFileComponent implements OnInit {
 
@@ -18,13 +40,23 @@ export class ListFileComponent implements OnInit {
   forums:any[]
   login = new Login()
 
-  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) {
-    this.getListMateri()
-    // this.getDetailUjian()
-    this.getForum()
+  constructor(private confirmationService: ConfirmationService,private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+    };
+    this.router.events.subscribe(evt => {
+      if (evt instanceof NavigationEnd) {
+          // trick the Router into believing it's last link wasn't previously loaded
+          this.router.navigated = false;
+          // if you need to scroll back to top, here is the right place
+          window.scrollTo(0, 0    );
+      }
+    });
    }
 
   ngOnInit(): void {
+    this.getListMateri()
+    this.getForum()
   }
 
   getListMateri(){
@@ -65,7 +97,11 @@ export class ListFileComponent implements OnInit {
   }
 
   delete(id:string){
-    this.uploadService.deleteFile(id).subscribe(data=>{ })
+    this.route.queryParams.subscribe(params=>{
+      this.uploadService.deleteFile(id).subscribe(data=>{
+        this.router.navigate(['/list-file'], {queryParams:{idFile:params.idFile}})
+      })
+    })
   }
 
   // deleteDetailSoal(id:string){
@@ -128,4 +164,36 @@ export class ListFileComponent implements OnInit {
       this.forums=data
     })
   }
+
+  getBack(){
+    this.route.queryParams.subscribe(params=>{
+      this.router.navigate(['/tables-report'], {queryParams: {kId: params.kId}})
+    })
+  }
+
+  getMenu(headerid:string):MenuItem[]{
+    return [
+      {label: 'Update', icon: 'pi pi-refresh', command: () => {
+          this.update(headerid);
+      }},
+      {label: 'Delete', icon: 'pi pi-times', command: () => {
+        this.confirm(headerid);
+      }}
+  ];
+  }
+
+  confirm(idFile) {
+    this.confirmationService.confirm({
+        message: 'Do you want to delete this record?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          this.delete(idFile)
+            // this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+        },
+        reject: () => {
+            // this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+        }
+    });
+  }  
 }

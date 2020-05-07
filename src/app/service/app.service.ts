@@ -18,7 +18,7 @@ import { Forum } from '../layouts/model/forum';
 
 export class AppService {
  
-  private baseUrl = 'http://bf3fdba6.ngrok.io' 
+  private baseUrl = 'http://e8c3d016.ngrok.io' 
 
   constructor(private http: HttpClient) { }
   
@@ -124,7 +124,11 @@ export class AppService {
   //insert/nilai/tugas (insert tugas)
 
   getListQuiz(kId:string): Observable<any[]>{
-    return this.http.get<any[]>(this.baseUrl+ "/view/soal?kId="+kId)
+    return this.http.get<any[]>(this.baseUrl+ "/view/soal-tugas?kId="+kId)
+  }
+
+  getListUjian(kId:string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/view/soal-ujian?kId="+kId)
   }
 
   getDetailQuiz(headerid:string): Observable<any[]>{
@@ -166,24 +170,24 @@ export class AppService {
 
   //----------------------- UPLOAD -------------------------------
   //upload jawaban tugas
-  uploadUser(jawab : FileUser): Observable<string> {
+  uploadUser(jawab : FileUser): Observable<boolean> {
     const formData: FormData = new FormData();
     formData.append('idUser', jawab.user.userId);
     formData.append('idHeader', jawab.headerid);
     formData.append('file', jawab.file );
     console.log(jawab)
-    return this.http.post<string>(this.baseUrl+`/file-user/upload-kuis`, formData, {
+    return this.http.post<boolean>(this.baseUrl+`/file-user/upload-kuis`, formData, {
       responseType: 'json'
     })
   }
 
-  uploadUserUjian(jawab : FileUser): Observable<string> {
+  uploadUserUjian(jawab : FileUser): Observable<boolean> {
     const formData: FormData = new FormData();
     formData.append('idUser', jawab.user.userId);
     formData.append('idHeader', jawab.headerid);
     formData.append('file', jawab.file );
     console.log(jawab)
-    return this.http.post<string>(this.baseUrl+`/file-user/upload-ujian`, formData, {
+    return this.http.post<boolean>(this.baseUrl+`/file-user/upload-ujian`, formData, {
       responseType: 'json'
     })
   }
@@ -205,7 +209,7 @@ export class AppService {
   }
 
   //upload Ujian pengajar
-  uploadUjian(ujian : Ujian): Observable<HttpEvent<any>> {
+  uploadUjian(ujian : Ujian): Observable<boolean> {
     const formData: FormData = new FormData();
     formData.append('file', ujian.file );
     formData.append('judul', ujian.judul_file );
@@ -216,11 +220,10 @@ export class AppService {
     formData.append('startDate', ujian.start_date);
     formData.append('endDate', ujian.end_date);
     formData.append('kId', ujian.kelas.class_id); 
-    const req = new HttpRequest('POST', this.baseUrl+`/file-soal/upload`,formData, { 
-      reportProgress: true,
+    return this.http.post<boolean>(this.baseUrl+`/file-soal/upload`,formData, { 
+      // reportProgress: true,
       responseType: 'json'
     });
-    return this.http.request(req);
   }
   //-------------------------------------------------------------
 
@@ -425,5 +428,39 @@ export class AppService {
 
   getDownloadMapel(cId:string, mId:string){
     return this.http.get(this.baseUrl+ "/report/mapels/download?cId="+ cId +"&mId=" + mId, {responseType: 'blob'})
+  }
+  //-------------------------------------------------------------
+
+  //----------------------- REPORT JADWAL -------------------------------
+  getReportAllPeserta(): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/report/all-kelas")
+  }
+
+  getReportPeserta(cId:string, mId:string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/report/kelass?cId="+ cId +"&mId=" + mId)
+  }
+
+  getDownloadPeserta(cId:string, mId:string){
+    return this.http.get(this.baseUrl+ "/report/kelas/download?cId="+ cId +"&mId=" + mId, {responseType: 'blob'})
+  }
+
+  //----------------------- REPORT Peserta -------------------------------
+  getReportAllNilai(uId:string){
+    return this.http.get<any[]>(this.baseUrl+ "/report/nilaiakhirdetaillistuser?idUser="+uId)
+  }
+  getReportNilai(uId:string, cId:string, mpId:string){
+    return this.http.get<any[]>(this.baseUrl+ "/report/nilaiakhirdetaillist?idUser="+uId + "&classId="+ cId + "&mpId="+mpId)
+  }
+
+  getAllMateriUser(uId:string): Observable<Category[]>{ 
+    return this.http.get<Category[]>(this.baseUrl+ "/report/findmateribyuser?userId=" + uId)
+  }
+
+  getAllKelasUser(uId:string): Observable<Category[]>{ 
+    return this.http.get<Category[]>(this.baseUrl+ "/report/findkelasbyuser?userId=" + uId)
+  }
+
+  getDownloadNilai(uId:string, cId:string, mpId:string){
+    return this.http.get(this.baseUrl+ "/report/nilaiakhirdetail?idUser="+uId + "&classId="+ cId + "&mpId="+mpId, {responseType: 'blob'})
   }
 }

@@ -28,11 +28,19 @@ export class DetailUjianComponent implements OnInit {
       this.data.startTime=kuis.startTime
       this.data.endTime=kuis.endTime
       this.uploadService.getUpdateQuiz(params.idFile, kuis.start_date, kuis.end_date, kuis.startTime, kuis.endTime).subscribe(data=>{this.showSuccess()  })
+        this.isupdated=true
+        this.showSuccess()
     })
   }
 
   showSuccess() {
     this.msgs = [];
 	  this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+  }
+
+  getBack(){
+    this.route.queryParams.subscribe(params=>{
+      this.router.navigate(['/tables-report'], {queryParams: {kId:params.kId}})
+    })
   }
 }

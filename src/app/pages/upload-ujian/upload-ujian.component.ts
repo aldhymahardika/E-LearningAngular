@@ -101,17 +101,19 @@ export class UploadUjianComponent implements OnInit {
         this.ujian.start_date
         this.ujian.end_date
         this.ujian.judul_tugas
-        // this.ujian.hari=this.setHari.value
         this.ujian.jenis
-        // this.ujian.pengajar.pengajar_id='1'
         this.ujian.file = this.selectedFiles.item(0);
-        // this.ujian.category.id=this.selectedCity1.id;
         this.ujian.kelas.class_id=this.setKelas.class_id;
         console.log(this.ujian)
         this.uploadService.uploadUjian(this.ujian).subscribe(
         event => {
           this.isupdated=true;
-          this.showSuccess()
+          if(event==true){
+            this.showSuccess()
+          }else{
+            this.showError()
+          }
+          
       //     if (event.type === HttpEventType.UploadProgress) {
       //       this.progress = Math.round(100 * event.loaded / event.total);
       //     } else if (event instanceof HttpResponse) {
@@ -120,6 +122,7 @@ export class UploadUjianComponent implements OnInit {
         },
         err => {
           this.progress = 0;
+          this.showError()
           this.message = 'Could not upload the file!';
           this.currentFile = undefined;
         })
