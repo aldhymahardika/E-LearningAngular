@@ -20,7 +20,7 @@ export class AdminPesertaComponent implements OnInit {
   dataKelas:AdminKelas
   dataTrainer:Trainer
   msgs: Message[] = [];
-
+  isupdated=false
   constructor(private adminService: AppService, private route: ActivatedRoute, private router: Router) {
     this.materiPengajar.trainer=new Trainer()
     this.materiPengajar.materi=new AdminMateri()
@@ -43,7 +43,6 @@ export class AdminPesertaComponent implements OnInit {
   getKelas(){
     this.adminService.getKelasList().subscribe(data=>{
       console.log(data);
-      
       this.kelas = data
     })
   }
@@ -53,8 +52,28 @@ export class AdminPesertaComponent implements OnInit {
       this.materiPengajar.trainer.trainerId=params.pId
       this.materiPengajar.materi.id=this.dataMateri.id
       this.materiPengajar.classes.id=this.dataKelas.id
-      this.adminService.setPengajar(this.materiPengajar).subscribe()
+      this.isupdated=true
+      this.adminService.setPengajar(this.materiPengajar).subscribe(data=>{
+        // this.isupdated=true
+        this.showSuccess()
+      },
+      err=>{
+        this.showSuccess()
+      })
+    },
+    erro=>{
+      this.showError()
     })
+  }
+
+  showSuccess() {
+    this.msgs = [];
+	  this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+  }
+
+  showError() {
+    this.msgs = [];
+    this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
   }
 
 }

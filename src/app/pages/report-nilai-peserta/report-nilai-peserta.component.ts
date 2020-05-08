@@ -21,15 +21,13 @@ export class ReportNilaiPesertaComponent implements OnInit {
   nilai:any[]
   @ViewChild('dt') table: Table;
   constructor(private sessionService: StorageService, private uploadService: AppService) {
-    // this.getMateriList()
-    // this.getKelasList()
-    // this.getReportAllNilai()
+    
    }
 
   ngOnInit(): void {
     this.getReportAllNilai()
     this.getMateriList()
-    this.getKelasList()
+    this.getKelasList() 
   }
 
   getMateriList(){
@@ -42,7 +40,6 @@ export class ReportNilaiPesertaComponent implements OnInit {
 
   getKelasList(){
     this.login = this.sessionService.getId()
-    // this.materi.category.id=this.selectedCity1.id;
     this.uploadService.getAllKelasUser(this.login.idUser).subscribe(data=>{
       this.kelas=data
       console.log(data)
@@ -60,9 +57,6 @@ export class ReportNilaiPesertaComponent implements OnInit {
   
   getReportNilai(cId:string, mpId:string){
     this.login = this.sessionService.getId()
-    // console.log(cId);
-    // console.log(mpId);
-    // console.log(this.login.idUser);
     this.uploadService.getReportNilai(this.login.idUser, cId, mpId).subscribe(data=>{
       this.nilai=data
       console.log(data);
@@ -73,9 +67,7 @@ export class ReportNilaiPesertaComponent implements OnInit {
     this.login = this.sessionService.getId()
     console.log(cId);
     console.log(mId);
-    
-    
-    this.uploadService.getDownloadNilai(this.login.idUser, cId, mId).subscribe(data=>{
+    this.uploadService.getDownloadNilai(this.login.idUser, mId, cId).subscribe(data=>{
       const url= window.URL.createObjectURL(data)
       window.open(url)
     })

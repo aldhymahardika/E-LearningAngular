@@ -18,7 +18,8 @@ import { Forum } from '../layouts/model/forum';
 
 export class AppService {
  
-  private baseUrl = 'http://e8c3d016.ngrok.io' 
+  // private baseUrl = 'http://24234980.ngrok.io'
+  private baseUrl= 'http://926005e3.ngrok.io'
 
   constructor(private http: HttpClient) { }
   
@@ -149,6 +150,9 @@ export class AppService {
     })
   }
 
+  getJadwalPengajar(trainerId:string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/trainer/findmateribytrainer?trainerId=" + trainerId)
+  }
  //-------------------------------------------------------------
 
   //----------------------- GET ALL -------------------------------

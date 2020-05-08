@@ -49,6 +49,7 @@ import { ReportJadwalMataPelajaranComponent } from 'src/app/pages/report-jadwal-
 import { ReportPesertaComponent } from 'src/app/pages/report-peserta/report-peserta.component';
 import { ReportMenuPengajarComponent } from 'src/app/pages/report-menu-pengajar/report-menu-pengajar.component';
 import { ReportNilaiPesertaComponent } from 'src/app/pages/report-nilai-peserta/report-nilai-peserta.component';
+import { JadwalPengajarComponent } from 'src/app/pages/jadwal-pengajar/jadwal-pengajar.component';
 // import { Component } from '@angular/core';
 
 export const AdminLayoutRoutes: Routes = [
@@ -232,6 +233,13 @@ export const AdminLayoutRoutes: Routes = [
         }
     },
     { path: 'report-menu-pengajar',       component: ReportMenuPengajarComponent 
+    ,
+    canActivate : [AuthGuard],
+    data : {
+        expectedRole : 'ROLE_PENGAJAR'
+        }
+    },
+    { path: 'jadwal-pengajar',       component: JadwalPengajarComponent 
     ,
     canActivate : [AuthGuard],
     data : {

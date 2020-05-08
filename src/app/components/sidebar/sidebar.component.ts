@@ -28,24 +28,22 @@ export const ROUTES: RouteInfo[] = [
 
 export const PENGAJAR : RouteInfo[] = [
   //Path Pengajar
+  { path: '/jadwal-pengajar', title: 'Jadwal Mengajar', icon:'ni ni-book-bookmark text-green', class: '' },
   { path: '/upload-materi', title: 'Upload Materi', icon:'ni ni-cloud-upload-96 text-blue', class: '' },
   { path: '/upload-ujian', title: 'Upload Ujian', icon:'ni ni-cloud-upload-96 text-blue', class: '' },
-  // { path: '/table-report', title:'Scores', icon:'ni ni-trophy text-yellow', class:''},
   { path: '/materi-pengajar', title:'List Materi', icon:'ni ni-book-bookmark text-blue', class:''},
   { path: '/kelas', title: 'Input Nilai', icon:'ni ni-trophy text-yellow', class: '' },
   { path: '/report-menu-pengajar', title: 'Report', icon:'ni ni-book-bookmark text-yellow', class: '' },
+  
 
   // { path: '', title:'-------', icon:'', class:''},
 ]
 export const PESERTA : RouteInfo[] =[
   //Path Peserta
-  { path: '/materi', title:'List Materi', icon:'ni ni-books text-blue', class:'' },
-  { path: '/kelas-user', title:'Jadwal', icon:'ni ni-calendar-grid-58 text-success', class:'' },
-  { path: '/report-nilai-peserta', title:'Report', icon:'ni ni-calendar-grid-58 text-yellow', class:'' },
-  // { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
-  // { path: '/user', title: 'Materi', icon:'ni ni-book-bookmark text-blue', class:''},
-  // { path: '/topic-materi', title: 'Topic Materi', icon:'ni ni-book-bookmark text-blue', class:''},
-  // { path: '/user-score', title:'Scores', icon:'ni ni-trophy text-yellow', class:''},
+  { path: '/materi', title:'Course', icon:'ni ni-books text-blue', class:'' },
+  { path: '/kelas-user', title:'My Course', icon:'ni ni-calendar-grid-58 text-success', class:'' },
+  { path: '/report-nilai-peserta', title:'Report', icon:'ni ni-book-bookmark text-yellow', class:'' },
+
 ]
 
 @Component({

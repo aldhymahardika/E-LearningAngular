@@ -142,6 +142,9 @@ export class ListFileComponent implements OnInit {
       ser.subscribe(data=>{
         this.forum.isiPesan=""
         this.loadForum(params.hId)
+      },
+      err=>{
+        this.router.navigate(['/list-file'], {queryParams:{idFile:params.idFile, kId: params.kId}})
       })
       // this.getALlMateri()
       // this.getForum()

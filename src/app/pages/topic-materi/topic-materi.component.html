@@ -313,30 +313,21 @@
             <div>
             <h2 class="heading-large text-muted mb-4">Jumat</h2>
             <div class="pl-lg-4" *ngFor="let top of topics">
-              <div class="row" *ngIf="top.day === 'SATURDAY'">
-                <div class="col-lg-3">
-                  <div class="form-group">
-                    <h5 class="heading-large">Topic : {{ top.title }}</h5>
-                  </div>
-                </div>
-                <div class="col-lg-3">
-                  <div class="form-group">
-                    <h5 class="heading-large"></h5>
-                  </div>
-                </div>
-                <div class="col-lg-3">
-                  <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
-                  </div>
-                </div>
-                <div class="col-lg-3">
-                  <div class="form-group">
-                      <button class="btn btn-primary btn-sm" type="button">
-                          <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
-                          <span class="btn-inner--text" (click)="getMateri(top.headerid)">Materi</span>
-                        </button>
-                  </div>
-               </div>
+              <div class="row" *ngIf="top.day === 'FRIDAY'">
+                  <table class="row-border hover dataTable no-footer" >
+                      <tr >
+                        <td>{{ top.topic }}</td>
+                        <td>{{ top.time }}</td>
+                        <td class="text-center">
+                          <div class="form-group">
+                            <button class="btn btn-primary btn-sm" type="button">
+                                <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
+                                <span class="btn-inner--text" (click)="getMateri(top.headerid)">Materi</span>
+                              </button>
+                        </div>
+                        </td>
+                      </tr>
+                  </table>
               </div>
             </div>
             <h2 class="heading-large text-muted mb-4">Quiz</h2>

@@ -1,0 +1,66 @@
+<!-- <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog> -->
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+    <!-- Mask -->
+    <span class="mask bg-lawen opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+      <div class="row">
+        <div class="row align-items-center">
+          <div class="col-12">
+            <h1 class="display-1" style="color: white;">Jadwal Mengajar</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col-xl-12 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-12">
+                
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- <div class="card shadow"> -->
+              <div class="pl-lg-12">
+                <div class="row">
+                  <div class="col">
+                      <div class="col s12 m12 l12">
+                        <div class=" dataTables_wrapper "> 
+                          
+                        <div class="table-responsive">
+                          <table class="row-border hover dataTable no-footer">
+                            <thead>
+                              <tr style="color: black; text-align: center;" class="bg-th" >
+                                <th scope="col">Materi</th>
+                                <th scope="col">Kelas</th>
+                                <th scope="col">Tanggal Mulai</th>
+                                <th scope="col">Tanggal Selesai</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr style="text-align: center;" *ngFor="let data of jadwal">
+                                <td>{{ data.materi }}</td>
+                                <td>{{ data.kelas }}</td>
+                                <td>{{ data.startdate | date : 'dd-MM-yyyy'}}</td>
+                                <td>{{ data.enddate | date : 'dd-MM-yyyy'}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                  <!-- </div> -->
+          </div>
+        </div>
+        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,60 +1,66 @@
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
   <!-- Mask -->
-  <span class="mask bg-gradient-primary opacity-8"></span>
+  <span class="mask bg-lawen opacity-8"></span>
   <!-- Header container -->
   <div class="container-fluid d-flex align-items-center">
     <div class="row">
-
+      <div class="row align-items-center">
+        <div class="col-12">
+          <h1 class="display-1" style="color: white;">Upload Materi</h1>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 <div class="container-fluid mt--7">
   <div class="row">
     <div class="col-xl-12 order-xl-1">
-      <div class="card bg-secondary shadow">
-        <div class="card-header bg-white border-0">
+      <div class="card bg-card shadow">
+        <div class="card-header bg-card border-0">
           <div class="row align-items-center">
-            <div class="col-12">
+            <!-- <div class="col-12">
               <h3 class="mb-0">Upload Materi</h3>
-            </div>
+            </div> -->
           </div>
         </div>
-        <div class="card-body">
-          <div class="card shadow">
+        <div class="card-body bg-card">
+          <!-- <div class="card shadow"> -->
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-md-6">
                   <label>Judul Materi</label>
-                  <input type="text" class="form-control form-control-alternative" [(ngModel)]="materi.judul_materi">
+                  <input type="text" class="form-input" [(ngModel)]="materi.judul_materi">
               </div>
               <div class="col-md-6">
                 <label>Pilih Topic</label>
-                <input type="text" class="form-control form-control-alternative" [(ngModel)]="materi.topic">
+                <input type="text" class="form-input" [(ngModel)]="materi.topic">
               </div>
               <div class="col-md-6">
                 <br>
                 <label>Pilih Materi</label>
-                <p-dropdown class="form-control form-control-alternative" placeholder="Pilih Materi" [options]="cities2" [(ngModel)]="selectedCity1" optionLabel="name" [showClear]="true" (ngModelChange)="getKelasList(selectedCity1)"></p-dropdown>
+                <br>
+                <p-dropdown class="" placeholder="Pilih Materi" [options]="cities2" [(ngModel)]="selectedCity1" optionLabel="name" [showClear]="true" (ngModelChange)="getKelasList(selectedCity1)"></p-dropdown>
               </div>
               <div class="col-md-6">
                 <br>
                 <label>Pilih Kelas</label>
-                <p-dropdown class="form-control form-control-alternative" placeholder="Pilih Kelas" [options]="kelas" [(ngModel)]="setKelas" optionLabel="name" [showClear]="true"></p-dropdown>
+                <br>
+                <p-dropdown class="" placeholder="Pilih Kelas" [options]="kelas" [(ngModel)]="setKelas" optionLabel="name" [showClear]="true"></p-dropdown>
               </div>
               <div class="col-md-6">
                 <br>
                 <label>Pilih Tanggal</label>
-                <input type="date" class="form-control form-control-alternative" [(ngModel)]="materi.tanggal"  required pattern="\d{2}-\d{2}-\d{4}">
+                <input type="date" class="form-input" [(ngModel)]="materi.tanggal"  required pattern="\d{2}-\d{2}-\d{4}">
               </div>
               <div class="col-md-6">
                 <br>
                 <label>Pilih Waktu</label>
-                <input type="time" class="form-control form-control-alternative" [(ngModel)]="materi.jam">
+                <input type="time" class="form-input" [(ngModel)]="materi.jam">
               </div>
               <div class="col-md-12">
                 <br>
                   <label>File</label> 
-                  <input type="file" class="form-control form-control-alternative" id="upload" (change)="selectFile($event)" [(ngModel)]="materi.file">
+                  <input type="file" class="form-input" id="upload" (change)="selectFile($event)" [(ngModel)]="materi.file">
               </div>
               <div class="col-md-12">
               <br>
@@ -65,7 +71,7 @@
               </div>  
               </div>
             </div>
-          </div>
+          <!-- </div> -->
         </div>
       </div>
     </div>
