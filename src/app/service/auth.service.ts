@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 // const AUTH_API = 'http://24234980.ngrok.io/api/auth/'
-const AUTH_API= 'http://926005e3.ngrok.io/api/auth/'
+const AUTH_API= 'https://4b88050a.ngrok.io/api/auth/'
 
 const httpOptions = {
   headers : new HttpHeaders({ 'Content-Type' : 'application/json'})

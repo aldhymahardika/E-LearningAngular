@@ -20,7 +20,6 @@ export class AbsenComponent implements OnInit {
 
 
   absen(){
-    let idUser='1'
     this.router.queryParams
     .subscribe(params => {
         if(params.comp == 'materi'){

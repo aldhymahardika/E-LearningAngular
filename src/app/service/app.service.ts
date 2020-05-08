@@ -18,8 +18,7 @@ import { Forum } from '../layouts/model/forum';
 
 export class AppService {
  
-  // private baseUrl = 'http://24234980.ngrok.io'
-  private baseUrl= 'http://926005e3.ngrok.io'
+  private baseUrl= 'https://4b88050a.ngrok.io'
 
   constructor(private http: HttpClient) { }
   
@@ -240,6 +239,7 @@ export class AppService {
   getKelasPengajar(mId:string, pId:string): Observable<Kelas[]>{
     return this.http.get<Kelas[]>(this.baseUrl+ "/pengajar/class?mId=" +mId + "&pId=" + pId)
   }
+
   //-------------------------------------------------------------
 
 
@@ -448,7 +448,7 @@ export class AppService {
     return this.http.get(this.baseUrl+ "/report/kelas/download?cId="+ cId +"&mId=" + mId, {responseType: 'blob'})
   }
 
-  //----------------------- REPORT Peserta -------------------------------
+  //----------------------- REPORT PESERTA -------------------------------
   getReportAllNilai(uId:string){
     return this.http.get<any[]>(this.baseUrl+ "/report/nilaiakhirdetaillistuser?idUser="+uId)
   }
@@ -467,4 +467,23 @@ export class AppService {
   getDownloadNilai(uId:string, cId:string, mpId:string){
     return this.http.get(this.baseUrl+ "/report/nilaiakhirdetail?idUser="+uId + "&classId="+ cId + "&mpId="+mpId, {responseType: 'blob'})
   }
+  //-------------------------------------------------------------
+
+  //----------------------- REPORT PENGAJAR -------------------------------
+  getMateriPengajarReport(tId:string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/show/class-by-trainer?tId=" +tId)
+  }
+  
+  getKelasPengajarReport(tId:string):Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/kelas-pengajar/show-by-trainer?tId=" +tId)
+  }
+
+  getDownloadReportRincianNilai(mId:string, cId:string, period:string){
+    return this.http.get(this.baseUrl+ "/report/rinciannilai/download?materiId="+mId + "&classId="+ cId + "&period="+period, {responseType: 'blob'})
+  }
+
+  getReportRincianNilai(mId:string, cId:string, period:string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/report/rinciannilai?materiId="+mId + "&classId="+ cId + "&period="+period)
+  }
+  //-------------------------------------------------------------
 }
