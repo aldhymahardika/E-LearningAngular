@@ -42,7 +42,7 @@ export class ListMateriComponent implements OnInit, OnDestroy {
   getNilai(user_id:string){
     this.route.queryParams
     .subscribe(params=>{
-      this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:user_id}})
+      this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:user_id, period: params.period}})
     })
   }
 

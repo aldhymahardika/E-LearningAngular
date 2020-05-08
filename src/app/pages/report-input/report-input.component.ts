@@ -70,7 +70,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
     this.route.queryParams
     .subscribe(params=>{
       this.isupdated=true
-      this.uploadService.setNilaiKuis(params.kId, params.uId, this.dataNilai.nilaiUtama, this.dataNilai.jenis, this.dataNilai.nilaiKehadiran, this.dataNilai.tanggal, this.dataNilai.title).subscribe(data=>{
+      this.uploadService.setNilaiKuis(params.kId, params.uId, this.dataNilai.nilaiUtama, this.dataNilai.jenis, this.dataNilai.nilaiKehadiran, this.dataNilai.tanggal, this.dataNilai.title, this.dataNilai.tanggalPeriode).subscribe(data=>{
         this.msg=data
 
         this.showSuccess()        
@@ -85,6 +85,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   input(data, el:HTMLElement){
     this.route.queryParams
     .subscribe(params=>{
+      this.dataNilai.tanggalPeriode=params.period
       this.dataNilai.title=data.title
       this.dataNilai.jenis= data.type
       this.dataNilai.kelas=params.kId
@@ -194,6 +195,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   getDeleteKuis(data){
     this.route.queryParams
     .subscribe(params=>{
+      this.dataKuis.tanggalPeriode=params.period
       this.dataKuis.id=data.id
       this.dataKuis.jenis= "TUGAS"
       this.dataKuis.kelas=params.kId
@@ -211,6 +213,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   getDeleteUJian(data){
     this.route.queryParams
     .subscribe(params=>{
+      this.dataKuis.tanggalPeriode=params.period
       this.dataKuis.id=data.id
       this.dataKuis.jenis= "Ujian"
       this.dataKuis.kelas=params.kId
@@ -228,6 +231,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   getUpdateKuis(data, el:HTMLElement){
     this.route.queryParams
     .subscribe(params=>{
+      this.dataKuis.tanggalPeriode=params.period
       this.dataKuis.title=data.title
       this.dataKuis.id=data.id
       this.dataKuis.jenis= "TUGAS"
@@ -241,6 +245,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   getUpdateUJian(data, el:HTMLElement, x){
     this.route.queryParams
     .subscribe(params=>{
+      this.dataKuis.tanggalPeriode=params.period
       this.dataKuis.title=data.title
       this.dataKuis.id=data.id
       this.dataKuis.jenis= "UJIAN"
@@ -261,7 +266,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
     this.route.queryParams
     .subscribe(params=>{
       this.isupdate=true
-      this.uploadService.setUpdateKuis(this.dataKuis.id, params.kId, params.uId, this.dataKuis.nilaiUtama, this.dataKuis.jenis, this.dataKuis.nilaiKehadiran).subscribe(data=>{
+      this.uploadService.setUpdateKuis(this.dataKuis.id, params.kId, params.uId, this.dataKuis.nilaiUtama, this.dataKuis.jenis, this.dataKuis.nilaiKehadiran, this.dataKuis.tanggalPeriode).subscribe(data=>{
         this.msg=data
         this.showSuccess()
       },

@@ -29,42 +29,45 @@
               <div class="row">
                 <div class="col-md-6">
                   <label>Judul Materi</label>
-                  <input type="text" class="form-input" [(ngModel)]="materi.judul_materi">
+                  <input [disabled]="spinner" type="text" class="form-input" [(ngModel)]="materi.judul_materi">
               </div>
               <div class="col-md-6">
                 <label>Pilih Topic</label>
-                <input type="text" class="form-input" [(ngModel)]="materi.topic">
+                <input [disabled]="spinner" type="text" class="form-input" [(ngModel)]="materi.topic">
               </div>
               <div class="col-md-6">
                 <br>
                 <label>Pilih Materi</label>
                 <br>
-                <p-dropdown class="" placeholder="Pilih Materi" [options]="cities2" [(ngModel)]="selectedCity1" optionLabel="name" [showClear]="true" (ngModelChange)="getKelasList(selectedCity1)"></p-dropdown>
+                <p-dropdown [disabled]="spinner" class="" placeholder="Pilih Materi" [options]="cities2" [(ngModel)]="selectedCity1" optionLabel="name" [showClear]="true" (ngModelChange)="getKelasList(selectedCity1)"></p-dropdown>
               </div>
               <div class="col-md-6">
                 <br>
                 <label>Pilih Kelas</label>
                 <br>
-                <p-dropdown class="" placeholder="Pilih Kelas" [options]="kelas" [(ngModel)]="setKelas" optionLabel="name" [showClear]="true"></p-dropdown>
+                <p-dropdown [disabled]="spinner" class="" placeholder="Pilih Kelas" [options]="kelas" [(ngModel)]="setKelas" optionLabel="name" [showClear]="true"></p-dropdown>
               </div>
               <div class="col-md-6">
                 <br>
                 <label>Pilih Tanggal</label>
-                <input type="date" class="form-input" [(ngModel)]="materi.tanggal"  required pattern="\d{2}-\d{2}-\d{4}">
+                <input [disabled]="spinner" type="date" class="form-input" [(ngModel)]="materi.tanggal"  required pattern="\d{2}-\d{2}-\d{4}">
               </div>
               <div class="col-md-6">
                 <br>
                 <label>Pilih Waktu</label>
-                <input type="time" class="form-input" [(ngModel)]="materi.jam">
+                <input [disabled]="spinner" type="time" class="form-input" [(ngModel)]="materi.jam">
               </div>
               <div class="col-md-12">
                 <br>
                   <label>File</label> 
-                  <input type="file" class="form-input" id="upload" (change)="selectFile($event)" [(ngModel)]="materi.file">
+                  <input [disabled]="spinner" type="file" class="form-input" id="upload" (change)="selectFile($event)" [(ngModel)]="materi.file">
               </div>
               <div class="col-md-12">
               <br>
-              <button type="button" class="btn btn-default" (click)="upload()">Upload</button>
+              <button [disabled]="spinner" type="button" class="btn btn-default" (click)="upload()">Upload</button>
+              <div *ngIf="spinner">  
+              <p-progressSpinner></p-progressSpinner>
+            </div>
               </div>
               <div class="col-sm-12" [hidden]="!isupdated">  
                   <p-messages [(value)]="msgs"></p-messages>  

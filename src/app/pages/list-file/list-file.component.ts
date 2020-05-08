@@ -99,7 +99,11 @@ export class ListFileComponent implements OnInit {
   delete(id:string){
     this.route.queryParams.subscribe(params=>{
       this.uploadService.deleteFile(id).subscribe(data=>{
-        this.router.navigate(['/list-file'], {queryParams:{idFile:params.idFile}})
+        // this.router.navigate(['/list-file'], {queryParams:{idFile:params.idFile}})
+      },
+      err=>{
+        this.getListMateri()
+    this.getForum()
       })
     })
   }
@@ -144,7 +148,9 @@ export class ListFileComponent implements OnInit {
         this.loadForum(params.hId)
       },
       err=>{
-        this.router.navigate(['/list-file'], {queryParams:{idFile:params.idFile, kId: params.kId}})
+        // this.router.navigate(['/list-file'], {queryParams:{idFile:params.idFile, kId: params.kId}})
+        this.getListMateri()
+    this.getForum()
       })
       // this.getALlMateri()
       // this.getForum()

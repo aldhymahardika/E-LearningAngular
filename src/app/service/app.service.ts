@@ -323,12 +323,12 @@ export class AppService {
     return this.http.get<any[]>(this.baseUrl+ "/user/kelas?uId=" + uId)
   }
 
-  setNilaiKuis(kelas:string, uId:string, nilai: number, jenis:string, aktif:number, tanggal:string, title:string): Observable<any>{
-    return this.http.post<any>(this.baseUrl + "/insert/nilai?kelas="+ kelas +"&userId="+ uId +"&keaktifan="+ aktif + "&nilai="+ nilai +"&jenis="+jenis + "&tanggal="+tanggal+ "&title=" + title, {})
+  setNilaiKuis(kelas:string, uId:string, nilai: number, jenis:string, aktif:number, tanggal:string, title:string, period:string): Observable<any>{
+    return this.http.post<any>(this.baseUrl + "/insert/nilai?kelas="+ kelas +"&userId="+ uId +"&keaktifan="+ aktif + "&nilai="+ nilai +"&jenis="+jenis + "&tanggal="+tanggal+ "&title=" + title +"&period=" +period, {})
   }
 
-  setUpdateKuis(id:string, kelas:string, uId:string, nilai: number, jenis:string, aktif:number){
-    return this.http.post<any>(this.baseUrl + "/update/nilai?kelas="+ kelas +"&userId="+ uId +"&keaktifan="+ aktif + "&nilai="+ nilai +"&jenis="+jenis + "&id="+id, {})
+  setUpdateKuis(id:string, kelas:string, uId:string, nilai: number, jenis:string, aktif:number, period:string){
+    return this.http.post<any>(this.baseUrl + "/update/nilai?kelas="+ kelas +"&userId="+ uId +"&keaktifan="+ aktif + "&nilai="+ nilai +"&jenis="+jenis + "&id="+id +"&period="+period, {})
   }
 
   getDeleteUjian(id:string, kelas:string, uId:string, jenis:string){

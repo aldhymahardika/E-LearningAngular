@@ -16,8 +16,8 @@
 <div class="container-fluid mt--7">
   <div class="row">
     <div class="col-xl-12 order-xl-1">
-      <div class="card bg-secondary shadow">
-        <div class="card-header bg-white border-0">
+      <div class="card bg-card shadow">
+        <div class="card-header bg-card border-0">
           <div class="row align-items-center">
             <div class="col-12">
               <button class="btn btn-icon btn-3 btn-primary" type="button" (click)="getBack()">
@@ -38,10 +38,10 @@
                         <!-- <div class="card-header border-0">
                           <h3 class="mb-0">Data Pengajar</h3>
                         </div> -->
-                        <div class="table-responsive">
+                        <div  *ngIf="!spinner2 ; else showSpinner" class="table-responsive">
                           <table class="row-border hover dataTable no-footer">
                             <thead>
-                              <tr style="color: white;" class="bg-gradient-primary">
+                              <tr style="color: black;" class="bg-th">
                                 <th scope="col">Judul</th>
                                 <th scope="col">Waktu</th>
                                 <th scope="col"></th>
@@ -52,16 +52,24 @@
                                 <td>{{data.title}}</td>
                                 <td>{{data.time}}</td>             
                                 <td class="text-center">
-                                  <p-splitButton label="Download" icon="pi pi-info" (onClick)="getsKuis(data)" [model]="getMenu(data.soal_id)"></p-splitButton>
-
+                                  <p-splitButton *ngIf="!spinner" label="Download" icon="pi pi-info" (onClick)="getsKuis(data)" [model]="getMenu(data.soal_id)"></p-splitButton>
+                                  <div *ngIf="spinner">
+                                    <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+                                  </div>
                                   <!-- <button type="button" class="btn btn-primary" (click)="getsKuis(data)">Download</button> -->
                                   <!-- <button type="button" class="btn btn-primary" (click)="updateUjian(data.soal_id)">Update</button> -->
                                   <!-- <button type="button" class="btn btn-primary" (click)="deleteDetailSoal(data.soal_id)">Delete</button> -->
                                 </td>
+                               
                               </tr>
                             </tbody>
                           </table>
                     </div>
+                    <ng-template #showSpinner>
+                      <div class="text-center">
+                      <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+                    </div>
+                    </ng-template>
                   </div>
                 </div>
                   </p-tabPanel>

@@ -36,6 +36,8 @@ export class ListUjianComponent implements OnInit {
   forum = new Forum()
   forums:any[]
   login = new Login()
+  spinner=false
+  spinner2=true
   constructor(private confirmationService: ConfirmationService, private sessionService: StorageService ,private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
@@ -61,6 +63,7 @@ export class ListUjianComponent implements OnInit {
       this.uploadService.getDetailQuiz(params.idFile).subscribe(data=>{
         this.dataUjian=data
         console.log(data)
+        this.spinner2=false
       })
     })
   }
@@ -68,21 +71,33 @@ export class ListUjianComponent implements OnInit {
   deleteDetailSoal(id:string){
     this.route.queryParams.subscribe(params=>{
       this.uploadService.deleteDetailSoal(id).subscribe(data=>{
-        this.router.navigate(['/list-ujian'], {queryParams:{idFile:params.idFile}})
+
+      },
+      err=>{
+        // this.router.navigate(['/list-ujian'], {queryParams:{idFile:params.idFile, kId:params.kId}})
+        this.getDetailUjian()
+        this.getForum()
       })
     })
   }
 
   updateUjian(idFile:string){
-    this.router.navigate(['/detail-file-ujian'], {queryParams:{idFile:idFile}})
+    this.route.queryParams.subscribe(params=>{
+      this.router.navigate(['/detail-file-ujian'], {queryParams:{idFile:idFile, kId:params.kId}})
+    })
   }
   
   getsKuis(datas){
+    this.spinner=true;
     this.route.queryParams
     .subscribe(params => {
    let resp = this.uploadService.downloadKuisUser(datas).subscribe((data) => 
    { const url= window.URL.createObjectURL(data)
-   window.open(url) 
+   window.open(url)
+   this.spinner=false
+   },
+   err=>{
+     this.spinner=false
    })
   }) 
   }
@@ -122,6 +137,12 @@ export class ListUjianComponent implements OnInit {
       ser.subscribe(data=>{
         this.forum.isiPesan=""
         this.loadForum(params.hId)
+
+      },
+      err=>{
+        // this.router.navigate(['/list-ujian'], {queryParams: {idFile: params.idFile, kId: params.kId}})
+        this.getDetailUjian()
+        this.getForum()
       })
       // this.getALlMateri()
       // this.getForum()

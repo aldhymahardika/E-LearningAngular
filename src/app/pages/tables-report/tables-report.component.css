@@ -1,34 +1,35 @@
-/* :host ::ng-deep button {
-    margin-right: .25em;
-}
-
-:host ::ng-deep .custom-toast .ui-toast-message {
-    background: #FC466B;
-    background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
-    background: linear-gradient(to right, #3F5EFB, #FC466B);
-}
-
-:host ::ng-deep .custom-toast .ui-toast-message div {
-    color: #ffffff;
-}
-
-:host ::ng-deep .custom-toast .ui-toast-message.ui-toast-message-info .ui-toast-close-icon {
-    color: #ffffff;
-}
-.ui-button {
-    cursor: pointer;
-    text-align: center;
-}
-.ui-g {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-} */
 .bg-lawen{
     background-color: #3057C3;
 }
 
 .bg-th{
     background-color: #E4E4E4;
+}
+.bg-card{
+    background-color: white;
+}
+
+.bg-border-input{
+   outline-color: black;
+}
+
+.form-input
+{
+    font-size: 1rem;
+    line-height: 1.5;
+
+    display: block;
+
+    width: 100%;
+    height: calc(2.75rem + 2px);
+    padding: .625rem .75rem;
+
+    transition: all .2s cubic-bezier(.68, -.55, .265, 1.55); 
+
+    color: black;
+    border: 1px solid black;
+    border-radius: .375rem;
+    background-color: #fff;
+    background-clip: padding-box;
+    box-shadow: none;
 }

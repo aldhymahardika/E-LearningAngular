@@ -43,7 +43,8 @@ export class UploadMateriComponent implements OnInit {
   msgs: Message[] = [];
   isupdated = false; 
   login = new Login()
-  
+  disable = true
+  spinner:boolean = false
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) {
     this.materi.category=new Category()
     this.materi.pengajar=new Pengajar()
@@ -101,13 +102,18 @@ export class UploadMateriComponent implements OnInit {
         this.materi.kelas.class_id=this.setKelas.class_id
         // console.log(this.tanggal);
         console.log(this.setKelas)
+        this.spinner=true
         this.uploadService.upload(this.materi).subscribe(
         event => {
+
           this.isupdated=true;
           if(event == true){
+            this.spinner=false
             this.showSuccess()
+
           }else if(event == false){
             this.showError()
+            this.spinner=false
           }
 
           // this.message='Upload Berhasil'
