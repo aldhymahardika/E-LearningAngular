@@ -18,7 +18,7 @@ import { Forum } from '../layouts/model/forum';
 
 export class AppService {
  
-  private baseUrl= 'https://4b88050a.ngrok.io'
+  private baseUrl= 'https://7a91cfb8.ngrok.io'
 
   constructor(private http: HttpClient) { }
   
@@ -484,6 +484,14 @@ export class AppService {
 
   getReportRincianNilai(mId:string, cId:string, period:string): Observable<any[]>{
     return this.http.get<any[]>(this.baseUrl+ "/report/rinciannilai?materiId="+mId + "&classId="+ cId + "&period="+period)
+  }
+
+  getAbsenPengajar(mId:string, cId:string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+ "/report/kehadiran?materiId="+mId + "&classId="+ cId)
+  }
+
+  getDownloadAbsenPengajar(mId:string, cId:string){
+    return this.http.get(this.baseUrl+ "/report/kehadiran/download?materiId="+mId + "&classId="+ cId, {responseType: 'blob'})
   }
   //-------------------------------------------------------------
 }

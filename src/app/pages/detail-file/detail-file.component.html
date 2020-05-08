@@ -6,7 +6,7 @@
     <div class="row">
       <div class="row align-items-center">
         <div class="col-12">
-          <h1 class="display-1" style="color: white;">Upload Materi</h1>
+          <h1 class="display-1" style="color: white;">Update File Materi</h1>
         </div>
       </div>
     </div>
@@ -29,15 +29,15 @@
               <div class="row">
                 <div class="col-md-12">
                   <label>Judul Tugas</label>
-                  <input [disabled]="spinner" type="text" class="form-control form-control-alternative" id="judul" [(ngModel)]="updt.judul_materi">
+                  <input [disabled]="spinner" type="text" class="form-input" id="judul" [(ngModel)]="updt.judul_materi">
                 </div>
                 <div class="col-md-12">
                     <label>File</label>
-                    <input [disabled]="spinner" type="file" class="form-control form-control-alternative" id="upload" (change)="selectFile($event)" [(ngModel)]="updt.file">
+                    <input [disabled]="spinner" type="file" class="form-input" id="upload" (change)="selectFile($event)" [(ngModel)]="updt.file">
                 </div>
                 <div class="col-md-12">
                 <br>
-                <button [disabled]="spinner" type="button" class="btn btn-default" (click)="updateMateri(updt)">Submit</button>
+                <button [disabled]="spinner" type="button" class="btn btn-primary" (click)="updateMateri(updt)">Submit</button>
                 <div *ngIf="spinner">  
                   <p-progressSpinner></p-progressSpinner>
                 </div>

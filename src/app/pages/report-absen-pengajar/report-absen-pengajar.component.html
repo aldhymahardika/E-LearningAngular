@@ -39,11 +39,8 @@
                         <div class="sejajar">
                             <p-dropdown  placeholder="Pilih Kelas" [options]="dataKelas" [(ngModel)]="kelas" optionLabel="materi_id" [showClear]="true"></p-dropdown>
                         </div>
-                        <div class="sejajar">
-                            <p-calendar [(ngModel)]="jadwal.tgl1" placeholder="Tanggal Mulai" [ngModelOptions]="{standalone: true}" dateFormat="yy-mm-dd"></p-calendar>
-                        </div>
                       <div class="sejajar">
-                          <p-button icon="pi pi-search" (click)="getReportRincianNilai(materi.materi_id, kelas.class_id, jadwal.tgl1)"></p-button>
+                          <p-button icon="pi pi-search" (click)="getAbsenPengajar(materi.materi_id, kelas.class_id)"></p-button>
                           <!-- &nbsp;
                           <p-button icon="pi pi-refresh" (click)="getReportAllMapel(); localClick(1)"></p-button> -->
                         <!-- <button type="button" class="btn btn-primary" (click)="getReportMapel()">Search</button>  -->
@@ -51,7 +48,7 @@
                     </div>
                     <div class="sejajar" style="float: right;">
                       <br>
-                      <button pButton type="button" label="Print" class="ui-button-primary" (click)="getDownloadReportRincianNilai(materi.materi_id, kelas.class_id, jadwal.tgl1)" [disabled]="exampleFlag"></button>
+                      <button pButton type="button" label="Print" class="ui-button-primary" (click)="getDownloadAbsenPengajar(materi.materi_id, kelas.class_id)" [disabled]="exampleFlag"></button>
                       &nbsp;
                       <!-- <button pButton type="button" label="Cetak" class="ui-button-primary" ></button> -->
                     </div>
@@ -61,15 +58,11 @@
                     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
                     [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']" class="row-border hover dataTable no-footer">
-                    <!-- <ng-template pTemplate="caption">
-                    
-                    </ng-template> -->
                     <ng-template pTemplate="header">
                         <tr style="color: white; text-align: center;" class="bg-gradient-primary ">
                             <th pSortableColumn="country.name">Nama<p-sortIcon field="country.name"></p-sortIcon></th>
-                            <th pSortableColumn="representative.name">Rata-rata Tugas <p-sortIcon field="representative.name"></p-sortIcon></th>
-                            <th pSortableColumn="representative.name">Rata-rata Ujian <p-sortIcon field="representative.name"></p-sortIcon></th>
-                            <th pSortableColumn="representative.name">Nilai Akhir <p-sortIcon field="representative.name"></p-sortIcon></th>
+                            <th pSortableColumn="representative.name">Total Kehadiran <p-sortIcon field="representative.name"></p-sortIcon></th>
+                            <th pSortableColumn="representative.name">Total Absen <p-sortIcon field="representative.name"></p-sortIcon></th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-datas>
@@ -78,13 +71,10 @@
                                 <span class="ui-column-title">{{ datas.name }}</span> 
                             </td>
                             <td>
-                                <span class="ui-column-title">{{ datas.rata2_tugas }}</span>
+                                <span class="ui-column-title">{{ datas.kehadiran }}</span>
                             </td>
                             <td>
-                                <span class="ui-column-title">{{ datas.rata2_ujian }}</span>
-                            </td>
-                            <td>
-                                <span class="ui-column-title">{{ datas.finalscore }}</span>
+                                <span class="ui-column-title">{{ datas.absen }}</span>
                             </td>
                         </tr>
                     </ng-template>

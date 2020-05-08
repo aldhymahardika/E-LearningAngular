@@ -48,6 +48,22 @@ export class ReportAbsenPengajarComponent implements OnInit {
     });
   }
 
+  getAbsenPengajar(mId:string, cId:string){
+    this.login = this.sessionService.getId()
+    this.uploadService.getAbsenPengajar(mId, cId).subscribe(data=>{
+      this.datas=data
+      console.log(data);
+      
+    })
+  }
+
+  getDownloadAbsenPengajar(mId:string, cId:string){
+    this.uploadService.getDownloadAbsenPengajar(mId, cId).subscribe(data=>{
+      const url= window.URL.createObjectURL(data)
+      window.open(url)
+    })
+  }
+
   getBack(){
     this.router.navigate(['/report-menu-pengajar'])
   }
