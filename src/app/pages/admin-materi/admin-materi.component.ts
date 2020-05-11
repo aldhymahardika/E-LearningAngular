@@ -29,8 +29,9 @@ export class AdminMateriComponent implements OnInit {
       }else{
         this.showError()
       }
-      
-
+    },
+    err=>{
+      this.showError()
     })
   }
 

@@ -38,7 +38,7 @@ export class TablesReportComponent implements OnInit, OnDestroy {
   items: MenuItem[];
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
-
+  spinner2=true
 constructor(private confirmationService: ConfirmationService, private uploadService: AppService, private route: ActivatedRoute, private router: Router, private messageService: MessageService ) { 
     // this.getListMateri();
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
@@ -98,8 +98,9 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
     .subscribe(params => {
       window.localStorage.setItem('kId', params.kId)
     this.uploadService.getKelas(params.kId).subscribe(data=>{
-      this.dtTrigger.next();
+      // this.dtTrigger.next();
       this.dataFile=data
+      this.spinner2=false
       console.log(data);
     })
   })
@@ -125,8 +126,9 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
     this.route.queryParams
     .subscribe(params=>{
       this.uploadService.getListQuiz(params.kId).subscribe(data=>{
-        // this.dtTrigger.next();
+        this.dtTrigger.next();
         this.dataKuis=data
+        this.spinner2=false
         console.log(data);
       })
     })
@@ -138,6 +140,7 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
       this.uploadService.getListUjian(params.kId).subscribe(data=>{
         // this.dtTrigger.next();
         this.dataUjian=data
+        this.spinner2=false
         console.log(data);
       })
     })

@@ -23,9 +23,10 @@ export class DetailFileComponent implements OnInit {
     this.route.queryParams
       .subscribe(params=>{
         console.log(params)
-        this.updt.id=params.idFile
+        this.updt.id=params.idFiles
         this.updt.file = this.selectedFiles.item(0)
         this.updt.judul_materi=data.judul_materi
+        this.isupdated=true
         this.uploadService.updateMateri(this.updt).subscribe(data=>{
           this.showSuccess()
         })
@@ -41,4 +42,9 @@ export class DetailFileComponent implements OnInit {
 	  this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
   }
 
+  getBack(){
+    this.route.queryParams.subscribe(params=>{
+      this.router.navigate(['/list-file'], {queryParams: {idFile: params.idFile}})
+    })
+  }
 }

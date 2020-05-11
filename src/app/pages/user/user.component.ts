@@ -36,14 +36,17 @@ export class UserComponent implements OnInit {
   isupdated = false; 
   forum = new Forum()
   forums:any[]
-
+  spinner=false
+  title:string
   constructor(private sessionService: StorageService,private uploadService: AppService, private route: ActivatedRoute,private router: Router) { 
     this.jawab.user = new User()
-    this.getForum()
-    this.getAllUjian()
+    
   }
   
   ngOnInit(): void {
+    this.title=this.sessionService.getTopic()
+    this.getForum()
+    this.getAllUjian()
   }
   
   // get(){
@@ -68,11 +71,16 @@ export class UserComponent implements OnInit {
   }
 
   gets(datas){
+    this.spinner=true
     this.route.queryParams
     .subscribe(params => {
    let resp = this.uploadService.downloadKuisUser(datas).subscribe((data) => 
    { const url= window.URL.createObjectURL(data)
-   window.open(url) 
+   window.open(url)
+   this.spinner=false 
+   },
+   err=>{
+    this.spinner=false
    })
   }) 
   //  let blob:any = new Blob(this.fileInfos, { type: 'text/json; charset=utf-8' });
@@ -131,6 +139,11 @@ export class UserComponent implements OnInit {
     .subscribe(params=>{
       this.uploadService.setForumKuis(params.hId, this.forum.isiPesan, this.login.idUser).subscribe(data=>{
         this.forum=data
+      },
+      err=>{
+        this.forum.isiPesan=""
+        this.getForum()
+        this.getAllUjian()
       })
     })
   }
@@ -142,6 +155,12 @@ export class UserComponent implements OnInit {
         this.forums=data
         console.log(data);
       })
+    })
+  }
+
+  getBack(){
+    this.route.queryParams.subscribe(params=>{
+      this.router.navigate(['/topic-materi'], {queryParams:{kId:params.kId}})
     })
   }
 }

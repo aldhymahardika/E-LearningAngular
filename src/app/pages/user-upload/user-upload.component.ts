@@ -31,65 +31,34 @@ export class UserUploadComponent implements OnInit {
   forum = new Forum()
   forums:any[]
   login = new Login()
-
+  title:string
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) { 
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
   };
     this.router.events.subscribe(evt => {
       if (evt instanceof NavigationEnd) {
-          // trick the Router into believing it's last link wasn't previously loaded
           this.router.navigated = false;
-          // if you need to scroll back to top, here is the right place
           window.scrollTo(0, 0    );
       }
   });
-    // this.jawab.materi=new Category()
-    this.jawab.user= new User()
-    // this.jawab.pengajar=new Pengajar() 
-    this.getALlMateri()
-    this.getForum()
+    this.jawab.user= new User()    
   }
   
   ngOnInit(): void {
-    this.route.queryParams
-    .subscribe(params => {
-      // this.get();
-      console.log(params); 
-    });
+    this.title=this.sessionService.getTopic()
+    this.getALlMateri()
+    this.getForum()
   }
-
-  // get(){
-  //   this.route.queryParams
-  //     .subscribe(params => {
-  //       this.tanggal.day=params.day 
-  //       this.tanggal.week=params.week
-  //       // console.log(params['day']);
-                
-  //   });
-  // }
-
-  // getAll(){
-  //   this.route.queryParams
-  //     .subscribe(params => {
-  //     this.uploadService.getMateriUser().subscribe((data)=>{
-  //     this.dataMateri=data , console.log(this.dataMateri)
-  //     },
-  //       err => console.log("Ada error : !"+ JSON.stringify(err)), 
-  //       () => console.log("Completed !"));
-  //       console.log(this.dataMateri);
-  //     })
-  // }
 
   gets(datas){
     this.route.queryParams
     .subscribe(params => {
-   let resp = this.uploadService.downloadMateriUser(datas).subscribe((data) => 
-   { const url= window.URL.createObjectURL(data)
-   window.open(url) 
-   })
+    let resp = this.uploadService.downloadMateriUser(datas).subscribe((data) => 
+    { const url= window.URL.createObjectURL(data)
+      window.open(url) 
+    })
   }) 
-  //  let blob:any = new Blob(this.fileInfos, { type: 'text/json; charset=utf-8' });
   }
 
   getALlMateri(){
@@ -108,40 +77,6 @@ export class UserUploadComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
 
-  // upload() {
-  //   this.route.queryParams
-  //     .subscribe(params => {
-  //       // this.uploadService.getMateriAja().subscribe(data=>{
-  //       // let mater: Hari
-  //       this.progress = 0;
-  //       // this.tanggal.day=params.day;
-  //       // this.tanggal.week=params.week;
-  //       // this.tanggal.endDate;
-  //       this.jawab.pengajar.pengajar_id='1'
-  //       this.jawab.user.userId='2'
-  //       this.jawab.file = this.selectedFiles.item(0);
-  //       this.jawab.materi.id=params.mid
-  //       this.uploadService.uploadPeserta(this.jawab).subscribe(
-  //       event => {
-  //         // console.log(this.tanggal.judulMateri);
-  //         // console.log(this.tanggal);
-  //         // if (event.type === HttpEventType.UploadProgress) {
-  //         //   this.progress = Math.round(100 * event.loaded / event.total);
-  //         // } else if (event instanceof HttpResponse) {
-  //         //   this.message = event.body.message;
-  //         // this.fileInfos = this.uploadService.getFiles();
-  //         // }
-  //       },
-  //       err => {
-  //         this.progress = 0;
-  //         this.message = 'Could not upload the file!';
-  //         this.currentFile = undefined;
-  //       });
-  //     });
-  //     // this.selectedFiles = undefined;
-  // // })
-  // }
-
   setForum(){
     this.route.queryParams
     .subscribe(params=>{
@@ -149,14 +84,15 @@ export class UserUploadComponent implements OnInit {
       this.forum.isiPesan
       let ser = this.uploadService.setForum(params.hId, this.forum.isiPesan, this.login.idUser );
       ser.subscribe(data=>{
-        this.forum.isiPesan=""
         this.loadForum(params.hId)
         this.router.navigate(['/user-upload'], {queryParams: {hId: params.hId}})
+      },
+      err=>{
+        this.forum.isiPesan=""
+        this.getALlMateri()
+        this.getForum()
       })
-      // this.getALlMateri()
-      // this.getForum()
     })
-    // this.getForum()
   }
 
   getForum(){
@@ -165,7 +101,6 @@ export class UserUploadComponent implements OnInit {
       this.uploadService.getForum(params.hId).subscribe(data=>{
         this.forums=data
         console.log(data);
-        
       })
     })
   }
@@ -173,6 +108,12 @@ export class UserUploadComponent implements OnInit {
   loadForum(hId:string){
     this.uploadService.getForum(hId).subscribe(data=>{
       this.forums=data
+    })
+  }
+
+  getBack(){
+    this.route.queryParams.subscribe(params=>{
+      this.router.navigate(['/topic-materi'], {queryParams:{kId:params.kId}})
     })
   }
 }

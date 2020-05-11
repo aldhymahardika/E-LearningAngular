@@ -28,12 +28,9 @@ export class UploadUjianComponent implements OnInit {
   dataUjian : Ujian[];
   fileInfos: Observable<any>;
   files: Observable<Ujian[]>;
-  // materirespons = new MateriRespon()
   fileUrl;
   ujian = new Ujian()
   cities2: Category[];
-  // selectedCity1: City;
-  // name:string
   selectedCity1:Category;
   datas = new Materi()
   hari: Hari[];
@@ -45,6 +42,8 @@ export class UploadUjianComponent implements OnInit {
   msgs: Message[] = [];
   isupdated = false; 
   login = new Login()
+  disable = true
+  spinner:boolean = false
 
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) { 
     this.ujian.category=new Category()
@@ -105,20 +104,17 @@ export class UploadUjianComponent implements OnInit {
         this.ujian.file = this.selectedFiles.item(0);
         this.ujian.kelas.class_id=this.setKelas.class_id;
         console.log(this.ujian)
+        this.spinner=true
         this.uploadService.uploadUjian(this.ujian).subscribe(
         event => {
           this.isupdated=true;
           if(event==true){
+            this.spinner=false
             this.showSuccess()
           }else{
+            this.spinner=false
             this.showError()
           }
-          
-      //     if (event.type === HttpEventType.UploadProgress) {
-      //       this.progress = Math.round(100 * event.loaded / event.total);
-      //     } else if (event instanceof HttpResponse) {
-      //       this.message = event.body.message;
-      //     }
         },
         err => {
           this.progress = 0;
@@ -126,8 +122,7 @@ export class UploadUjianComponent implements OnInit {
           this.message = 'Could not upload the file!';
           this.currentFile = undefined;
         })
-      // this.selectedFiles = undefined;
-  })
+      })
   }
 
   selectFile(event) {
@@ -144,7 +139,6 @@ export class UploadUjianComponent implements OnInit {
 
   getKelasList(selectedCity1){
     this.login = this.sessionService.getId()
-    // this.materi.category.id=this.selectedCity1.id;
     this.uploadService.getKelasPengajar(selectedCity1.id, this.login.idUser).subscribe(data=>{
       this.kelas=data
       console.log(data)

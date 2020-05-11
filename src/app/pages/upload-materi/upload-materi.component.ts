@@ -45,6 +45,7 @@ export class UploadMateriComponent implements OnInit {
   login = new Login()
   disable = true
   spinner:boolean = false
+
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) {
     this.materi.category=new Category()
     this.materi.pengajar=new Pengajar()
@@ -52,10 +53,6 @@ export class UploadMateriComponent implements OnInit {
     this.datas.pengajar= new Pengajar()
     this.datas.category= new Category()
     this.datas.kelas= new Kelas()
-    // this.get();
-    // this.getAll(); 
-    this.getMateriList();
-    // this.getKelasList();
     this.hari = [
       {label: 'Senin', value: 'MONDAY'},
       {label: 'Selasa', value: 'TUESDAY'},
@@ -64,68 +61,34 @@ export class UploadMateriComponent implements OnInit {
       {label: 'Jumat', value: 'FRIDAY'},
       {label: 'Sabtu', value: 'SATURDAY'},
       {label: 'Minggu', value: 'SUNDAY'},
-  ];
-  
-    // this.getAll(this.tanggal.week,this.tanggal.week);
+    ];  
   }
   
 
 
   ngOnInit(): void {
-    // this.getMateriList();
+    this.getMateriList();
   }
-  
-  // get(){
-  //   this.route.queryParams
-  //     .subscribe(params => {
-  //       this.tanggal.day=params.day 
-  //       this.tanggal.week=params.week
-  //       // console.log(params['day']);
-          
-  //   });
-  // }
 
   upload() {
-        // this.uploadService.getMateriAja().subscribe(data=>{
-        // let mater: Hari
         this.progress = 0;
-        // this.tanggal.day=params.day;
-        // this.tanggal.week=params.week;
-        // this.tanggal.endDate;
         this.materi.topic
         this.materi.tanggal
         this.materi.jam
-        // this.materi.hari=this.setHari.value
-        // this.materi.pengajar.pengajar_id='1'
         this.materi.file = this.selectedFiles.item(0);
-        // this.materi.category.id=this.selectedCity1.id;
         this.materi.kelas.class_id=this.setKelas.class_id
-        // console.log(this.tanggal);
-        console.log(this.setKelas)
         this.spinner=true
         this.uploadService.upload(this.materi).subscribe(
         event => {
-
+          console.log(this.materi)
           this.isupdated=true;
           if(event == true){
             this.spinner=false
             this.showSuccess()
-
           }else if(event == false){
             this.showError()
             this.spinner=false
           }
-
-          // this.message='Upload Berhasil'
-          // this.message=event
-          // console.log(this.tanggal.judulMateri);
-          // console.log(this.tanggal);
-          // if (event.type === HttpEventType.UploadProgress) {
-          //   this.progress = Math.round(100 * event.loaded / event.total);
-          //   if (event instanceof HttpResponse) {
-          //   this.message = event.body.message;
-          // this.fileInfos = this.uploadService.getFiles();
-          // }
         },
         err => {
           this.progress = 0;
@@ -133,9 +96,6 @@ export class UploadMateriComponent implements OnInit {
           this.message = 'Could not upload the file!';
           this.currentFile = undefined;
         });
-      // });
-      // this.selectedFiles = undefined;
-  // })
   }
   
   selectFile(event) {
@@ -146,36 +106,18 @@ export class UploadMateriComponent implements OnInit {
   gets(datas){
     this.route.queryParams
     .subscribe(params => {
-   let resp = this.uploadService.downloadMateriUser(datas).subscribe((data) => 
-   { const url= window.URL.createObjectURL(data)
-   window.open(url) 
-   })
-  }) 
-  //  let blob:any = new Blob(this.fileInfos, { type: 'text/json; charset=utf-8' });
+      let resp = this.uploadService.downloadMateriUser(datas).subscribe((data) => 
+      { const url= window.URL.createObjectURL(data)
+        window.open(url) 
+      })
+    }) 
   }
-
-  // getAll(){
-  //   this.route.queryParams
-  //     .subscribe(params => {
-  //       // console.log(params);
-  //       let pengajar = '1'
-  //       let materi = '1'
-  //       let topik ='1'
-  //     this.uploadService.getAllMateri(pengajar,materi,topik).subscribe((data)=>{
-  //     this.dataMateri=data , console.log(this.dataMateri)
-  //     },
-  //       err => console.log("Ada error : !"+ JSON.stringify(err)), 
-  //       () => console.log("Completed !"));
-  //       console.log(this.dataMateri);
-  //     })
-  // }
 
   getMateriList(){
     this.login = this.sessionService.getId()
     console.log(this.login);
     this.uploadService.getMateriPengajar(this.login.idUser).subscribe(data=>{
       this.cities2=data
-      // this.getKelasList()
       console.log(data);
     });
   }

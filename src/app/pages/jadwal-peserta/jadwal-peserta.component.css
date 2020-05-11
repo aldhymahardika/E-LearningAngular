@@ -1,5 +1,20 @@
-
-
+.w3-border-blue, .w3-hover-border-blue:hover {
+    border-color: #2196F3 !important;
+}
+.w3-pale-blue, .w3-hover-pale-blue:hover {
+    color: #000 !important;
+    background-color: #ddffff !important;
+}
+.w3-leftbar {
+    border-left: 6px solid #ccc !important;
+        border-left-color: rgb(204, 204, 204);
+}
+.w3-container, .w3-panel {
+    padding: 0.01em 16px;
+}
+*, ::before, ::after {
+    box-sizing: inherit;
+}
 .row .col.l12 {
     width: 100%;
     margin-left: auto;
@@ -421,3 +436,34 @@ div.dataTables_wrapper span.select-item {
 .bg-th{
     background-color: #E4E4E4;
 }
+.bg-card{
+    background-color: white;
+}
+
+.bg-border-input{
+   outline-color: black;
+}
+
+.form-input
+{
+    font-size: 1rem;
+    line-height: 1.5;
+
+    display: block;
+
+    width: 100%;
+    height: calc(2.75rem + 2px);
+    padding: .625rem .75rem;
+
+    transition: all .2s cubic-bezier(.68, -.55, .265, 1.55); 
+
+    color: black;
+    border: 1px solid black;
+    border-radius: .375rem;
+    background-color: #fff;
+    background-clip: padding-box;
+    box-shadow: none;
+}
+tr.border_bottoms td {
+    border-bottom:1pt solid black;
+  }

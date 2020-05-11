@@ -40,10 +40,10 @@ export class EnrolComponent implements OnInit {
         if(this.kondisi==false){
           this.isupdated = true
           this.showError()
-          this.route.navigate(['/tables'], {queryParams: {uId:this.login.idUser, id: params.id,kId:params.kId, jamid:params.jamid}})
+          this.route.navigate(['/tables'], {queryParams: {uId:this.login.idUser, id: params.id,kId:params.kId, jamid:params.jamid, nama:params.nama, title:params.title}})
         }else{
           this.uploadService.setEnrol(params.kId, this.login.idUser).subscribe(data=>{
-          this.route.navigate(['/topic-materi'], {queryParams: {uId:this.login.idUser, id: params.id,kId:params.kId, jamid:params.jamid}})
+          this.route.navigate(['/topic-materi'], {queryParams: {uId:this.login.idUser, id: params.id,kId:params.kId, jamid:params.jamid, nama:params.nama, title:params.title}})
           })
         }
       })

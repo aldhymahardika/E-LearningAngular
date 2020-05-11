@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-list-materi',
@@ -13,7 +14,9 @@ export class ListMateriComponent implements OnInit, OnDestroy {
   peserta:any[]
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
-  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
+  kelas:string
+  materi:string
+  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionStorage: StorageService) {
     this.getListUser()
    }
 
@@ -22,6 +25,8 @@ export class ListMateriComponent implements OnInit, OnDestroy {
       pagingType: 'full_numbers',
       pageLength: 5
     };
+    this.kelas=this.sessionStorage.getNamaKelas()
+    this.materi=this.sessionStorage.getNamaMateri()
   }
 
   ngOnDestroy(){
@@ -39,10 +44,10 @@ export class ListMateriComponent implements OnInit, OnDestroy {
     })
   }
 
-  getNilai(user_id:string){
+  getNilai(user_id:string, name:string){
     this.route.queryParams
     .subscribe(params=>{
-      this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:user_id, period: params.period}})
+      this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:user_id, period: params.period, name:name}})
     })
   }
 

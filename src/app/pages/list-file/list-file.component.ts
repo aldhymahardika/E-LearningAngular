@@ -39,16 +39,16 @@ export class ListFileComponent implements OnInit {
   forum = new Forum()
   forums:any[]
   login = new Login()
-
+  kIds:string
+  spinner=false
+  spinner2=true
   constructor(private confirmationService: ConfirmationService,private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
     };
     this.router.events.subscribe(evt => {
       if (evt instanceof NavigationEnd) {
-          // trick the Router into believing it's last link wasn't previously loaded
           this.router.navigated = false;
-          // if you need to scroll back to top, here is the right place
           window.scrollTo(0, 0    );
       }
     });
@@ -63,78 +63,65 @@ export class ListFileComponent implements OnInit {
     this.route.queryParams
     .subscribe(params=>{
       console.log(params);
-      
-    this.uploadService.getListMateri(params.idFile).subscribe(data=>{
+      this.uploadService.getListMateri(params.idFile).subscribe(data=>{
       this.dataFile=data
+      this.spinner2=false
       console.log(data);
     })
   })
   }
 
-  // getDetailUjian(){
-  //   this.route.queryParams
-  //   .subscribe(params=>{
-  //     this.uploadService.getDetailQuiz(params.idFile).subscribe(data=>{
-  //       this.dataUjian=data
-  //       console.log(data)
-  //     })
-  //   })
-  // }
-
   download(datas){
+    this.spinner=true;
       this.route.queryParams
       .subscribe(params => {
      let resp = this.uploadService.downloadMateriUser(datas).subscribe((data) => 
      { const url= window.URL.createObjectURL(data)
-     window.open(url) 
+     window.open(url)
+     this.spinner=false;
+     },
+     err=>{
+      this.spinner=false;
      })
     }) 
-    //  let blob:any = new Blob(this.fileInfos, { type: 'text/json; charset=utf-8' });
   }
 
   update(idFile:string){
-      this.router.navigate(['/detail-file'], {queryParams: {idFile:idFile}})
+    this.route.queryParams.subscribe(params=>{
+      this.router.navigate(['/detail-file'], {queryParams: {idFiles:idFile, idFile:params.idFile}})
+    })
   }
 
   delete(id:string){
     this.route.queryParams.subscribe(params=>{
       this.uploadService.deleteFile(id).subscribe(data=>{
-        // this.router.navigate(['/list-file'], {queryParams:{idFile:params.idFile}})
+        this.getListMateri()
+        this.getForum()
       },
       err=>{
         this.getListMateri()
-    this.getForum()
+        this.getForum()
       })
+    },
+    erro=>{
+              this.getListMateri()
+        this.getForum()
     })
   }
 
-  // deleteDetailSoal(id:string){
-  //   this.uploadService.deleteDetailSoal(id).subscribe(data=>{ })
-  // }
-
-  // updateUjian(idFile:string){
-  //   this.router.navigate(['/detail-file-ujian'], {queryParams:{idFile:idFile}})
-  // }
-  
-  // getsKuis(datas){
-  //   this.route.queryParams
-  //   .subscribe(params => {
-  //  let resp = this.uploadService.downloadKuisUser(datas).subscribe((data) => 
-  //  { const url= window.URL.createObjectURL(data)
-  //  window.open(url) 
-  //  })
-  // }) 
-  // }
-
   getsMateri(datas){
+    this.spinner=true;
     this.route.queryParams
     .subscribe(params => {
    let resp = this.uploadService.downloadMateriUser(datas).subscribe((data) => 
    { const url= window.URL.createObjectURL(data)
-   window.open(url) 
+   window.open(url)
+   this.spinner=false;
+   },
+   err=>{
+    this.spinner=false;
    })
   }) 
-  //  let blob:any = new Blob(this.fileInfos, { type: 'text/json; charset=utf-8' });
   }
 
   setForum(){
@@ -144,16 +131,16 @@ export class ListFileComponent implements OnInit {
       this.forum.isiPesan
       let ser = this.uploadService.setForum(params.idFile, this.forum.isiPesan, this.login.idUser );
       ser.subscribe(data=>{
+        console.log("1" + data);
+        
         this.forum.isiPesan=""
-        this.loadForum(params.hId)
+        this.getListMateri()
+        this.getForum()        
       },
       err=>{
-        // this.router.navigate(['/list-file'], {queryParams:{idFile:params.idFile, kId: params.kId}})
-        this.getListMateri()
-    this.getForum()
+        console.log("2" + err);
+        
       })
-      // this.getALlMateri()
-      // this.getForum()
     })
   }
 
@@ -163,7 +150,6 @@ export class ListFileComponent implements OnInit {
       this.uploadService.getForum(params.idFile).subscribe(data=>{
         this.forums=data
         console.log(data);
-        
       })
     })
   }
@@ -175,8 +161,9 @@ export class ListFileComponent implements OnInit {
   }
 
   getBack(){
+    this.kIds=this.sessionService.getKelas()
     this.route.queryParams.subscribe(params=>{
-      this.router.navigate(['/tables-report'], {queryParams: {kId: params.kId}})
+      this.router.navigate(['/tables-report'], {queryParams: {kId: this.kIds}})
     })
   }
 

@@ -1,329 +1,271 @@
-<div class="header bg-lawen pb-8 pt-5 pt-md-8">
-  <div class="container-fluid">
-    <div class="header-body">
-      <!-- Card stats -->
-      
+<!-- <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog> -->
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-lawen opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="row align-items-center">
+        <div class="col-12">
+          <h1 class="display-1" style="color: white;">Jadwal Materi {{title}} </h1>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
 <div class="container-fluid mt--7">
   <div class="row">
-      <div class="col-xl-12 order-xl-1">
-      <div class="card bg-secondary shadow">
-        <p-tabView>
-          <p-tabPanel header="Jadwal" leftIcon="pi pi-calendar">
-        <div class="card-header bg-white border-0">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-card shadow">
+        <div class="card-header bg-card border-0">
           <div class="row align-items-center">
             <div class="col-12">
-              <h3 class="mb-0">Info Jadwal</h3>
+              <button class="btn btn-icon btn-3 btn-primary" type="button" (click)="getBack()">
+                <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+                <span class="btn-inner--text">Kembali</span>
+              </button>
             </div>
           </div>
         </div>
-        <div class="card-body">
-          <form>
-            <h2 class="heading-large text-muted mb-4">Ujian</h2>
-                <div class="pl-lg-4" *ngFor="let ujian of dataKuis">
-                  <div class="row" *ngIf="ujian.type === 'UJIAN'">
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Tanggal Mulai : {{ ujian.startdate | date : 'dd-MM-yyyy'}}</h5>
+        <div class="card-body bg-card">
+            <div class="pl-lg-12">
+              <div class="row">
+                <div class="col">
+                  <p-tabView>
+                    <p-tabPanel header="Jadwal" leftIcon="pi pi-calendar">
+                  <br>
+                      <h2 class="heading-large text-muted mb-4">Ujian</h2>
+                      <div class="table-responsive">
+                        <table class="row-border hover dataTable">
+                          <thead *ngFor="let ujian of dataKuis">
+                            <tr *ngIf="ujian.type === 'UJIAN'">
+                              &nbsp;&nbsp;&nbsp;
+                              <td scope="col">{{ ujian.title}}</td>
+                              <td scope="col">{{ ujian.startdate | date : 'dd-MM-yyyy'}} - {{ ujian.enddate | date : 'dd-MM-yyyy'}}</td>
+                              <td scope="col">{{ ujian.end_time }}</td>
+                            </tr>
+                          </thead>
+                    </table>
+                    </div>              
+                      <hr class="my-4">
+                      <div class="dataTables_wrapper">
+                      <h2 class="heading-large text-muted mb-4">Senin</h2>
+                      <div class="table-responsive">
+                        <table class="row-border hover dataTable">
+                          <thead *ngFor="let top of jadwal">
+                            <tr *ngIf="top.day === 'MONDAY'">
+                              &nbsp;&nbsp;&nbsp;
+                              <td scope="col">{{ top.topic}}</td>
+                              <td scope="col">{{ top.date | date : 'dd-MM-yyyy'}}</td>
+                              <td scope="col">{{ top.time }}</td>
+                            </tr>
+                          </thead>
+                    </table>
+                    </div>
+                    <br>
+                      <h2 class="heading-large text-muted mb-4">Quiz</h2>
+                      <div class="table-responsive">
+                        <table class="row-border hover dataTable">
+                          <thead *ngFor="let kuis of dataKuis">
+                            <tr *ngIf="kuis.day === 'MONDAY' && kuis.type === 'TUGAS'">
+                              &nbsp;&nbsp;&nbsp;
+                              <td scope="col">{{ kuis.title }}</td>
+                              <td scope="col">{{ kuis.startdate | date : 'dd-MM-yyyy' }} - {{ kuis.enddate | date : 'dd-MM-yyyy'}}</td>
+                              <td scope="col">{{ kuis.start_time }} - {{ kuis.end_time }}</td>
+                            </tr>
+                          </thead>
+                    </table>
+                    </div> 
+                    </div>
+                      <hr class="my-4" />
+                      <div class="dataTables_wrapper">
+                      <h2 class="heading-large text-muted mb-4">Selasa</h2>
+                      <div class="table-responsive">
+                        <table class="row-border hover dataTable">
+                          <thead *ngFor="let top of jadwal">
+                            <tr *ngIf="top.day === 'TUESDAY'">
+                              &nbsp;&nbsp;&nbsp;
+                              <td scope="col">{{ top.topic}}</td>
+                              <td scope="col">{{ top.date | date : 'dd-MM-yyyy'}}</td>
+                              <td scope="col">{{ top.time }}</td>
+                            </tr>
+                          </thead>
+                    </table>
+                    </div>
+                    <br>
+                      <h2 class="heading-large text-muted mb-4">Quiz</h2>
+                      <div class="table-responsive">
+                        <table class="row-border hover dataTable">
+                          <thead *ngFor="let kuis of dataKuis">
+                            <tr *ngIf="kuis.day === 'TUESDAY' && kuis.type === 'TUGAS'">
+                              &nbsp;&nbsp;&nbsp;
+                              <td scope="col">{{ kuis.title }}</td>
+                              <td scope="col">{{ kuis.startdate | date : 'dd-MM-yyyy' }} - {{ kuis.enddate | date : 'dd-MM-yyyy'}}</td>
+                              <td scope="col">{{ kuis.start_time }} - {{ kuis.end_time }}</td>
+                            </tr>
+                          </thead>
+                    </table>
+                    </div> 
+                    </div>
+                      <hr class="my-4" /> 
+                      <div class="dataTables_wrapper">             
+                      <h2 class="heading-large text-muted mb-4">Rabu</h2>
+                      <div class="table-responsive">
+                        <table class="row-border hover dataTable">
+                          <thead *ngFor="let top of jadwal">
+                            <tr *ngIf="top.day === 'WEDNESDAY'">
+                              &nbsp;&nbsp;&nbsp;
+                              <td scope="col">{{ top.topic}}</td>
+                              <td scope="col">{{ top.date | date : 'dd-MM-yyyy'}}</td>
+                              <td scope="col">{{ top.time }}</td>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+                      <br>
+                      <h2 class="heading-large text-muted mb-4">Quiz</h2>
+                      <div class="table-responsive">
+                        <table class="row-border hover dataTable">
+                          <thead *ngFor="let kuis of dataKuis">
+                            <tr *ngIf="kuis.day === 'WEDNESDAY' && kuis.type === 'TUGAS'">
+                              &nbsp;&nbsp;&nbsp;
+                              <td scope="col">{{ kuis.title }}</td>
+                              <td scope="col">{{ kuis.startdate | date : 'dd-MM-yyyy' }} - {{ kuis.enddate | date : 'dd-MM-yyyy'}}</td>
+                              <td scope="col">{{ kuis.start_time }} - {{ kuis.end_time }}</td>
+                            </tr>
+                          </thead>
+                    </table>
+                    </div> 
+                    </div>
+                      <hr class="my-4" />
+                      <div class="dataTables_wrapper">              
+                      <h2 class="heading-large text-muted mb-4">Kamis</h2>
+                      <div class="table-responsive">
+                        <table class="row-border hover dataTable">
+                          <thead *ngFor="let top of jadwal">
+                            <tr *ngIf="top.day === 'THURSDAY'">
+                              &nbsp;&nbsp;&nbsp;
+                              <td scope="col">{{ top.topic}}</td>
+                              <td scope="col">{{ top.date | date : 'dd-MM-yyyy'}}</td>
+                              <td scope="col">{{ top.time }}</td>
+                            </tr>
+                          </thead>
+                    </table>
+                    </div>
+                    <br>
+                      <h2 class="heading-large text-muted mb-4">Quiz</h2>
+                      <div class="table-responsive">
+                        <table class="row-border hover dataTable">
+                          <thead *ngFor="let kuis of dataKuis">
+                            <tr *ngIf="kuis.day === 'THURSDAY' && kuis.type === 'TUGAS'">
+                              &nbsp;&nbsp;&nbsp;
+                              <td scope="col">{{ kuis.title }}</td>
+                              <td scope="col">{{ kuis.startdate | date : 'dd-MM-yyyy' }} - {{ kuis.enddate | date : 'dd-MM-yyyy'}}</td>
+                              <td scope="col">{{ kuis.start_time }} - {{ kuis.end_time }}</td>
+                            </tr>
+                          </thead>
+                    </table>
+                    </div> 
+                    </div>
+                      <hr class="my-4"/>
+                      <div class="dataTables_wrapper">
+                      <h2 class="heading-large text-muted mb-4">Jumat</h2>
+                      <div class="table-responsive">
+                        <table class="row-border hover dataTable">
+                          <thead *ngFor="let top of jadwal">
+                            <tr *ngIf="top.day === 'FRIDAY'">
+                              &nbsp;&nbsp;&nbsp;
+                              <td scope="col">{{ top.topic}}</td>
+                              <td scope="col">{{ top.date | date : 'dd-MM-yyyy'}}</td>
+                              <td scope="col">{{ top.time }}</td>
+                            </tr>
+                          </thead>
+                    </table>
+                    </div>
+                    <br>
+                      <h2 class="heading-large text-muted mb-4">Quiz</h2>
+                      <div class="table-responsive">
+                        <table class="row-border hover dataTable">
+                          <thead *ngFor="let kuis of dataKuis">
+                            <tr *ngIf="kuis.day === 'FRIDAY' && kuis.type === 'TUGAS'">
+                              &nbsp;&nbsp;&nbsp;
+                              <td scope="col">{{ kuis.title }}</td>
+                              <td scope="col">{{ kuis.startdate | date : 'dd-MM-yyyy' }} - {{ kuis.enddate | date : 'dd-MM-yyyy'}}</td>
+                              <td scope="col">{{ kuis.start_time }} - {{ kuis.end_time }}</td>
+                            </tr>
+                          </thead>
+                    </table>
+                    </div> 
+                      </div>
+                  </p-tabPanel>
+                  <p-tabPanel header="Nilai" leftIcon="pi pi-calendar">
+                    <div class="container-fluid">
+                      <!-- Table -->
+                      <div class="row">
+                        <div class="col s12 m9 l12">
+                          <div class=" dataTables_wrapper "> 
+                            <div class="card-header border-0">
+                              <h3 class="mb-0">Data Nilai Kuis</h3>
+                            </div>
+                            <div class="table-responsive">
+                              <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger" >
+                                <thead>
+                                  <tr style="color: black;" class="bg-th">
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Judul</th>
+                                    <th scope="col">Nilai</th>
+                              </tr>
+                            </thead>
+                            <tbody >
+                              <tr *ngFor="let nil of dataScore">
+                                <td>{{ nil.date | date : 'dd-MM-yyyy'}}</td>
+                                <td>{{ nil.title }}</td>
+                                <td>{{ nil.score }}</td>
+                              </tr>
+                                </tbody>
+                              </table>
+                        </div>
                       </div>
                     </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Waktu Mulai : {{ ujian.start_time }}</h5>
+                    </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="container-fluid">
+                      <!-- Table -->
+                      <div class="row">
+                        <div class="col s12 m9 l12">
+                          <div class=" dataTables_wrapper "> 
+                            <div class="card-header border-0">
+                              <h3 class="mb-0">Data Nilai Ujian</h3>
+                            </div>
+                            <div class="table-responsive">
+                              <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
+                                <thead>
+                                  <tr style="color: black;" class="bg-th">
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Judul</th>                          
+                                    <th scope="col">Nilai</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let nil of dataUjian">
+                                <td>{{ nil.date | date : 'dd-MM-yyyy'}}</td>
+                                <td>{{ nil.title }}</td>
+                                <td>{{ nil.score }}</td>
+                              </tr>
+                                </tbody>
+                              </table>
+                        </div>
                       </div>
                     </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <h5 class="heading-large">Waktu Selesai : {{ ujian.end_time }}</h5>
-                      </div>
                     </div>
-                  </div>
-                  </div>
-            <hr class="my-4">
-            <div>
-            <h2 class="heading-large text-muted mb-4">Senin</h2>
-            <div class="pl-lg-4" *ngFor="let top of jadwal">
-              <div class="row" *ngIf="top.day === 'MONDAY'">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.date | date : 'dd-MM-yyyy'}}</h5>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Topic : {{ top.topic }}</h5>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
-                  </div>
-                </div>
-              </div>
+                    </div>
+                  </p-tabPanel>
+                  </p-tabView>
+      </div>
             </div>
-            <h2 class="heading-large text-muted mb-4">Quiz</h2>
-              <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                <div class="row" *ngIf="kuis.day === 'MONDAY' && kuis.type === 'TUGAS'">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate | date : 'dd-MM-yyyy'}}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal Selesai : {{ kuis.enddate }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Waktu Mulai : {{ kuis.start_time }}</h5>
-                    </div>
-                  </div>
-                </div>
-                </div>
           </div>
-            <hr class="my-4" />
-            <div>
-            <h2 class="heading-large text-muted mb-4">Selasa</h2>
-            <div class="pl-lg-4" *ngFor="let top of jadwal">
-              <div class="row" *ngIf="top.day === 'TUESDAY'">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.date | date : 'dd-MM-yyyy'}}</h5>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Topic : {{ top.topic }}</h5>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <h2 class="heading-large text-muted mb-4">Quiz</h2>
-              <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                <div class="row" *ngIf="kuis.day === 'TUESDAY' && kuis.type === 'TUGAS'">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate | date : 'dd-MM-yyyy'}}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal Selesai : {{ kuis.enddate }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Waktu Mulai : {{ kuis.start_time }}</h5>
-                    </div>
-                  </div>
-                </div>
-                </div>
-          </div>
-            <hr class="my-4" /> 
-            <div>             
-            <h2 class="heading-large text-muted mb-4">Rabu</h2>
-            <div class="pl-lg-4" *ngFor="let top of jadwal">
-              <div class="row" *ngIf="top.day === 'WEDNESDAY'">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.date | date : 'dd-MM-yyyy'}}</h5>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Topic : {{ top.topic }}</h5>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <h2 class="heading-large text-muted mb-4">Quiz</h2>
-              <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                <div class="row" *ngIf="kuis.day === 'WEDNESDAY' && kuis.type === 'TUGAS'">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate | date : 'dd-MM-yyyy'}}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal Selesai : {{ kuis.enddate }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Waktu Mulai : {{ kuis.start_time }}</h5>
-                    </div>
-                  </div>
-                </div>
-                </div>
-          </div>
-            <hr class="my-4" />
-            <div>              
-            <h2 class="heading-large text-muted mb-4">Kamis</h2>
-            <div class="pl-lg-4" *ngFor="let top of jadwal">
-              <div class="row" *ngIf="top.day === 'THURSDAY'">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.date | date : 'dd-MM-yyyy'}}</h5>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Topic : {{ top.topic }}</h5>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <h2 class="heading-large text-muted mb-4">Quiz</h2>
-              <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                <div class="row" *ngIf="kuis.day === 'THURSDAY' && kuis.type === 'TUGAS'">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate | date : 'dd-MM-yyyy'}}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal Selesai : {{ kuis.enddate }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Waktu Mulai : {{ kuis.start_time }}</h5>
-                    </div>
-                  </div>
-                </div>
-                </div>
-          </div>
-            <hr class="my-4" />
-            <div>
-            <h2 class="heading-large text-muted mb-4">Jumat</h2>
-            <div class="pl-lg-4" *ngFor="let top of jadwal">
-              <div class="row" *ngIf="top.day === 'FRIDAY'">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Tanggal : {{ top.date | date : 'dd-MM-yyyy'}}</h5>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Topic : {{ top.topic }}</h5>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <h5 class="heading-large">Waktu : {{ top.time }}</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <h2 class="heading-large text-muted mb-4">Quiz</h2>
-              <div class="pl-lg-4" *ngFor="let kuis of dataKuis">
-                <div class="row" *ngIf="kuis.day === 'FRIDAY' && kuis.type === 'TUGAS'">
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal Mulai : {{ kuis.startdate | date : 'dd-MM-yyyy'}}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Tanggal Selesai : {{ kuis.enddate }}</h5>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
-                      <h5 class="heading-large">Waktu Mulai : {{ kuis.start_time }}</h5>
-                    </div>
-                  </div>
-                </div>
-                </div>
-            </div>
-          </form>
         </div>
-        </p-tabPanel>
-        <p-tabPanel header="Nilai" leftIcon="pi pi-calendar">
-          <div class="container-fluid">
-            <!-- Table -->
-            <div class="row">
-              <div class="col s12 m9 l12">
-                <div class=" dataTables_wrapper "> 
-                  <div class="card-header border-0">
-                    <h3 class="mb-0">Data Nilai Kuis</h3>
-                  </div>
-                  <div class="table-responsive">
-                    <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger" >
-                      <thead>
-                        <tr style="color: black;" class="bg-th">
-                          <th scope="col">Tanggal</th>
-                          <th scope="col">Judul</th>
-                          <th scope="col">Nilai</th>
-                    </tr>
-                  </thead>
-                  <tbody >
-                    <tr *ngFor="let nil of dataScore">
-                      <td>{{ nil.date | date : 'dd-MM-yyyy'}}</td>
-                      <td>{{ nil.title }}</td>
-                      <td>{{ nil.score }}</td>
-                    </tr>
-                      </tbody>
-                    </table>
-              </div>
-            </div>
-          </div>
-          </div>
-          </div>
-          <hr class="my-4">
-          <div class="container-fluid">
-            <!-- Table -->
-            <div class="row">
-              <div class="col s12 m9 l12">
-                <div class=" dataTables_wrapper "> 
-                  <div class="card-header border-0">
-                    <h3 class="mb-0">Data Nilai Ujian</h3>
-                  </div>
-                  <div class="table-responsive">
-                    <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
-                      <thead>
-                        <tr style="color: white;" class="bg-gradient-primary">
-                          <th scope="col">Tanggal</th>
-                          <th scope="col">Judul</th>                          
-                          <th scope="col">Nilai</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let nil of dataUjian">
-                      <td>{{ nil.date | date : 'dd-MM-yyyy'}}</td>
-                      <td>{{ nil.title }}</td>
-                      <td>{{ nil.score }}</td>
-                    </tr>
-                      </tbody>
-                    </table>
-              </div>
-            </div>
-          </div>
-          </div>
-          </div>
-        </p-tabPanel>
-        </p-tabView>
       </div>
     </div>
   </div>

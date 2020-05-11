@@ -24,9 +24,6 @@ export class UserKuisComponent implements OnInit {
   dataUjian : Ujian[];
   fileInfos: Observable<any>;
   files: Observable<Ujian[]>;
-  // materirespons = new MateriRespon()
-  // selectedCity1: City;
-  // name:string
   dataKuis : Ujian[];
   jawab = new FileUser();
   forums:any[]
@@ -34,14 +31,16 @@ export class UserKuisComponent implements OnInit {
   login = new Login()
   msgs: Message[] = [];
   isupdated = false;
+  title:string
 
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) {
     this.jawab.user = new User()
-    this.getAllKuis()
-    this.getForum()
    }
 
   ngOnInit(): void {
+    this.title=this.sessionService.getTopic()
+    this.getAllKuis()
+    this.getForum()
   }
 
   getAllKuis(){
@@ -63,7 +62,6 @@ export class UserKuisComponent implements OnInit {
    window.open(url) 
    })
   }) 
-  //  let blob:any = new Blob(this.fileInfos, { type: 'text/json; charset=utf-8' });
   }
 
   selectFile(event) {
@@ -87,12 +85,6 @@ export class UserKuisComponent implements OnInit {
             }else{
               this.showError()
             }   
-
-        //     if (event.type === HttpEventType.UploadProgress) {
-        //       this.progress = Math.round(100 * event.loaded / event.total);
-        //     } else if (event instanceof HttpResponse) {
-        //       this.message = event.body.message;
-        //     }
           },
           err => {
             this.progress = 0;
@@ -109,6 +101,11 @@ export class UserKuisComponent implements OnInit {
     .subscribe(params=>{
       this.uploadService.setForumKuis(params.hId, this.forum.isiPesan, this.login.idUser).subscribe(data=>{
         this.forum=data
+      },
+      err=>{
+        this.forum.isiPesan=""
+        this.getAllKuis()
+        this.getForum()
       })
     })
   }
@@ -131,5 +128,11 @@ export class UserKuisComponent implements OnInit {
   showError() {
     this.msgs = [];
     this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
+  }
+
+  getBack(){
+    this.route.queryParams.subscribe(params=>{
+      this.router.navigate(['/topic-materi'], {queryParams:{kId:params.kId}})
+    })
   }
 }

@@ -44,7 +44,7 @@ export class DetailMateriComponent implements OnInit {
           this.isupdated=true
           this.showSuccess()
           // this.message=data
-          this.router.navigate(['/tables-report'], {queryParams: {kId:params.kId}})
+          // this.router.navigate(['/tables-report'], {queryParams: {kId:params.kId}})
         },
         err=>{
           this.showError()

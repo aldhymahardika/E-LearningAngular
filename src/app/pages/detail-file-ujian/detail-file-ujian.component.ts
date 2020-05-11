@@ -24,10 +24,16 @@ export class DetailFileUjianComponent implements OnInit {
     this.route.queryParams
       .subscribe(params=>{
         console.log(params)
-        this.ujian.id=params.idFile
+        this.ujian.id=params.idFiles
         this.ujian.file=this.selectedFiles.item(0)
         this.ujian.judul_file=data.judul_file
-        this.uploadService.getUpdateDetail(this.ujian).subscribe(data=>{this.showSuccess() })
+        this.isupdated=true
+        this.uploadService.getUpdateDetail(this.ujian).subscribe(data=>{
+           
+        },
+        err=>{
+          this.showSuccess()
+        })
       })
   }
 
@@ -38,5 +44,11 @@ export class DetailFileUjianComponent implements OnInit {
   showSuccess() {
     this.msgs = [];
 	  this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+  }
+
+  getBack(){
+    this.route.queryParams.subscribe(params=>{
+      this.router.navigate(['/list-ujian'], {queryParams:{idFile:params.idFile}})
+    })
   }
 }

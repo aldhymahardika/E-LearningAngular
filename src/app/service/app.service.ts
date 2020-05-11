@@ -18,7 +18,7 @@ import { Forum } from '../layouts/model/forum';
 
 export class AppService {
  
-  private baseUrl= 'https://7a91cfb8.ngrok.io'
+  private baseUrl= 'http://5b46f3df.ngrok.io'
 
   constructor(private http: HttpClient) { }
   

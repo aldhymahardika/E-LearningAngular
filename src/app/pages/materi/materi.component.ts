@@ -4,6 +4,7 @@ import { AppService } from 'src/app/service/app.service';
 import { Materi } from 'src/app/layouts/model/materi';
 import { Category } from 'src/app/layouts/model/category';
 import { StorageService } from 'src/app/service/storage.service';
+import { Login } from 'src/app/layouts/model/login';
 
 @Component({
   selector: 'app-materi',
@@ -14,25 +15,17 @@ export class MateriComponent implements OnInit {
 
   // dataMateri : Hari[];
   dataCategory: Category[];
+  dataCategoryUser:Category[]
+  login = new Login()
   
-  constructor(private uploadService: AppService, private storageService: StorageService, private route: ActivatedRoute,private router: Router) {
-    this.getMateriList()
+  constructor(private sessionService: StorageService, private uploadService: AppService, private storageService: StorageService, private route: ActivatedRoute,private router: Router) {
+    
    }
 
   ngOnInit(): void {
+    this.getMateriList()
+    this.getKelasUser()
   }
-
-  // getAll(){
-  //   this.route.queryParams
-  //     .subscribe(params => {
-  //     this.uploadService.getAllMateri(params.week, params.day).subscribe((data)=>{
-  //     this.dataMateri=data , console.log(this.dataMateri)
-  //     },
-  //       err => console.log("Ada error : !"+ JSON.stringify(err)), 
-  //       () => console.log("Completed !"));
-  //       console.log(this.dataMateri);
-  //     })
-  // }
 
   getMateriList(){
     this.uploadService.getMateriUser().subscribe(data=>{
@@ -41,10 +34,18 @@ export class MateriComponent implements OnInit {
     });
   }
 
-  getPengajar(id:string){
-    // let coba: string = '1'
-    this.router.navigate(['/tables'], {queryParams: {id:id}})
-    // localStorage.setItem('id', coba)
-    // this.storageService.saveStorage(id)
+  getTitle(nama:string){
+    window.localStorage.setItem('title', nama)
+    console.log(nama);
+    
+  }
+
+  getKelasUser(){
+    this.login = this.sessionService.getId()
+    console.log(this.login);
+    this.uploadService.getKelasUser(this.login.idUser).subscribe(data=>{
+      this.dataCategoryUser=data
+      console.log(data);
+    });
   }
 }

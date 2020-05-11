@@ -27,15 +27,16 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   msgs: Message[] = [];
   isupdated=false
   isupdate=false
+  nama:string
+  spinner=false
+  spinner2=true
   constructor(private uploadService: AppService, private route: ActivatedRoute, private router: Router, private confirmationService: ConfirmationService) { 
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
   };
     this.router.events.subscribe(evt => {
       if (evt instanceof NavigationEnd) {
-          // trick the Router into believing it's last link wasn't previously loaded
           this.router.navigated = false;
-          // if you need to scroll back to top, here is the right place
           window.scrollTo(0, 0    );
       }
   });
@@ -46,6 +47,9 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       pagingType: 'full_numbers',
       pageLength: 5
     };
+    this.route.queryParams.subscribe(params=>{
+      this.nama=params.name
+    })
     this.getDetailUser();
     this.getDetailScore();
     this.getDetailUjian();
@@ -60,7 +64,9 @@ export class ReportInputComponent implements OnInit, OnDestroy {
     .subscribe(params=>{
       console.log(params);
       this.uploadService.getDetailUser(params.kId, params.uId).subscribe(data=>{
+        this.dtTrigger.next();
         this.details=data
+        this.spinner2=false
         console.log(data);
       })
     })
@@ -72,7 +78,6 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       this.isupdated=true
       this.uploadService.setNilaiKuis(params.kId, params.uId, this.dataNilai.nilaiUtama, this.dataNilai.jenis, this.dataNilai.nilaiKehadiran, this.dataNilai.tanggal, this.dataNilai.title, this.dataNilai.tanggalPeriode).subscribe(data=>{
         this.msg=data
-
         this.showSuccess()        
       },
       err=>{
@@ -92,15 +97,21 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       this.dataNilai.user=params.uId
       this.dataNilai.tanggal=data.question_date
       el.scrollIntoView({behavior : 'smooth'})
+      this.localClick(2)
     })
   }
 
   downloadFileUser(datas){
+    this.spinner=true 
     this.route.queryParams
     .subscribe(params => {
    let resp = this.uploadService.downloadFileUser(datas).subscribe((data) => 
    { const url= window.URL.createObjectURL(data)
-   window.open(url) 
+   window.open(url)
+   this.spinner=false
+   },
+   err=>{
+    this.spinner=false
    })
   }) 
   }
@@ -109,9 +120,9 @@ export class ReportInputComponent implements OnInit, OnDestroy {
     this.route.queryParams
     .subscribe(params=>{
       this.uploadService.getDetailScore(params.uId, params.kId).subscribe(data=>{
-        this.dtTrigger.next();
         this.dataScore=data
         console.log(data);
+        this.spinner2=false
         console.log(params);
         
       })
@@ -124,6 +135,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       this.uploadService.getDetailUjian(params.uId, params.kId).subscribe(data=>{
         // this.dtTrigger.next();
         this.dataUjian=data
+        this.spinner2=false
         console.log(data);
         console.log(params);
         
@@ -134,6 +146,14 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   private extractData(res: Response) {
     const body = res.json();
     // return body.data || {};
+  }
+
+  getMenu(data, el:HTMLElement):MenuItem[]{
+    return [
+      {label: 'input Nilai', icon: 'ni ni-fat-add', command: () => {
+        this.input(data, el);
+      }}
+    ];
   }
 
   getMenuTugas(nilai:string):MenuItem[]{
@@ -242,7 +262,7 @@ export class ReportInputComponent implements OnInit, OnDestroy {
     })
   }
 
-  getUpdateUJian(data, el:HTMLElement, x){
+  getUpdateUJian(data, el:HTMLElement){
     this.route.queryParams
     .subscribe(params=>{
       this.dataKuis.tanggalPeriode=params.period
@@ -253,12 +273,12 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       this.dataKuis.user=params.uId
       this.dataKuis.tanggal=data.question_date
       el.scrollIntoView({behavior : 'smooth'})
-      if(x==1){
-        this.exampleFlag=true;
-        }
-        else{
-        this.exampleFlag=false;
-        }
+      // if(x==1){
+      //   this.exampleFlag=true;
+      //   }
+      //   else{
+      //   this.exampleFlag=false;
+      //   }
     })
   }
 
@@ -269,10 +289,11 @@ export class ReportInputComponent implements OnInit, OnDestroy {
       this.uploadService.setUpdateKuis(this.dataKuis.id, params.kId, params.uId, this.dataKuis.nilaiUtama, this.dataKuis.jenis, this.dataKuis.nilaiKehadiran, this.dataKuis.tanggalPeriode).subscribe(data=>{
         this.msg=data
         this.showSuccess()
+        this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:params.uId}})
       },
       err=>{
         this.showSuccess()
-        this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:params.uId}})
+
       })
     })
   }

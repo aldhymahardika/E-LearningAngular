@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.login.roles[0] == 'ROLE_ADMIN') {
       this.router.navigateByUrl('/admin')
     }else if (this.login.roles[0] == 'ROLE_PENGAJAR') {
-      this.router.navigateByUrl('/materi-pengajar')
+      this.router.navigateByUrl('/jadwal-pengajar')
     }else if (this.login.roles[0] == 'ROLE_USER'){
       this.router.navigateByUrl('/materi')
     }

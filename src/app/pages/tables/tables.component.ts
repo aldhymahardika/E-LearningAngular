@@ -20,9 +20,9 @@ export class TablesComponent implements OnInit, OnDestroy {
   login = new Login()
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
+  title:string
   constructor(private sessionService: StorageService, private route: Router, private router: ActivatedRoute, private uploadService : AppService) {
     
-    this.getPengajar()
    }
 
   ngOnInit() {
@@ -30,18 +30,24 @@ export class TablesComponent implements OnInit, OnDestroy {
       pagingType: 'full_numbers',
       pageLength: 5
     };
+    this.router.queryParams.subscribe(params=>{
+      localStorage.setItem('id', params.id)
+    })
+    this.title= window.localStorage.getItem('title')
+    this.getPengajar()
   }
 
   ngOnDestroy(){
     this.dtTrigger.unsubscribe();
   }
 
-  getTopic(kId:string, jam:string) {
+  getTopic(kId:string, jam:string, nama:string) {
     this.router.queryParams
     .subscribe(params => {
     this.login = this.sessionService.getId() 
     console.log(this.login);
-    this.route.navigate(['/loading'], {queryParams: {comp: 'tables', id:params.id, kId:kId, jamid: jam}});
+    this.sessionService.setNamaPengajar(nama)
+    this.route.navigate(['/loading'], {queryParams: {comp: 'tables', id:params.id, kId:kId, jamid: jam, nama: nama, title:params.title}});
     })
   }
 
@@ -65,5 +71,9 @@ export class TablesComponent implements OnInit, OnDestroy {
 
   getBack(){
     this.route.navigate(['/materi'])
+  }
+
+  setTitle(){
+    this.title= window.localStorage.getItem('title')
   }
 }

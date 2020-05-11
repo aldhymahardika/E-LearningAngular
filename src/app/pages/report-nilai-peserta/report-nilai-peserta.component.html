@@ -16,7 +16,7 @@
     <div class="row">
       <div class="col-xl-12 order-xl-1">
         <div class="card bg-secondary shadow">
-          <div class="card-header bg-white border-0">
+          <!-- <div class="card-header bg-white border-0">
             <div class="row align-items-center">
               <div class="col-12">
                 <button type="button" class="btn btn-primary" (click)="getBack()">
@@ -25,7 +25,7 @@
                 </button>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="card-body">
             <div class="card shadow">
               <div class="pl-lg-12">
@@ -42,16 +42,15 @@
                       <div class="sejajar">
                           <p-button icon="pi pi-search" (click)="getReportNilai(setMateri.id, setKelas.id); localClick(2)"></p-button>
                           &nbsp;
-                          <p-button icon="pi pi-refresh" (click)="getReportAllMapel(); localClick(1)"></p-button>
-                        <!-- <button type="button" class="btn btn-primary" (click)="getReportMapel()">Search</button>  -->
+                          <button pButton type="button" label="Print" class="ui-button-primary" (click)="getDownloadNilai(setMateri.id, setKelas.id)" [disabled]="exampleFlag"></button>
                       </div>
                     </div>
-                    <div class="sejajar" style="float: right;">
+                    <!-- <div class="sejajar" style="float: right;">
                       <br>
-                      <button pButton type="button" label="Print" class="ui-button-primary" (click)="getDownloadNilai(setMateri.id, setKelas.id)" [disabled]="exampleFlag"></button>
+
                       &nbsp;
-                      <!-- <button pButton type="button" label="Cetak" class="ui-button-primary" ></button> -->
-                    </div>
+                      <button pButton type="button" label="Cetak" class="ui-button-primary" ></button>
+                    </div> -->
                   <div class=" dataTables_wrapper ">
                   <div class="table-responsive">
                     <p-table #dt [value]="nilai" [(selection)]="nilai" dataKey="id" styleClass="ui-table-customers" [rowHover]="true"

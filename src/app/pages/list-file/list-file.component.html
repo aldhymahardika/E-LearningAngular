@@ -32,13 +32,10 @@
               <div class="row">
                 <div class="col">
                 <p-tabView>
-                  <p-tabPanel header="Materi" leftIcon="pi pi-calendar">
+                  <p-tabPanel header="Materi" leftIcon="ni ni-archive-2 text-dark">
                     <div class="col s12 m12 l12">
                       <div class=" dataTables_wrapper "> 
-                        <!-- <div class="card-header border-0">
-                          <h3 class="mb-0">Data Pengajar</h3>
-                        </div> -->
-                        <div class="table-responsive">
+                        <div *ngIf="!spinner2 ; else showSpinner" class="table-responsive">
                           <table class="row-border hover dataTable no-footer">
                             <thead>
                               <tr style="color: black;" class="bg-th">
@@ -46,8 +43,6 @@
                                 <th scope="col">Judul</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>  
-                                <!-- <th scope="col"></th> -->
-                                <!-- <th scope="col"></th> -->
                               </tr>
                             </thead>
                             <tbody>
@@ -55,20 +50,24 @@
                                 <td>{{data.topic}}</td>
                                 <td>{{data.title}}</td>             
                                 <td class="text-center">
-                                  <p-splitButton label="Download" icon="pi pi-info" (onClick)="getsMateri(data)" [model]="getMenu(data.file_id)"></p-splitButton>
-
-                                  <!-- <button type="button" class="btn btn-primary" (click)="getsMateri(data)">Download</button> -->
-                                  <!-- <button type="button" class="btn btn-primary" (click)="update(data.file_id)">Update</button> -->
-                                  <!-- <button type="button" class="btn btn-primary"(click)="delete(data.file_id)">Delete</button> -->
+                                  <p-splitButton *ngIf="!spinner" label="Download" icon="pi pi-download" (onClick)="getsMateri(data)" [model]="getMenu(data.file_id)"></p-splitButton>
+                                  <div *ngIf="spinner">
+                                    <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+                                  </div>
                                 </td>
                               </tr>
                             </tbody>
                           </table>
                     </div>
+                    <ng-template #showSpinner>
+                      <div class="text-center">
+                      <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+                    </div>
+                    </ng-template>
                   </div>
                 </div>
                   </p-tabPanel>
-                  <p-tabPanel header="Forum" leftIcon="pi pi-calendar">
+                  <p-tabPanel header="Forum" leftIcon="pi pi-comments">
                     <div class="col s12 m12 l12">
                       <div class=" dataTables_wrapper ">
                     <div class="comment-wrapper">
@@ -76,13 +75,12 @@
                         <div class="panel-body">
                           <br>
                           <textarea rows="5" cols="123" pInputTextarea [(ngModel)]="forum.isiPesan" (keydown.enter)="setForum()" placeholder="Apa yang anda pikirkan..."></textarea>
-                          <hr class="my-4">
                           <div class="clearfix"></div>
+                          <br>
+                          <button type="button" class="btn btn-primary" (click)="setForum()">Post</button>
+                          <hr class="my-4">
                           <ul class="media-list" *ngFor="let forum of forums">
                             <li class="media" >
-                          <!-- <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                            <i>A</i>
-                          </div>   -->
                             <div class="media-body">
                                 <span class="text-muted pull-right">
                                     <small class="text-muted">{{forum.send_Date}}</small>

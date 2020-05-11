@@ -24,13 +24,13 @@ export class AbsenComponent implements OnInit {
     .subscribe(params => {
         if(params.comp == 'materi'){
           this.setAbsen();
-          this.route.navigate(['/user-upload'], {queryParams: {hId: params.hId, kId:params.kId}});  
+          this.route.navigate(['/user-upload'], {queryParams: {hId: params.hId, kId:params.kId, nama:params.nama, title:params.title}});  
         }else if(params.comp == 'quiz'){
           this.setAbsen();
-          this.route.navigate(['/user-kuis'], {queryParams: {hId: params.hId, kId:params.kId}})
+          this.route.navigate(['/user-kuis'], {queryParams: {hId: params.hId, kId:params.kId, nama:params.nama, title:params.title}})
         }else{
           this.setAbsen();
-          this.route.navigate(['/user'], {queryParams: {hId: params.hId, kId:params.kId}})
+          this.route.navigate(['/user'], {queryParams: {hId: params.hId, kId:params.kId, nama:params.nama, title:params.title}})
         }
       })
   }

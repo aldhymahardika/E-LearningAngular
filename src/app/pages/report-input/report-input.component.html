@@ -7,7 +7,7 @@
     <div class="row">
       <div class="row align-items-center">
         <div class="col-12">
-          <h1 class="display-1" style="color: white;">List File User</h1>
+          <h1 class="display-1" style="color: white;">List File {{nama}}</h1>
         </div>
       </div>
     </div>
@@ -27,19 +27,13 @@
             </div>
           </div>
         </div>
-        <div class="card-body bg-card">
+        <div class="card-body bg-card" #target #update>
             <div class="pl-lg-12">
               <div class="row">
-                <div class="col">
+                <!-- <div class="col"> -->
                 <p-tabView>
-                  <p-tabPanel header="Materi" leftIcon="pi pi-calendar">
-                    <div class="col s12 m12 l12">
-                      <div class=" dataTables_wrapper "> 
-                        <div class="card-header border-0">
-                          <!-- <h3 class="mb-0">Data Materi</h3> -->
-                        </div>
+                  <p-tabPanel header="Input Score" leftIcon="ni ni-archive-2 text-dark">
                         <form>
-                          <h6 class="heading-small text-muted mb-4" #target>Scores</h6>
                           <div class="pl-lg-4">
                             <div class="row">
                               <div class="col-md-6">
@@ -82,8 +76,8 @@
                           <h6 class="heading-small text-muted mb-4">List Upload</h6>
                             <div class="pl-lg-4">
                               <div class="row">
-                                <div class="table-responsive">
-                                  <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
+                                <div *ngIf="!spinner2 ; else showSpinner" class="table-responsive">
+                                  <table  class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
                                     <thead>
                                       <tr style="color: black;" class="bg-th">
                                         <th scope="col">Hari</th>
@@ -100,38 +94,37 @@
                                         <td>{{ data.title }}</td>
                                         <td>{{ data.question_date | date : 'dd-MM-yyyy'}}</td>
                                         <td class="text-center">
-                                          <button type="button" class="btn btn-primary" (click)="downloadFileUser(data)">Download</button>
-                                          <button type="button" class="btn btn-primary" (click)="input(data, target); localClick(2)">Input Nilai</button>
+                                          <p-splitButton *ngIf="!spinner" label="Download" icon="pi pi-download" (onClick)="downloadFileUser(data)" [model]="getMenu(data, target)"></p-splitButton>
+                                          <div *ngIf="spinner">
+                                            <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+                                          </div>
                                         </td>
                                       </tr>
                                     </tbody>
                                   </table>
                                 </div>
+                                <ng-template #showSpinner>
+                                  <div class="text-center">
+                                  <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+                                </div>
+                                </ng-template>
                               </div>
                             </div>
                         </form>
-                  </div>
-                </div>
                   </p-tabPanel>
-                  <p-tabPanel header="Quiz" leftIcon="pi pi-calendar">
-                    <div class="col s12 m12 l12">
-                      <div class=" dataTables_wrapper "> 
-                        <div class="card-header border-0">
-                          <h3 class="mb-0">Data Kuis</h3>
-                        </div>
-                        <h6 class="heading-small text-muted mb-4" #update>Scores</h6>
+                  <p-tabPanel header="Update" leftIcon="pi pi-refresh">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Jenis</label>
-                    <input id="input-address" class="form-control form-control-alternative" placeholder="Jenis" type="text" [(ngModel)]="dataKuis.jenis" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag2">
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Jenis" type="text" [(ngModel)]="dataKuis.jenis" [ngModelOptions]="{standalone: true}" [disabled]="true">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Judul</label>
-                    <input id="input-address" class="form-control form-control-alternative" placeholder="Judul" type="text" [(ngModel)]="dataKuis.title" [ngModelOptions]="{standalone: true}" [disabled]="exampleFlag2">
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Judul" type="text" [(ngModel)]="dataKuis.title" [ngModelOptions]="{standalone: true}" [disabled]="true">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -158,12 +151,7 @@
             </div>
             <br>
             <hr>
-          <div class="col s12 m9 l12">
-            <div class=" dataTables_wrapper "> 
-              <div class="card-header border-0">
-                <h3 class="mb-0">Data Nilai Kuis</h3>
-              </div>
-              <div class="table-responsive">
+              <div *ngIf="!spinner2 ; else showSpinner" class="table-responsive">
                 <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
                   <thead>
                     <tr style="color: black;" class="bg-th">
@@ -185,15 +173,16 @@
                   </tbody>
                 </table>
           </div>
-        </div>
-      </div>
+          <ng-template #showSpinner>
+            <div class="text-center">
+            <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+          </div>
+          </ng-template>
       <hr class="my-4">
-      <div class="col s12 m9 l12">
-        <div class=" dataTables_wrapper "> 
           <div class="card-header border-0">
             <h3 class="mb-0">Data Nilai Ujian</h3>
           </div>
-          <div class="table-responsive">
+          <div *ngIf="!spinner2 ; else showSpinner" class="table-responsive">
             <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
               <thead>
                 <tr style="color: black;" class="bg-th">
@@ -209,20 +198,20 @@
                   <td>{{ uji.title }}</td>
                   <td>{{ uji.score }}</td>
                   <td>
-                    <p-splitButton label="Update" icon="pi pi-refresh" (onClick)="getUpdateUJian(uji, update, 1); globalClick(2)" [model]="getMenuUjian(uji)"></p-splitButton>
+                    <p-splitButton label="Update" icon="pi pi-refresh" (onClick)="getUpdateUJian(uji, update); globalClick(2)" [model]="getMenuUjian(uji)"></p-splitButton>
+                    
                   </td>
                 </tr>
               </tbody>
             </table>
       </div>
-    </div>
-  </div>
-                  </div>
-                </div>
+      <ng-template #showSpinner>
+        <div class="text-center">
+        <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+      </div>
+      </ng-template>
                     </p-tabPanel>
                   </p-tabView> 
-        </div>
-
             </div>
           </div>
         </div>

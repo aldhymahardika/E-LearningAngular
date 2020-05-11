@@ -35,15 +35,15 @@
                   <p-tabPanel header="Materi" leftIcon="pi pi-calendar">
                     <div class="col-md-12">
                       <label>Judul Tugas</label>
-                      <input type="text" class="form-control form-control-alternative" id="judul" [(ngModel)]="ujian.judul_file">
+                      <input type="text" class="form-input" id="judul" [(ngModel)]="ujian.judul_file">
                     </div>
                     <div class="col-md-12">
                         <label>File</label>
-                        <input type="file" class="form-control form-control-alternative" id="upload" (change)="selectFile($event)" [(ngModel)]="ujian.file">
+                        <input type="file" class="form-input" id="upload" (change)="selectFile($event)" [(ngModel)]="ujian.file">
                     </div>
                     <div class="col-md-12">
                     <br>
-                    <button type="button" class="btn btn-default" (click)="getUpdateDetail(ujian)">Upload</button>
+                    <button type="button" class="btn btn-primary" (click)="getUpdateDetail(ujian)">Upload</button>
                     </div>
                     <div class="col-sm-12" [hidden]="!isupdated">  
                       <p-messages [(value)]="msgs"></p-messages>  

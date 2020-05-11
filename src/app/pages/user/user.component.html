@@ -1,92 +1,120 @@
-<div class="header bg-lawen pb-8 pt-5 pt-md-8">
-  <div class="container-fluid">
-    <div class="header-body">
-      <!-- Card stats -->
-      <div class="card bg-secondary shadow">
-      <div class="card-header border-0">
-        <h3 class="mb-0">Upload Jawaban</h3>
+<!-- <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog> -->
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-lawen opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="row align-items-center">
+        <div class="col-12">
+          <h1 class="display-1" style="color: white;">{{ title }}</h1>
+        </div>
       </div>
-  <div class="col-md-12">
-    <!-- <label>File</label> -->
-    <br>
-    <input type="file" class="form-control form-control-alternative" id="upload" (change)="selectFile($event)" [(ngModel)]="jawab.file"></div>
-<div class="col-md-12">
-  <br>
-  <button type="button" class="btn btn-default" (click)="setUpload()">Upload</button>
-  <br><br>
-</div>
-<div class="col-sm-12" [hidden]="!isupdated">  
-  <p-messages [(value)]="msgs"></p-messages>  
-  <br><br>
-</div>
-</div>
     </div>
   </div>
 </div>
-<!-- Page content -->
-
 <div class="container-fluid mt--7">
-  <!-- Table -->
   <div class="row">
     <div class="col-xl-12 order-xl-1">
-      <div class="card bg-secondary shadow">
-        
-
-<p-tabView>
-  <p-tabPanel header="Materi" leftIcon="pi pi-cloud-download">
-    <div class="table-responsive">
-      <table class="table align-items-center table-flush">
-        <thead class="thead-light">
-          <tr style="color: black;" class="bg-th">
-            <th scope="col">Materi</th>
-            <th scope="col">End Date</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let file of dataUjian">
-            <td>{{ file.title }}</td>
-            <td>{{ file.time }}</td>
-            <td class="text-center">
-              <button class="btn btn-icon btn-3 btn-primary" type="button">
-                <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
-                <span class="btn-inner--text" (click)="gets(file)">Download</span>
-                </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </p-tabPanel>
-  <p-tabPanel header="Forum" leftIcon="pi pi-comments">
-    <div class="comment-wrapper">
-      <div class="panel panel-info">
-        <div class="panel-body">
-    <textarea rows="5" cols="130" pInputTextarea [(ngModel)]="forum.isiPesan" (keydown.enter)="setForum()"></textarea>
-    <hr>
-    <div class="clearfix"></div>
-    <ul class="media-list" *ngFor="let forum of forums">
-        <li class="media" >
-          <!-- <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-            <i>A</i>
-          </div>   -->
-          <div class="media-body">
-                <span class="text-muted pull-right">
-                    <small class="text-muted">{{forum.send_Date | date : 'dd-MM-yyyy'}}</small>
-                </span>
-                <strong class="text-success">{{forum.sender}}</strong>
-                <p>
-                    {{forum.chat_content}}
-                </p>
+      <div class="card bg-card shadow">
+        <div class="card-header bg-card border-0">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <button class="btn btn-icon btn-3 btn-primary" type="button" (click)="getBack()">
+                <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+                <span class="btn-inner--text">Kembali</span>
+              </button>
             </div>
-        </li>
-    </ul>
+          </div>
+          <br>
+          <div class="card bg-th shadow">
+            <div class="card-header border-0">
+              <h3 class="mb-0">Upload Jawaban</h3>
+            </div>
+        <div class="col-md-12">
+          <!-- <label>File</label> -->
+          <br>
+          <input type="file" class="form-input" id="upload" (change)="selectFile($event)" [(ngModel)]="jawab.file"></div>
+      <div class="col-md-12">
+        <br>
+        <button type="button" class="btn btn-primary" (click)="setUpload()">Upload</button>
+        <br><br>
+      </div>
+      <div class="col-sm-12" [hidden]="!isupdated">  
+        <p-messages [(value)]="msgs"></p-messages>  
+        <br>
+      </div>
+      </div>
+        </div>
+        <div class="card-body bg-card">
+            <div class="pl-lg-12">
+              <div class="row">
+                <div class="col">
+                  <p-tabView>
+                    <p-tabPanel header="Materi" leftIcon="pi pi-cloud-download">
+                      <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                          <thead class="thead-light">
+                            <tr style="color: black;" class="bg-th">
+                              <th scope="col">Materi</th>
+                              <th scope="col">End Date</th>
+                              <th scope="col"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let file of dataUjian">
+                              <td>{{ file.title }}</td>
+                              <td>{{ file.time }}</td>
+                              <td class="text-center">
+                                <button class="btn btn-icon btn-3 btn-primary" type="button" *ngIf="!spinner">
+                                  <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
+                                  <span class="btn-inner--text" (click)="gets(file)">Download</span>
+                                  </button>
+                                  <div *ngIf="spinner">
+                                    <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+                                  </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </p-tabPanel>
+                    <p-tabPanel header="Forum" leftIcon="pi pi-comments">
+                      <div class="comment-wrapper">
+                        <div class="panel panel-info">
+                          <div class="panel-body">
+                      <textarea rows="5" cols="123" pInputTextarea [(ngModel)]="forum.isiPesan" (keydown.enter)="setForum()" placeholder="Apa yang anda pikirkan..."></textarea>
+                      <div class="clearfix"></div>
+                      <br>
+                      <button type="button" class="btn btn-primary" (click)="setForum()">Post</button>
+                      
+                      <hr>
+                      <ul class="media-list" *ngFor="let forum of forums">
+                          <li class="media" >
+                            <!-- <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                              <i>A</i>
+                            </div>   -->
+                            <div class="media-body">
+                                  <span class="text-muted pull-right">
+                                      <small class="text-muted">{{forum.send_Date | date : 'dd-MM-yyyy'}}</small>
+                                  </span>
+                                  <strong class="text-success">{{forum.sender}}</strong>
+                                  <p>
+                                      {{forum.chat_content}}
+                                  </p>
+                              </div>
+                          </li>
+                      </ul>
+                      </div>
+                    </div>
+                    </div>
+                  </p-tabPanel>
+                      </p-tabView>
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  </div>
-</p-tabPanel>
-    </p-tabView>
-</div>
-</div>
-</div>
 </div>

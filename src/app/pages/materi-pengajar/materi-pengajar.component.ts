@@ -14,11 +14,14 @@ export class MateriPengajarComponent implements OnInit {
 
   dataKelas: any[];
   login = new Login()
+  jadwal: any[]
   constructor(private sessionService: StorageService, private uploadService: AppService, private storageService: StorageService, private route: ActivatedRoute,private router: Router) { 
-    this.getListKelasMateri()
+    
   }
 
   ngOnInit(): void {
+    this.getListKelasMateri()
+    this.getJadwalPengajar()
   }
   getListKelasMateri(){
     this.login = this.sessionService.getId()
@@ -33,5 +36,14 @@ export class MateriPengajarComponent implements OnInit {
 
   getSession(data){
     window.localStorage.setItem('kId', data)
+  }
+
+  getJadwalPengajar(){
+    this.login = this.sessionService.getId()
+    this.uploadService.getJadwalPengajar(this.login.idUser).subscribe(data=>{
+      this.jadwal=data
+      console.log(data);
+      
+    })
   }
 }

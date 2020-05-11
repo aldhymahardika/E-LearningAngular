@@ -32,12 +32,9 @@
               <div class="row">
                 <div class="col">
                 <p-tabView>
-                  <p-tabPanel header="Materi" leftIcon="pi pi-calendar">
+                  <p-tabPanel header="Materi" leftIcon="ni ni-archive-2 text-dark">
                     <div class="col s12 m12 l12">
                       <div class=" dataTables_wrapper "> 
-                        <!-- <div class="card-header border-0">
-                          <h3 class="mb-0">Data Pengajar</h3>
-                        </div> -->
                         <div  *ngIf="!spinner2 ; else showSpinner" class="table-responsive">
                           <table class="row-border hover dataTable no-footer">
                             <thead>
@@ -52,13 +49,10 @@
                                 <td>{{data.title}}</td>
                                 <td>{{data.time}}</td>             
                                 <td class="text-center">
-                                  <p-splitButton *ngIf="!spinner" label="Download" icon="pi pi-info" (onClick)="getsKuis(data)" [model]="getMenu(data.soal_id)"></p-splitButton>
+                                  <p-splitButton *ngIf="!spinner" label="Download" icon="pi pi-download" (onClick)="getsKuis(data)" [model]="getMenu(data.soal_id)"></p-splitButton>
                                   <div *ngIf="spinner">
                                     <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
                                   </div>
-                                  <!-- <button type="button" class="btn btn-primary" (click)="getsKuis(data)">Download</button> -->
-                                  <!-- <button type="button" class="btn btn-primary" (click)="updateUjian(data.soal_id)">Update</button> -->
-                                  <!-- <button type="button" class="btn btn-primary" (click)="deleteDetailSoal(data.soal_id)">Delete</button> -->
                                 </td>
                                
                               </tr>
@@ -73,21 +67,20 @@
                   </div>
                 </div>
                   </p-tabPanel>
-                  <p-tabPanel header="Forum" leftIcon="pi pi-calendar">
+                  <p-tabPanel header="Forum" leftIcon="pi pi-comments">
                     <div class="col s12 m12 l12">
                       <div class=" dataTables_wrapper ">
                     <div class="comment-wrapper">
                       <div class="panel panel-info">
                         <div class="panel-body">
                           <br>
-                          <textarea rows="5" cols="123" pInputTextarea [(ngModel)]="forum.isiPesan" (keydown.enter)="setForum()" placeholder="Apa yang anda pikirkan..."></textarea>
-                          <hr class="my-4">
+                          <textarea rows="5" cols="120" pInputTextarea [(ngModel)]="forum.isiPesan" (keydown.enter)="setForum()" placeholder="Apa yang anda pikirkan..."></textarea>
                           <div class="clearfix"></div>
+                          <br>
+                          <button type="button" class="btn btn-primary" (click)="setForum()">Post</button>
+                          <hr class="my-4">
                           <ul class="media-list" *ngFor="let forum of forums">
                             <li class="media" >
-                          <!-- <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                            <i>A</i>
-                          </div>   -->
                             <div class="media-body">
                                 <span class="text-muted pull-right">
                                     <small class="text-muted">{{forum.send_Date}}</small>

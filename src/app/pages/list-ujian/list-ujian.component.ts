@@ -44,9 +44,7 @@ export class ListUjianComponent implements OnInit {
     };
     this.router.events.subscribe(evt => {
       if (evt instanceof NavigationEnd) {
-          // trick the Router into believing it's last link wasn't previously loaded
           this.router.navigated = false;
-          // if you need to scroll back to top, here is the right place
           window.scrollTo(0, 0    );
       }
     });
@@ -74,7 +72,6 @@ export class ListUjianComponent implements OnInit {
 
       },
       err=>{
-        // this.router.navigate(['/list-ujian'], {queryParams:{idFile:params.idFile, kId:params.kId}})
         this.getDetailUjian()
         this.getForum()
       })
@@ -83,7 +80,7 @@ export class ListUjianComponent implements OnInit {
 
   updateUjian(idFile:string){
     this.route.queryParams.subscribe(params=>{
-      this.router.navigate(['/detail-file-ujian'], {queryParams:{idFile:idFile, kId:params.kId}})
+      this.router.navigate(['/detail-file-ujian'], {queryParams:{idFiles:idFile, kId:params.kId, idFile:params.idFile}})
     })
   }
   
@@ -135,17 +132,15 @@ export class ListUjianComponent implements OnInit {
       this.forum.isiPesan
       let ser = this.uploadService.setForumKuis(params.idFile, this.forum.isiPesan, this.login.idUser );
       ser.subscribe(data=>{
-        this.forum.isiPesan=""
+
         this.loadForum(params.hId)
 
       },
       err=>{
-        // this.router.navigate(['/list-ujian'], {queryParams: {idFile: params.idFile, kId: params.kId}})
+        this.forum.isiPesan=""
         this.getDetailUjian()
         this.getForum()
       })
-      // this.getALlMateri()
-      // this.getForum()
     })
   }
 

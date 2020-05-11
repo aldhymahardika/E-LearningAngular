@@ -20,12 +20,9 @@ export class JadwalPesertaComponent implements OnInit, OnDestroy {
   login = new Login()
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
-  
+  title:string
   constructor(private sessionService: StorageService,private uploadService: AppService, private storageService: StorageService, private route: ActivatedRoute, private router: Router) {
-    this.getJadwalUser()
-    this.getDetailScore()
-    this.getDetailUjian()
-    this.getJadwalKuis()
+    
    }
 
   ngOnInit(): void {
@@ -33,6 +30,13 @@ export class JadwalPesertaComponent implements OnInit, OnDestroy {
       pagingType: 'full_numbers',
       pageLength: 5
     };
+    this.route.queryParams.subscribe(params=>{
+      this.title=params.title
+    })
+    this.getJadwalUser()
+    this.getDetailScore()
+    this.getDetailUjian()
+    this.getJadwalKuis()
   }
 
   ngOnDestroy(): void {
@@ -73,7 +77,7 @@ export class JadwalPesertaComponent implements OnInit, OnDestroy {
     this.route.queryParams
     .subscribe(params=>{
       this.uploadService.getDetailScore(this.login.idUser, params.id).subscribe(data=>{
-        this.dtTrigger.next();
+        // this.dtTrigger.next();
         this.dataScore=data
         console.log(data);
         console.log(params);
@@ -89,7 +93,7 @@ export class JadwalPesertaComponent implements OnInit, OnDestroy {
     .subscribe(params=>{
       this.uploadService.getDetailUjian(this.login.idUser, params.id).subscribe(data=>{
         
-        // this.dtTrigger.next();
+        this.dtTrigger.next();
         this.dataUjian=data
         console.log(data);
         console.log(params);
@@ -115,4 +119,7 @@ export class JadwalPesertaComponent implements OnInit, OnDestroy {
     // return body.data || {};
   }
 
+  getBack(){
+    this.router.navigate(['/kelas-user'])
+  }
 }

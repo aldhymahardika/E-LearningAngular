@@ -17,7 +17,7 @@ export class ReportNilaiPesertaComponent implements OnInit {
   materi: Category[]
   setMateri: Category
   setKelas:Kelas
-  exampleFlag=false
+  exampleFlag=true
   nilai:any[]
   @ViewChild('dt') table: Table;
   constructor(private sessionService: StorageService, private uploadService: AppService) {

@@ -6,6 +6,7 @@ import { Topic } from 'src/app/layouts/model/topic';
 import { Observable, Subject } from 'rxjs';
 import { Quiz } from 'src/app/layouts/model/quiz';
 import { Ujian } from 'src/app/layouts/model/ujian';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-topic-materi',
@@ -14,12 +15,8 @@ import { Ujian } from 'src/app/layouts/model/ujian';
 })
 export class TopicMateriComponent implements OnInit, OnDestroy {
 
-  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) { 
-    this.getTopic()
-    this.getQuiz()
-    this.getTask()
-    // this.getDetailScore()
-    this.getDetailKelass()
+  constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionStorage: StorageService) { 
+    
   }
 
   // dataMateri : Hari[];
@@ -30,33 +27,31 @@ export class TopicMateriComponent implements OnInit, OnDestroy {
   dataScore:any[]
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
-  
+  nama:any
+  title:string
+  id:string
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5
     };
+
+    this.getTopic()
+    this.getQuiz()
+    this.getTask()
+    // this.getDetailScore()
+    this.getDetailKelass()
+    this.title = this.sessionStorage.getTitle()
+    this.nama = this.sessionStorage.getNamaPengajar()
   }
 
   ngOnDestroy(){
     this.dtTrigger.unsubscribe();
   }
 
-  // gets(datas){
-  //   this.route.queryParams
-  //   .subscribe(params => {
-  //  let resp = this.uploadService.getMateri(datas).subscribe((data) => 
-  //  { const url= window.URL.createObjectURL(data)
-  //  window.open(url) 
-  //  })
-  // }) 
-  // //  let blob:any = new Blob(this.fileInfos, { type: 'text/json; charset=utf-8' });
-  // }
-
   getTopic(){
     this.route.queryParams
     .subscribe(params => {
-      let pId ='1'
       console.log(params); 
     this.uploadService.getTopic(params.kId).subscribe(data=>{
       this.topics=data
@@ -66,28 +61,28 @@ export class TopicMateriComponent implements OnInit, OnDestroy {
   })
   }
 
-  getMateri(headerid:string){
+  getMateri(headerid:string, title:string){
     this.route.queryParams
     .subscribe(params => {
       console.log(params);  
-    // this.router.navigate(['/user-upload'], {queryParams: {hId: headerid, kId:params.kId}});
-    this.router.navigate(['/loading'], {queryParams: {comp: 'materi',hId: headerid, kId:params.kId}}); 
+      this.sessionStorage.setNamaTopic(title)
+    this.router.navigate(['/loading'], {queryParams: {comp: 'materi',hId: headerid, kId:params.kId, title:title}}); 
     }
   )}
 
-  getSoal(header_soal_id:string){
+  getSoal(header_soal_id:string, title:string){
     this.route.queryParams
     .subscribe(params=>{
-      // this.router.navigate(['/user-kuis'], {queryParams: {hId: header_soal_id, kId:params.kId}})
-      this.router.navigate(['/loading'], {queryParams: {comp: 'quiz',hId: header_soal_id, kId:params.kId}}); 
+      this.sessionStorage.setNamaTopic(title)
+      this.router.navigate(['/loading'], {queryParams: {comp: 'quiz',hId: header_soal_id, kId:params.kId, title:title}}); 
     })
   }
 
-  getUjian(header_soal_id:string){
+  getUjian(header_soal_id:string, title:string){
     this.route.queryParams
     .subscribe(params=>{
-      // this.router.navigate(['/user'], {queryParams: {hId: header_soal_id, kId:params.kId}})
-      this.router.navigate(['/loading'], {queryParams: {comp: 'ujian',hId: header_soal_id, kId:params.kId}}); 
+      this.sessionStorage.setNamaTopic(title)
+      this.router.navigate(['/loading'], {queryParams: {comp: 'ujian',hId: header_soal_id, kId:params.kId, title:title}}); 
 
     })
   }
@@ -123,4 +118,12 @@ export class TopicMateriComponent implements OnInit, OnDestroy {
     })
   }
 
+  getBack(){
+    this.id = window.localStorage.getItem('id')
+    this.sessionStorage.getId
+    this.route.queryParams.subscribe(params=>{
+      this.router.navigate(['/tables'], {queryParams:{id:this.id}})
+
+    })
+  }
 }

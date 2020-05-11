@@ -43,18 +43,16 @@
                             <p-calendar [(ngModel)]="jadwal.tgl1" placeholder="Tanggal Mulai" [ngModelOptions]="{standalone: true}" dateFormat="yy-mm-dd"></p-calendar>
                         </div>
                       <div class="sejajar">
-                          <p-button icon="pi pi-search" (click)="getReportRincianNilai(materi.materi_id, kelas.class_id, jadwal.tgl1)"></p-button>
-                          <!-- &nbsp;
-                          <p-button icon="pi pi-refresh" (click)="getReportAllMapel(); localClick(1)"></p-button> -->
-                        <!-- <button type="button" class="btn btn-primary" (click)="getReportMapel()">Search</button>  -->
+                          <p-button icon="pi pi-search" (click)="getReportRincianNilai(materi.materi_id, kelas.class_id, jadwal.tgl1); localClick(2)"></p-button>
+                          &nbsp;
+                          <button pButton type="button" label="Print" class="ui-button-primary" (click)="getDownloadReportRincianNilai(materi.materi_id, kelas.class_id, jadwal.tgl1)" [disabled]="exampleFlag"></button>
                       </div>
                     </div>
-                    <div class="sejajar" style="float: right;">
+                    <!-- <div class="sejajar" style="float: right;">
                       <br>
                       <button pButton type="button" label="Print" class="ui-button-primary" (click)="getDownloadReportRincianNilai(materi.materi_id, kelas.class_id, jadwal.tgl1)" [disabled]="exampleFlag"></button>
                       &nbsp;
-                      <!-- <button pButton type="button" label="Cetak" class="ui-button-primary" ></button> -->
-                    </div>
+                    </div> -->
                   <div class=" dataTables_wrapper ">
                   <div class="table-responsive">
                     <p-table #dt [value]="datas" [(selection)]="datas" dataKey="id" styleClass="ui-table-customers" [rowHover]="true"

@@ -78,6 +78,7 @@ import { ReportNilaiPesertaComponent } from './pages/report-nilai-peserta/report
 import { JadwalPengajarComponent } from './pages/jadwal-pengajar/jadwal-pengajar.component';
 import { ReportNilaiPengajarComponent } from './pages/report-nilai-pengajar/report-nilai-pengajar.component';
 import { ReportAbsenPengajarComponent } from './pages/report-absen-pengajar/report-absen-pengajar.component';
+import { DashboardPesertaComponent } from './pages/dashboard-peserta/dashboard-peserta.component';
 
 @NgModule({
   imports: [
@@ -154,7 +155,8 @@ import { ReportAbsenPengajarComponent } from './pages/report-absen-pengajar/repo
     ReportNilaiPesertaComponent,
     JadwalPengajarComponent,
     ReportNilaiPengajarComponent,
-    ReportAbsenPengajarComponent
+    ReportAbsenPengajarComponent,
+    DashboardPesertaComponent
   ],
   providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]

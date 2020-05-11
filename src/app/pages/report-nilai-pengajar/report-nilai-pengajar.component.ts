@@ -26,6 +26,7 @@ export class ReportNilaiPengajarComponent implements OnInit {
   jadwal = new ReportJadwal()
   data1:string
   date:Date = null
+  exampleFlag=true
   constructor(private uploadService: AppService, private route: ActivatedRoute, private router: Router, private sessionService: StorageService) { }
 
   ngOnInit(): void {
@@ -73,5 +74,14 @@ export class ReportNilaiPengajarComponent implements OnInit {
 
   getBack(){
     this.router.navigate(['/report-menu-pengajar'])
+  }
+
+  localClick(x) {
+    if(x==1){
+    this.exampleFlag=true;
+    }
+    else{
+    this.exampleFlag=false;
+    }
   }
 }

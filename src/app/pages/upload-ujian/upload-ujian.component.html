@@ -29,60 +29,53 @@
               <div class="row">
                 <div class="col-md-6">
                   <label>Nama File</label>
-                  <input type="text" class="form-input " id="judul" [(ngModel)]="ujian.judul_file">
+                  <input type="text" class="form-input " id="judul" [(ngModel)]="ujian.judul_file" [disabled]="spinner">
               </div>
               <div class="col-md-6">
                 <label>Judul Tugas</label>
-                <input type="text" class="form-input " id="judul" [(ngModel)]="ujian.judul_tugas">
+                <input type="text" class="form-input " id="judul" [(ngModel)]="ujian.judul_tugas" [disabled]="spinner">
               </div>
-              <!-- <div class="col-md-4">
-                <br>
-                <label>Pilih Hari</label>
-                <p-dropdown class="form-control form-control-alternative" placeholder="Pilih Hari" [options]="hari" [(ngModel)]="setHari" optionLabel="label" [showClear]="true" [disabled]="exampleFlag"></p-dropdown>
-              </div> -->
               <div class="col-md-6">
                 <br>
                 <label>Pilih Materi</label><br>
-                <p-dropdown class="" placeholder="Pilih Materi" [options]="cities2" [(ngModel)]="selectedCity1" optionLabel="name" [showClear]="true" (ngModelChange)="getKelasList(selectedCity1)"></p-dropdown>
+                <p-dropdown [disabled]="spinner" class="" placeholder="Pilih Materi" [options]="cities2" [(ngModel)]="selectedCity1" optionLabel="name" [showClear]="true" (ngModelChange)="getKelasList(selectedCity1)"></p-dropdown>
               </div>
               <div class="col-md-6">
                 <br>
                 <label>Pilih Kelas</label><br>
-                <p-dropdown class="" placeholder="Pilih Kelas" [options]="kelas" [(ngModel)]="setKelas" optionLabel="name" [showClear]="true"></p-dropdown>
+                <p-dropdown [disabled]="spinner" class="" placeholder="Pilih Kelas" [options]="kelas" [(ngModel)]="setKelas" optionLabel="name" [showClear]="true"></p-dropdown>
               </div>
               <div class="col-md-6">
                 <br>
                   <label>Start Date</label>
-                  <input type="date" class="form-input" id="start-date" [(ngModel)]="ujian.start_date" required pattern="\d{2}-\d{2}-\d{4}">            
+                  <input [disabled]="spinner" type="date" class="form-input" id="start-date" [(ngModel)]="ujian.start_date" required pattern="\d{2}-\d{2}-\d{4}">            
               </div>
               <div class="col-md-6">
                 <br>
                   <label>End Date</label> 
-                  <input type="date" class="form-input" id="end-date" [(ngModel)]="ujian.end_date" required pattern="\d{2}-\d{2}-\d{4}" [disabled]="exampleFlag">
+                  <input [disabled]="spinner" type="date" class="form-input" id="end-date" [(ngModel)]="ujian.end_date" required pattern="\d{2}-\d{2}-\d{4}" [disabled]="exampleFlag">
               </div>
-              <div class="col-md-4">
-                <br>
-                <label>Waktu Mulai</label>
-                <input type="time" class="form-input" [(ngModel)]="ujian.startTime">
-              </div>
-              <div class="col-md-4">
-                <br>
-                <label>Waktu Selesai</label>
-                <input type="time" class="form-input" [(ngModel)]="ujian.endTime">
-              </div>
-              <div class="col-md-4">
+              <div class="col-md-12">
                 <br>
                 <label>Pilih Jenis Ujian :</label>
                   <div class="custom-control custom-radio mb-3">
-                    <p-radioButton  value="TUGAS" label="Quiz" [(ngModel)]="ujian.jenis" inputId="TUGAS"></p-radioButton>
-                      <!-- <label class="custom-control-label" for="customRadio5">Quiz</label> -->
+                    <p-radioButton  [disabled]="spinner" value="TUGAS" label="Quiz" [(ngModel)]="ujian.jenis" inputId="TUGAS"></p-radioButton>
                   </div>
                   <div class="custom-control custom-radio mb-3">
-                    <p-radioButton  value="UJIAN" label="Ujian" [(ngModel)]="ujian.jenis" inputId="UJIAN" ></p-radioButton>
-                      <!-- <input name="custom-radio-2" class="custom-control-input" id="ujian"   type="radio" >
-                      <label class="custom-control-label" for="customRadio5">Ujian</label> -->
+                    <p-radioButton [disabled]="spinner"  value="UJIAN" label="Ujian" [(ngModel)]="ujian.jenis" inputId="UJIAN" ></p-radioButton>
                   </div>    
               </div>
+              <div class="col-md-6">
+                <br>
+                <label>Waktu Mulai</label>
+                <input [disabled]="spinner" type="time" class="form-input" [(ngModel)]="ujian.startTime">
+              </div>
+              <div class="col-md-6">
+                <br>
+                <label>Waktu Selesai</label>
+                <input [disabled]="spinner" type="time" class="form-input" [(ngModel)]="ujian.endTime">
+              </div>
+              
               
               <div class="col-md-12">
                   <label>File</label>
@@ -90,7 +83,10 @@
               </div>
               <div class="col-md-12">
               <br>
-              <button type="button" class="btn btn-default" (click)="uploadUjian()">Upload</button>
+              <button type="button" class="btn btn-primary" (click)="uploadUjian()">Upload</button>
+              </div>
+              <div *ngIf="spinner">  
+                <p-progressSpinner></p-progressSpinner>
               </div>
               <div class="col-sm-12" [hidden]="!isupdated">  
                 <p-messages [(value)]="msgs"></p-messages>  
