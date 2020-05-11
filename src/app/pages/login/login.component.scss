@@ -5,3 +5,45 @@
 {
     fill: linear-gradient(87deg, #825ee4 0, #5e72e4 100%) !important;
 }
+.bg-lawen{
+  background-color: #3057C3;
+}
+
+.bg-th{
+  background-color: #E4E4E4;
+}
+.bg-card{
+  background-color: white;
+}
+
+.bg-border-input{
+ outline-color: black;
+}
+
+.form-input
+{
+  font-size: 1rem;
+  line-height: 1.5;
+
+  display: block;
+
+  width: 100%;
+  height: calc(2.75rem + 2px);
+  padding: .625rem .75rem;
+
+  transition: all .2s cubic-bezier(.68, -.55, .265, 1.55); 
+
+  color: black;
+  border: 1px solid black;
+  border-radius: .375rem;
+  background-color: #fff;
+  background-clip: padding-box;
+  box-shadow: none;
+}
+.input-group-bg
+{
+    transition: box-shadow .15s ease; 
+
+    border: 0;
+    box-shadow: 0 1px 3px rgba(86, 86, 128, 0.15), 0 1px 0 rgba(0, 0, 0, .02);
+}

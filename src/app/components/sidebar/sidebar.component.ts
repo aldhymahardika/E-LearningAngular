@@ -55,19 +55,16 @@ export class SidebarComponent implements OnInit {
   masuk(){
     if (this.login.roles[0] == 'ROLE_ADMIN') {
       this.menuItems = ROUTES.filter(menuItem => menuItem);
-      console.log(this.menuItems)
       this.router.events.subscribe((event) => {
         this.isCollapsed = true
       });
     } else if (this.login.roles[0] == 'ROLE_PENGAJAR') {
       this.menuItems = PENGAJAR.filter(menuItem => menuItem);
-      console.log(this.menuItems)
       this.router.events.subscribe((event) => {
         this.isCollapsed = true
       });
     }else {
       this.menuItems = PESERTA.filter(menuItem => menuItem);
-      console.log(this.menuItems)
       this.router.events.subscribe((event) => {
         this.isCollapsed = true
       });
