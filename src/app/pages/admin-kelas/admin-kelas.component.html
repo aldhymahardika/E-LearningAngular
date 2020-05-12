@@ -1,54 +1,71 @@
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" >
-    <!-- Mask -->
-    <span class="mask bg-gradient-primary opacity-8"></span>
-    <!-- Header container -->
-    <div class="container-fluid d-flex align-items-center">
-      <div class="row">
-
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-lawen opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="row align-items-center">
+        <div class="col-12">
+          <h1 class="display-1" style="color: white;">Input Kelas</h1>
+        </div>
       </div>
     </div>
+  </div>
 </div>
 <div class="container-fluid mt--7">
-    <div class="row">
-        <div class="col-xl-12 order-xl-1">
-            <div class="card bg-secondary shadow">
-              <div class="card-header bg-white border-0">
-                <div class="row align-items-center">
-                  <div class="col-12">
-                    <h3 class="mb-0">Input Kelas</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <form>
-                  <div class="pl-lg-12">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-control-label" for="input-address">Code</label>
-                          <input id="input-materi" class="form-control form-control-alternative" placeholder="Masukkan Code Kelas" type="text" [(ngModel)]="kelas.code" [ngModelOptions]="{standalone: true}">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="form-control-label" for="input-address">Kelas</label>
-                          <input id="input-materi" class="form-control form-control-alternative" placeholder="Masukkan Kelas" type="text" [(ngModel)]="kelas.name" [ngModelOptions]="{standalone: true}">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                            <br>
-                            <button type="button" class="btn btn-primary" (click)="setKelas()">Input</button>
-                        </div>
-                      </div>
-                      <div class="col-sm-12" [hidden]="!isupdated">  
-                        <p-messages [(value)]="msgs"></p-messages>  
-                      </div>
-                    </div>
-                </div>
-                </form>
-              </div>
+  <div class="row">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <button class="btn btn-icon btn-3 btn-primary" type="button" (click)="getBack()">
+                <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+                <span class="btn-inner--text">Kembali</span>
+              </button>
             </div>
           </div>
+        </div>
+        <div class="card-body bg-card">
+            <div class="pl-lg-12">
+              <div class="row">
+                <div class="col">
+                  <form>
+                    <div class="pl-lg-12">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="form-control-label" for="input-address">Code</label>
+                            <input id="input-materi" class="form-input" placeholder="Masukkan Code Kelas" type="text" [(ngModel)]="kelas.code" [ngModelOptions]="{standalone: true}">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="form-control-label" for="input-address">Kelas</label>
+                            <input id="input-materi" class="form-input" placeholder="Masukkan Kelas" type="text" [(ngModel)]="kelas.name" [ngModelOptions]="{standalone: true}">
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                              <br>
+                              <button type="button" class="btn btn-primary" (click)="setKelas()">Input</button>
+                          </div>
+                        </div>
+                        <div *ngIf="spinner" class="col-md-12">
+                          <br>
+                          <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+                        </div>
+                        <div class="col-sm-12" [hidden]="!isupdated">  
+                          <p-messages [(value)]="msgs"></p-messages>  
+                        </div>
+                      </div>
+                  </div>
+                  </form>
+      </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

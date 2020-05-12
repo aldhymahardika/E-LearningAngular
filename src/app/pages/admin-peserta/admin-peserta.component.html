@@ -1,10 +1,14 @@
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
   <!-- Mask -->
-  <span class="mask bg-gradient-primary opacity-8"></span>
+  <span class="mask bg-lawen opacity-8"></span>
   <!-- Header container -->
   <div class="container-fluid d-flex align-items-center">
     <div class="row">
-
+      <div class="row align-items-center">
+        <div class="col-12">
+          <h1 class="display-1" style="color: white;">List File Materi</h1>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -15,55 +19,67 @@
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
             <div class="col-12">
-              <h3 class="mb-0">Akun Pengajar</h3>
+              <button class="btn btn-icon btn-3 btn-primary" type="button" (click)="getBack()">
+                <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+                <span class="btn-inner--text">Kembali</span>
+              </button>
             </div>
           </div>
         </div>
-        <div class="card-body">
-          <div class="card shadow">
-          <form>
-            <h6 class="heading-small text-muted mb-4">Create Account</h6>
-            <div class="pl-lg-4">
+        <div class="card-body bg-card">
+            <div class="pl-lg-12">
               <div class="row">
-                <div class="col-md-6">
-                  <label>Pilih Materi</label>
-                  <p-dropdown class="form-control form-control-alternative" placeholder="Pilih Materi" [options]="materi" [(ngModel)]="dataMateri" optionLabel="name" [showClear]="true" [ngModelOptions]="{standalone: true}"></p-dropdown>
-                </div>
-                <div class="col-md-6">
-                  <label>Pilih Kelas</label>
-                  <p-dropdown class="form-control form-control-alternative" placeholder="Pilih Kelas" [options]="kelas" [(ngModel)]="dataKelas" optionLabel="name" [showClear]="true" [ngModelOptions]="{standalone: true}"></p-dropdown>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <br>
-                    <label class="form-control-label">Start Date</label>
-                    <input type="date" id="input-username" class="form-control form-control-alternative" [(ngModel)]="materiPengajar.startDate" [ngModelOptions]="{standalone: true}" required pattern="\d{2}-\d{2}-\d{4}">
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <br>
-                    <label class="form-control-label">End Date</label>
-                    <input type="date" id="input-username" class="form-control form-control-alternative" [(ngModel)]="materiPengajar.endDate" [ngModelOptions]="{standalone: true}" required pattern="\d{2}-\d{2}-\d{4}">
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <br>
-                    <label class="form-control-label">Jam</label>
-                    <input type="time" id="input-username" class="form-control form-control-alternative" placeholder="Nama" [(ngModel)]="materiPengajar.time" [ngModelOptions]="{standalone: true}">
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <br>
-                  <button type="button" class="btn btn-primary btn-lg btn-block" (click)="setPengajar()">Submit</button>
-                </div>
-                <div class="col-sm-12" [hidden]="!isupdated">  
-                  <p-messages [(value)]="msgs"></p-messages>  
-                </div>                  
-              </div>
+                <div class="col">
+                  <form>
+                    <div class="pl-lg-4">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label>Pilih Materi</label>
+                          <br>
+                          <p-dropdown class="" placeholder="Pilih Materi" [options]="materi" [(ngModel)]="dataMateri" optionLabel="name" [showClear]="true" [ngModelOptions]="{standalone: true}"></p-dropdown>
+                        </div>
+                        <div class="col-md-6">
+                          <label>Pilih Kelas</label>
+                          <br>
+                          <p-dropdown class="" placeholder="Pilih Kelas" [options]="kelas" [(ngModel)]="dataKelas" optionLabel="name" [showClear]="true" [ngModelOptions]="{standalone: true}"></p-dropdown>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <br>
+                            <label class="form-control-label">Start Date</label>
+                            <input type="date" id="input-username" class="form-input" [(ngModel)]="materiPengajar.startDate" [ngModelOptions]="{standalone: true}" required pattern="\d{2}-\d{2}-\d{4}">
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <br>
+                            <label class="form-control-label">End Date</label>
+                            <input type="date" id="input-username" class="form-input" [(ngModel)]="materiPengajar.endDate" [ngModelOptions]="{standalone: true}" required pattern="\d{2}-\d{2}-\d{4}">
+                          </div>
+                        </div>
+                        <div class="col-lg-4">
+                          <div class="form-group">
+                            <br>
+                            <label class="form-control-label">Jam</label>
+                            <input type="time" id="input-username" class="form-input" placeholder="Nama" [(ngModel)]="materiPengajar.time" [ngModelOptions]="{standalone: true}">
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <br>
+                          <button type="button" class="btn btn-primary" (click)="setPengajar()">Submit</button>
+                        </div>
+                        <div *ngIf="spinner" class="col-md-12">
+                          <br>
+                          <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+                        </div>
+                        <div class="col-sm-12" [hidden]="!isupdated">  
+                          <p-messages [(value)]="msgs"></p-messages>  
+                        </div>                  
+                      </div>
+                    </div>
+                  </form>
+      </div>
             </div>
-          </form>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 import { AdminKelas } from 'src/app/layouts/model/admin-kelas';
 import { Message } from 'primeng/api/message';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-kelas',
@@ -14,8 +15,8 @@ export class AdminKelasComponent implements OnInit {
   msg:boolean
   msgs: Message[] = [];
   isupdated = false;
-
-  constructor(private adminService: AppService) {
+  spinner=false
+  constructor(private adminService: AppService, private route: ActivatedRoute, private router: Router) {
     this.getKelas()
    }
 
@@ -23,12 +24,15 @@ export class AdminKelasComponent implements OnInit {
   }
 
   setKelas(){
+    this.spinner=true
     this.adminService.setKelas(this.kelas).subscribe(data=>{
       this.msg=data
       this.isupdated=true;
       if(this.msg==true){
+        this.spinner=false
         this.showSuccess()
       }else{
+        this.spinner=false
         this.showError()
       }
     })
@@ -36,8 +40,6 @@ export class AdminKelasComponent implements OnInit {
 
   getKelas(){
     this.adminService.getKelasAdmin().subscribe(data=>{
-      console.log(data);
-      
     })
   }
 
@@ -49,5 +51,9 @@ export class AdminKelasComponent implements OnInit {
   showError() {
     this.msgs = [];
     this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
+  }
+
+  getBack(){
+    this.router.navigate(['/admin'])
   }
 }

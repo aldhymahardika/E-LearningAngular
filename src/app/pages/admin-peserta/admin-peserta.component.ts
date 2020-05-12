@@ -21,48 +21,46 @@ export class AdminPesertaComponent implements OnInit {
   dataTrainer:Trainer
   msgs: Message[] = [];
   isupdated=false
+  spinner=false
+
   constructor(private adminService: AppService, private route: ActivatedRoute, private router: Router) {
     this.materiPengajar.trainer=new Trainer()
     this.materiPengajar.materi=new AdminMateri()
     this.materiPengajar.classes= new AdminKelas()
-    this.getMateri()
-    this.getKelas()
    }
 
   ngOnInit(): void {
+    this.getMateri()
+    this.getKelas()
   }
 
   getMateri(){
     this.adminService.getMateri().subscribe(data=>{ 
-      console.log(data);
-      
       this.materi = data
     })
   }
 
   getKelas(){
     this.adminService.getKelasList().subscribe(data=>{
-      console.log(data);
       this.kelas = data
     })
   }
 
   setPengajar(){
+    this.spinner=true
     this.route.queryParams.subscribe(params=>{
       this.materiPengajar.trainer.trainerId=params.pId
       this.materiPengajar.materi.id=this.dataMateri.id
       this.materiPengajar.classes.id=this.dataKelas.id
       this.isupdated=true
       this.adminService.setPengajar(this.materiPengajar).subscribe(data=>{
-        // this.isupdated=true
+        this.spinner=false
         this.showSuccess()
       },
       err=>{
-        this.showSuccess()
+        this.showError()
+        this.spinner=false
       })
-    },
-    erro=>{
-      this.showError()
     })
   }
 
@@ -76,4 +74,7 @@ export class AdminPesertaComponent implements OnInit {
     this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
   }
 
+  getBack(){
+    this.router.navigate(['/admin-listPengajar'])
+  }
 }

@@ -65,6 +65,9 @@
                                   <button type="button" class="btn btn-primary" (click)="updateNilai(dataNilai)">Submit Nilai</button>
                                 </div>
                               </div>
+                              <div *ngIf="bar" class="col-md-12">
+                                <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+                              </div>
                               <div class="col-sm-12" [hidden]="!isupdated">  
                                 <p-messages [(value)]="msgs"></p-messages>  
                               </div> 
@@ -94,14 +97,14 @@
                                         <td>{{ data.title }}</td>
                                         <td>{{ data.question_date | date : 'dd-MM-yyyy'}}</td>
                                         <td class="text-center">
-                                          <p-splitButton *ngIf="!spinner" label="Download" icon="pi pi-download" (onClick)="downloadFileUser(data)" [model]="getMenu(data, target)"></p-splitButton>
-                                          <div *ngIf="spinner">
-                                            <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
-                                          </div>
+                                          <p-splitButton label="Download" icon="pi pi-download" (onClick)="downloadFileUser(data)" [model]="getMenu(data, target)"></p-splitButton>
                                         </td>
                                       </tr>
                                     </tbody>
                                   </table>
+                                  <div *ngIf="spinner">
+                                    <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+                                  </div>
                                 </div>
                                 <ng-template #showSpinner>
                                   <div class="text-center">
@@ -142,6 +145,9 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <button type="button" class="btn btn-primary" (click)="setUpdateKuis(dataKuis)">Submit Nilai</button>
+                  </div>
+                  <div *ngIf="bar2" class="col-md-12">
+                    <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
                   </div>
                 </div>
                 <div class="col-sm-12" [hidden]="!isupdate">  

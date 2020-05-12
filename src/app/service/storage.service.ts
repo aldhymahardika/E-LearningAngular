@@ -14,6 +14,7 @@ export class StorageService {
   kelasId = 'kId'
   namaKelas = 'kelas'
   namaMateri = 'materi'
+  namaHari = 'hari'
   constructor() { }
 
   saveStorage(token : string){
@@ -75,5 +76,13 @@ export class StorageService {
 
   setNamaMateri(materi:string){
     localStorage.setItem(this.namaMateri, materi)
+  }
+
+  getNamaHari(){
+    localStorage.getItem(this.namaHari)
+  }
+
+  setNamaHari(hari:string){
+    localStorage.setItem(this.namaHari, hari)
   }
 }

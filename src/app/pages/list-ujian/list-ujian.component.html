@@ -49,7 +49,7 @@
                                 <td>{{data.title}}</td>
                                 <td>{{data.time}}</td>             
                                 <td class="text-center">
-                                  <p-splitButton  label="Download" icon="pi pi-download" (onClick)="getsKuis(data)" [model]="getMenu(data.soal_id)"></p-splitButton>
+                                  <p-splitButton  label="Download" icon="pi pi-download" (onClick)="getsKuis(data)" [model]="getMenu(data.soal_id, data.title)"></p-splitButton>
                                 </td>
                               </tr>
                             </tbody>

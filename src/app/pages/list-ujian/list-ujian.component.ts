@@ -80,7 +80,8 @@ export class ListUjianComponent implements OnInit {
     })
   }
 
-  updateUjian(idFile:string){
+  updateUjian(idFile:string, topic:string){
+    this.sessionService.setNamaTopic(topic)
     this.route.queryParams.subscribe(params=>{
       this.router.navigate(['/detail-file-ujian'], {queryParams:{idFiles:idFile, kId:params.kId, idFile:params.idFile}})
     })
@@ -101,10 +102,10 @@ export class ListUjianComponent implements OnInit {
   }) 
   }
 
-  getMenu(headerid:string):MenuItem[]{
+  getMenu(headerid:string, topic:string):MenuItem[]{
     return [
       {label: 'Update', icon: 'pi pi-refresh', command: () => {
-          this.updateUjian(headerid);
+          this.updateUjian(headerid,topic);
       }},
       {label: 'Delete', icon: 'pi pi-times', command: () => {
         this.confirm(headerid);

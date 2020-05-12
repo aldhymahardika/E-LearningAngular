@@ -15,6 +15,7 @@ export class MateriPengajarComponent implements OnInit {
   dataKelas: any[];
   login = new Login()
   jadwal: any[]
+
   constructor(private sessionService: StorageService, private uploadService: AppService, private storageService: StorageService, private route: ActivatedRoute,private router: Router) { 
     
   }
@@ -25,25 +26,22 @@ export class MateriPengajarComponent implements OnInit {
   }
   getListKelasMateri(){
     this.login = this.sessionService.getId()
-    console.log(this.login);
     this.uploadService.getListKelasMateri(this.login.idUser).subscribe(data=>{
-      // window.localStorage.clear()
       this.dataKelas=data
-      console.log(data);
-      
     })
   }
 
-  getSession(data){
+  getSession(data, kelas:string, materi:string){
     window.localStorage.setItem('kId', data)
+    this.sessionService.setNamaKelas(kelas)
+    this.sessionService.setNamaMateri(materi)
   }
 
   getJadwalPengajar(){
     this.login = this.sessionService.getId()
     this.uploadService.getJadwalPengajar(this.login.idUser).subscribe(data=>{
       this.jadwal=data
-      console.log(data);
-      
     })
   }
+
 }

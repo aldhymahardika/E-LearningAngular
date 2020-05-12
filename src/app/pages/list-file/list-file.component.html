@@ -7,7 +7,7 @@
     <div class="row">
       <div class="row align-items-center">
         <div class="col-12">
-          <h1 class="display-1" style="color: white;">List File Materi</h1>
+          <h1 class="display-1" style="color: white;">List File</h1>
         </div>
       </div>
     </div>
@@ -42,7 +42,6 @@
                                 <th scope="col">Topic</th>
                                 <th scope="col">Judul</th>
                                 <th scope="col"></th>
-                                <th scope="col"></th>  
                               </tr>
                             </thead>
                             <tbody>
@@ -50,7 +49,7 @@
                                 <td>{{data.topic}}</td>
                                 <td>{{data.title}}</td>             
                                 <td class="text-center">
-                                  <p-splitButton label="Download" icon="pi pi-download" (onClick)="getsMateri(data)" [model]="getMenu(data.file_id)"></p-splitButton>
+                                  <p-splitButton label="Download" icon="pi pi-download" (onClick)="getsMateri(data)" [model]="getMenu(data.file_id, data.title)"></p-splitButton>
                                 </td>
                               </tr>
                             </tbody>

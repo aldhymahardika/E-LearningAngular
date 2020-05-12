@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import {Message, ConfirmationService, MenuItem} from 'primeng/api';
 import {MessageService} from 'primeng/api';
 import { Subject } from 'rxjs';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-tables-report',
@@ -39,16 +40,16 @@ export class TablesReportComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
   spinner2=true
-constructor(private confirmationService: ConfirmationService, private uploadService: AppService, private route: ActivatedRoute, private router: Router, private messageService: MessageService ) { 
-    // this.getListMateri();
+  materi:string
+  kelas:string
+
+constructor(private sessionStorage: StorageService ,private confirmationService: ConfirmationService, private uploadService: AppService, private route: ActivatedRoute, private router: Router, private messageService: MessageService ) { 
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
   };
     this.router.events.subscribe(evt => {
       if (evt instanceof NavigationEnd) {
-          // trick the Router into believing it's last link wasn't previously loaded
           this.router.navigated = false;
-          // if you need to scroll back to top, here is the right place
           window.scrollTo(0, 0    );
       }
   });
@@ -62,6 +63,8 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
     this.getKelas();
     this.getQuiz();
     this.getUjian();
+    this.materi=this.sessionStorage.getNamaMateri()
+    this.kelas= this.sessionStorage.getNamaKelas()
   }
 
   ngOnDestroy(){
@@ -75,7 +78,6 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
       }},
       {label: 'Delete', icon: 'pi pi-times', command: () => {
         this.confirm2(headerid);
-        console.log(headerid);
       }}
   ];
   }
@@ -86,8 +88,6 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
           this.getUpdateUjian(headerid);
       }},
       {label: 'Delete', icon: 'pi pi-times', command: () => {
-        console.log(headerid);
-        
         this.confirm1(headerid);
       }}
     ];
@@ -101,7 +101,6 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
       this.dtTrigger.next();
       this.dataFile=data
       this.spinner2=false
-      console.log(data);
     })
   })
   }
@@ -129,7 +128,6 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
         // this.dtTrigger.next();
         this.dataKuis=data
         this.spinner2=false
-        console.log(data);
       })
     })
   }
@@ -141,7 +139,6 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
         // this.dtTrigger.next();
         this.dataUjian=data
         this.spinner2=false
-        console.log(data);
       })
     })
   }
@@ -182,11 +179,8 @@ constructor(private confirmationService: ConfirmationService, private uploadServ
         icon: 'pi pi-info-circle',
         accept: () => {
           this.getDeleteMateri(idFile)
-          // let id = this.route.snapshot.params.
-            // this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
         },
         reject: () => {
-            // this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
         }
     });
 

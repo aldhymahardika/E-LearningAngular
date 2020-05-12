@@ -35,7 +35,6 @@ export class AdminListPengajarComponent implements OnInit, OnDestroy {
     this.adminService.getPengajar().subscribe(data=>{
       this.dtTrigger.next();
       this.dataPengajar= data
-      console.log(data);
     })
   }
   
@@ -45,7 +44,6 @@ export class AdminListPengajarComponent implements OnInit, OnDestroy {
 
   private extractData(res: Response) {
     const body = res.json();
-    // return body.data || {};
   }
 
   showSuccess() {

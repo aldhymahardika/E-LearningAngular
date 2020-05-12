@@ -30,6 +30,9 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   nama:string
   spinner=false
   spinner2=true
+  bar2=false
+  bar=false
+
   constructor(private uploadService: AppService, private route: ActivatedRoute, private router: Router, private confirmationService: ConfirmationService) { 
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
@@ -73,16 +76,18 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   }
 
   updateNilai(data:any){
+    this.bar=true
     this.route.queryParams
     .subscribe(params=>{
       this.isupdated=true
       this.uploadService.setNilaiKuis(params.kId, params.uId, this.dataNilai.nilaiUtama, this.dataNilai.jenis, this.dataNilai.nilaiKehadiran, this.dataNilai.tanggal, this.dataNilai.title, this.dataNilai.tanggalPeriode).subscribe(data=>{
         this.msg=data
+        this.bar=false
         this.showSuccess()        
+        this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:params.uId}})
       },
       err=>{
-        this.showSuccess()
-        this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:params.uId}})
+        this.showError()
       })
     })
   }
@@ -283,16 +288,19 @@ export class ReportInputComponent implements OnInit, OnDestroy {
   }
 
   setUpdateKuis(dataKuis){
+    this.bar2=true
     this.route.queryParams
     .subscribe(params=>{
       this.isupdate=true
       this.uploadService.setUpdateKuis(this.dataKuis.id, params.kId, params.uId, this.dataKuis.nilaiUtama, this.dataKuis.jenis, this.dataKuis.nilaiKehadiran, this.dataKuis.tanggalPeriode).subscribe(data=>{
         this.msg=data
+        this.bar2=false
         this.showSuccess()
         this.router.navigate(['/report-input'], {queryParams: {kId: params.kId, uId:params.uId}})
       },
       err=>{
-        this.showSuccess()
+        this.bar2=false
+        this.showError()
 
       })
     })

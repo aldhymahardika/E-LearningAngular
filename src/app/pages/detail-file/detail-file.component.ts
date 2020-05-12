@@ -3,6 +3,7 @@ import { AppService } from 'src/app/service/app.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Materi } from 'src/app/layouts/model/materi';
 import { Message } from 'primeng/api/message';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-detail-file',
@@ -15,9 +16,11 @@ export class DetailFileComponent implements OnInit {
   msgs: Message[] = [];
   isupdated = false;
   spinner=false
-  constructor(private uploadService: AppService, private route: ActivatedRoute, private router: Router) { }
+  materi:string
+  constructor(private sessionStorage: StorageService,private uploadService: AppService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.materi=this.sessionStorage.getTopic()
   }
 
   updateMateri(data:Materi){

@@ -32,7 +32,5 @@ export class KelasComponent implements OnInit {
   getData(title:string, clases:string){
     this.sessionService.setNamaMateri(title)
     this.sessionService.setNamaKelas(clases)
-    // window.localStorage.setItem('materi', title)
-    // window.localStorage.setItem('kelas', clases)
   }
 }

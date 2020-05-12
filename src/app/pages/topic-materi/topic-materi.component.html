@@ -40,6 +40,12 @@
                     <tr >
                       &nbsp;&nbsp;&nbsp;
                       <td scope="col">{{ ujian.title}}</td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
                       <td scope="col">{{ ujian.start_time }} - {{ ujian.end_time}}</td>
                       <td>
                         <button class="btn btn-primary btn-sm" type="button">
@@ -60,6 +66,11 @@
                     <tr *ngIf="top.day === 'MONDAY'">
                       &nbsp;&nbsp;&nbsp;
                       <td scope="col">{{ top.topic}}</td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
                       <td scope="col">{{ top.time }}</td>
                       <td>
                         <button class="btn btn-primary btn-sm" type="button">
@@ -101,6 +112,11 @@
                     <tr *ngIf="top.day === 'TUESDAY'">
                       &nbsp;&nbsp;&nbsp;
                       <td scope="col">{{ top.topic}}</td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
                       <td scope="col">{{ top.time }}</td>
                       <td>
                         <button class="btn btn-primary btn-sm" type="button">
@@ -142,6 +158,11 @@
                     <tr *ngIf="top.day === 'WEDNESDAY'">
                       &nbsp;&nbsp;&nbsp;
                       <td scope="col">{{ top.topic}}</td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
                       <td scope="col">{{ top.time }}</td>
                       <td>
                         <button class="btn btn-primary btn-sm" type="button">
@@ -183,6 +204,11 @@
                     <tr *ngIf="top.day === 'THURSDAY'">
                       &nbsp;&nbsp;&nbsp;
                       <td scope="col">{{ top.topic}}</td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
                       <td scope="col">{{ top.time }}</td>
                       <td>
                         <button class="btn btn-primary btn-sm" type="button">
@@ -221,9 +247,14 @@
               <div class="table-responsive">
                 <table class="row-border hover dataTable">
                   <thead *ngFor="let top of topics">
-                    <tr *ngIf="top.day === 'SUNDAY'">
+                    <tr *ngIf="top.day === 'FRIDAY'">
                       &nbsp;&nbsp;&nbsp;
                       <td scope="col">{{ top.topic}}</td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
+                      <td scope="col"></td>
                       <td scope="col">{{ top.time }}</td>
                       <td>
                         <button class="btn btn-primary btn-sm" type="button">
@@ -240,7 +271,7 @@
             <div class="table-responsive">
               <table class="row-border hover dataTable">
                 <thead *ngFor="let kuis of quizs">
-                  <tr *ngIf="kuis.day === 'SUNDAY'">
+                  <tr *ngIf="kuis.day === 'FRIDAY'">
                     &nbsp;&nbsp;&nbsp;
                     <td scope="col">{{ kuis.title }}</td>
                     <td scope="col">{{ kuis.start_date | date : 'dd-MM-yyyy' }} - {{ kuis.end_date | date : 'dd-MM-yyyy'}}</td>

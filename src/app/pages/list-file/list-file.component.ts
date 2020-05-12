@@ -62,11 +62,9 @@ export class ListFileComponent implements OnInit {
   getListMateri(){
     this.route.queryParams
     .subscribe(params=>{
-      console.log(params);
       this.uploadService.getListMateri(params.idFile).subscribe(data=>{
       this.dataFile=data
       this.spinner2=false
-      console.log(data);
     })
   })
   }
@@ -86,7 +84,8 @@ export class ListFileComponent implements OnInit {
     }) 
   }
 
-  update(idFile:string){
+  update(idFile:string, topic:string){
+    this.sessionService.setNamaTopic(topic)
     this.route.queryParams.subscribe(params=>{
       this.router.navigate(['/detail-file'], {queryParams: {idFiles:idFile, idFile:params.idFile}})
     })
@@ -102,10 +101,6 @@ export class ListFileComponent implements OnInit {
         this.getListMateri()
         this.getForum()
       })
-    },
-    erro=>{
-              this.getListMateri()
-        this.getForum()
     })
   }
 
@@ -131,14 +126,11 @@ export class ListFileComponent implements OnInit {
       this.forum.isiPesan
       let ser = this.uploadService.setForum(params.idFile, this.forum.isiPesan, this.login.idUser );
       ser.subscribe(data=>{
-        console.log("1" + data);
-        
         this.forum.isiPesan=""
         this.getListMateri()
         this.getForum()        
       },
       err=>{
-        console.log("2" + err);
         
       })
     })
@@ -149,7 +141,6 @@ export class ListFileComponent implements OnInit {
     .subscribe(params=>{
       this.uploadService.getForum(params.idFile).subscribe(data=>{
         this.forums=data
-        console.log(data);
       })
     })
   }
@@ -167,10 +158,10 @@ export class ListFileComponent implements OnInit {
     })
   }
 
-  getMenu(headerid:string):MenuItem[]{
+  getMenu(headerid:string, topic:string):MenuItem[]{
     return [
       {label: 'Update', icon: 'pi pi-refresh', command: () => {
-          this.update(headerid);
+          this.update(headerid, topic);
       }},
       {label: 'Delete', icon: 'pi pi-times', command: () => {
         this.confirm(headerid);

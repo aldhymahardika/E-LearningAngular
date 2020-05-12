@@ -6,6 +6,7 @@ import { AdminMateri } from 'src/app/layouts/model/admin-materi';
 import { Pengajar } from 'src/app/layouts/model/pengajar';
 import { Message } from 'primeng/api/message';
 import { AuthService } from 'src/app/service/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-pengajar',
@@ -24,28 +25,27 @@ export class AdminPengajarComponent implements OnInit {
   showMessage=false
   message = "Mohon input form dengan benar!"
   messageT = "Insert berhasil" 
-  constructor(private adminService: AppService, private authService: AuthService) {
-    // this.materiPengajar.kelasPengajar = new AdminKelas()
-    // this.materiPengajar.materi  = new AdminMateri()
-    // this.materiPengajar.pengajar = new Pengajar()
-    this.getKelas()
-    this.getMateri()
+  spinner=false
+  constructor(private adminService: AppService, private authService: AuthService, private route: ActivatedRoute, private router: Router) {
+   
    }
 
   ngOnInit(): void {
+    this.getKelas()
+    this.getMateri()
   }
 
   setPengajar(){
-    // this.materiPengajar.kelasPengajar.id = this.dataKelas.id
-    // this.materiPengajar.materi.id = this.dataMateri.id
+    this.spinner=true
     this.materiPengajar.role = ["pengajar"]
     this.authService.registerPengajar(this.materiPengajar).subscribe(data=>{
-      // this.msg
-      // this.showMessage = true
-      // this.showSuccess()
+      this.isupdated=true
+      this.spinner=false
+      this.showSuccess()
     },
     err => {
-      this.showMessage = true
+      this.spinner=false
+      this.showError()
     })
   }
 
@@ -69,6 +69,10 @@ export class AdminPengajarComponent implements OnInit {
   showError() {
     this.msgs = [];
     this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
+  }
+
+  getBack(){
+    this.router.navigate(['/admin'])
   }
 
 }
