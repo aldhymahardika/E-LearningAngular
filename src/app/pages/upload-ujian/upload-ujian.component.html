@@ -82,10 +82,11 @@
               <div class="col-md-12">
               <br>
               <button type="button" class="btn btn-primary" (click)="uploadUjian()">Upload</button>
-              <div *ngIf="spinner" class="sejajar">  
-                <p-progressSpinner [style]="{width: '28px', height: '28px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
-              </div>  
             </div>
+            <div *ngIf="spinner" class="col-md-12">  
+              <br>
+              <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+            </div>  
               <div class="col-sm-12" [hidden]="!isupdated">  
                 <p-messages [(value)]="msgs"></p-messages>  
               </div> 

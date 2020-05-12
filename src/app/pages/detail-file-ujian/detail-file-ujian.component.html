@@ -31,8 +31,6 @@
             <div class="pl-lg-12">
               <div class="row">
                 <div class="col">
-                <p-tabView>
-                  <p-tabPanel header="Materi" leftIcon="pi pi-calendar">
                     <div class="col-md-12">
                       <label>Judul Tugas</label>
                       <input type="text" class="form-input" id="judul" [(ngModel)]="ujian.judul_file">
@@ -45,11 +43,13 @@
                     <br>
                     <button type="button" class="btn btn-primary" (click)="getUpdateDetail(ujian)">Upload</button>
                     </div>
+                    <div *ngIf="spinner" class="col-md-12">  
+                      <br>
+                      <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+                    </div>
                     <div class="col-sm-12" [hidden]="!isupdated">  
                       <p-messages [(value)]="msgs"></p-messages>  
                     </div>
-                    </p-tabPanel>
-                  </p-tabView> 
         </div>
             </div>
           </div>

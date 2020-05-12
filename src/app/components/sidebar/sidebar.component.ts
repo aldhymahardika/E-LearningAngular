@@ -12,7 +12,7 @@ export const ROUTES: RouteInfo[] = [
     //path Admin
     {  path: '/admin', title: 'Dashbboard Admin', icon:'ni-tv-2 text-primary', class:''},
     {  path: '/admin-listPengajar', title: 'List Pengajar', icon:'ni ni-bullet-list-67 text-blue', class:''},
-    {  path: '/report-menu', title: 'Report', icon:'ni ni-paper-diploma text-yellow', class:''},
+    {  path: '/report-menu', title: 'Report', icon:'ni ni-book-bookmark text-darker', class:''},
 ]
 
 export const PENGAJAR : RouteInfo[] = [
@@ -28,7 +28,7 @@ export const PESERTA : RouteInfo[] =[
   //Path Peserta
   { path: '/materi', title:'Course', icon:'ni ni-books text-blue', class:'' },
   { path: '/kelas-user', title:'My Course', icon:'ni ni-calendar-grid-58 text-success', class:'' },
-  { path: '/report-nilai-peserta', title:'Report', icon:'ni ni-paper-diploma text-yellow', class:'' },
+  { path: '/report-nilai-peserta', title:'Report', icon:'ni ni-book-bookmark text-darker', class:'' },
 
 ]
 

@@ -16,30 +16,15 @@
 <br>
 <div class="container-fluid">
   <div class="row">
-    <!-- <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-      <div class="card card-profile shadow">
-        <div class="card">
-          <div class="card-header">
-            <h5>Teaching Schedule</h5>
-          </div>
-          <div class="card-body">    
-              <p class="mt-3 mb-0 text-muted text-sm" *ngFor="let data of jadwal">
-                &nbsp;&nbsp;
-                <span class="text-dark mr-2"><i class="ni ni-calendar-grid-58"></i>&nbsp;{{ data.materi }} | {{ data.kelas }} | {{ data.startdate | date : 'dd-MM-yyyy'}} - {{ data.enddate | date : 'dd-MM-yyyy'}}</span>
-              </p>
-            </div>
-        </div>
-      </div>
-    </div> -->
     <div class="col-xl-12 order-xl-1">
       <!-- <div class="card bg-secondary shadow"> -->
         <div class="row">
-          <div class="col-xl-3 col-lg-6" *ngFor="let cat of dataCategory">
-            <div class="card card-stats bg-white shadow mb-4 mb-xl-0">
+          <div class="col-xl-4 col-lg-6" *ngFor="let cat of dataCategory">
+            <div class="card card-stats bg-white shadow mb-6 mb-xl-0">
               <div class="card-body">
                 <div class="row">
                   <div class="col">
-                    <span class="h2 font-weight-bold mb-0"><a routerLink='/jadwal-peserta' [queryParams]="{ id:cat.class_id, title:cat.materi }" >{{ cat.materi }}</a></span>
+                    <span class="h2 font-weight-bold mb-0"><a routerLink='/jadwal-peserta' [queryParams]="{ id:cat.class_id, title:cat.materi, sdate:cat.start_date, edate:cat.end_date, jam:cat.time }" >{{ cat.materi }} | {{ cat.name }} <br> {{cat.time}}</a></span>
                   </div>
                   <div class="col-auto">
                     <div class="icon icon-shape bg-lawen text-white rounded-circle shadow">

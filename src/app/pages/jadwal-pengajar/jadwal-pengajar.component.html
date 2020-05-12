@@ -40,6 +40,7 @@
                                 <th scope="col">Kelas</th>
                                 <th scope="col">Tanggal Mulai</th>
                                 <th scope="col">Tanggal Selesai</th>
+                                <th scope="col">Waktu</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -48,6 +49,7 @@
                                 <td>{{ data.kelas }}</td>
                                 <td>{{ data.startdate | date : 'dd-MM-yyyy'}}</td>
                                 <td>{{ data.enddate | date : 'dd-MM-yyyy'}}</td>
+                                <td>{{ data.time }}</td>
                               </tr>
                             </tbody>
                           </table>

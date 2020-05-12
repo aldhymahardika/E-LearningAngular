@@ -14,12 +14,14 @@ export class DetailFileComponent implements OnInit {
   updt = new Materi()
   msgs: Message[] = [];
   isupdated = false;
+  spinner=false
   constructor(private uploadService: AppService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   updateMateri(data:Materi){
+    this.spinner=true
     this.route.queryParams
       .subscribe(params=>{
         console.log(params)
@@ -28,6 +30,7 @@ export class DetailFileComponent implements OnInit {
         this.updt.judul_materi=data.judul_materi
         this.isupdated=true
         this.uploadService.updateMateri(this.updt).subscribe(data=>{
+          this.spinner=false
           this.showSuccess()
         })
       })

@@ -21,6 +21,9 @@ export class JadwalPesertaComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
   title:string
+  sdate:string
+  edate:string
+  jam:string
   constructor(private sessionService: StorageService,private uploadService: AppService, private storageService: StorageService, private route: ActivatedRoute, private router: Router) {
     
    }
@@ -32,7 +35,13 @@ export class JadwalPesertaComponent implements OnInit, OnDestroy {
     };
     this.route.queryParams.subscribe(params=>{
       this.title=params.title
+      this.sdate=params.sdate
+      this.edate=params.edate
+      this.jam=params.jam
+      console.log(params);
     })
+
+    
     this.getJadwalUser()
     this.getDetailScore()
     this.getDetailUjian()

@@ -14,13 +14,14 @@ export class DetailFileUjianComponent implements OnInit {
   ujian = new Ujian()
   msgs: Message[] = [];
   isupdated = false;
-
+  spinner=false
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit(): void {
   }
 
   getUpdateDetail(data:Ujian){
+    this.spinner=true
     this.route.queryParams
       .subscribe(params=>{
         console.log(params)
@@ -29,9 +30,10 @@ export class DetailFileUjianComponent implements OnInit {
         this.ujian.judul_file=data.judul_file
         this.isupdated=true
         this.uploadService.getUpdateDetail(this.ujian).subscribe(data=>{
-           
+           this.spinner=false
         },
         err=>{
+          this.spinner=false
           this.showSuccess()
         })
       })
@@ -48,7 +50,7 @@ export class DetailFileUjianComponent implements OnInit {
 
   getBack(){
     this.route.queryParams.subscribe(params=>{
-      this.router.navigate(['/list-ujian'], {queryParams:{idFile:params.idFile}})
+      this.router.navigate(['/list-ujian'], {queryParams: {idFile: params.idFile}})
     })
   }
 }

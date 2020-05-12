@@ -25,7 +25,7 @@
           <div class="card-body">    
               <p class="mt-3 mb-0 text-muted text-sm" *ngFor="let user of dataCategoryUser">
                 &nbsp;&nbsp;
-                <a routerLink='/jadwal-peserta' [queryParams]="{ id:user.class_id, title:user.materi }" ><span class="text-primary mr-2"><i class="ni ni-hat-3"></i>&nbsp;{{user.materi}} | {{user.name}}</span></a>
+                <a routerLink='/jadwal-peserta' [queryParams]="{ id:user.class_id, title:user.materi, sdate:user.start_date, edate:user.end_date, jam:user.time }" ><span class="text-primary mr-2"><i class="ni ni-hat-3"></i>&nbsp;{{user.materi}} | {{user.name}}</span></a>
               </p>
             </div>
         </div>

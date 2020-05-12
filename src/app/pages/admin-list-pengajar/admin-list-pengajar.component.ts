@@ -7,7 +7,7 @@ import { Message } from 'primeng/api/message';
 @Component({
   selector: 'app-admin-list-pengajar',
   templateUrl: './admin-list-pengajar.component.html',
-  styleUrls: ['./admin-list-pengajar.component.css']
+  styleUrls: ['./admin-list-pengajar.component.scss']
 })
 export class AdminListPengajarComponent implements OnInit, OnDestroy {
   

@@ -41,9 +41,10 @@
                 <div class="col-md-12">
                 <br>
                 <button [disabled]="spinner" type="button" class="btn btn-primary" (click)="updateMateri(updt)">Submit</button>
-                <div *ngIf="spinner">  
-                  <p-progressSpinner></p-progressSpinner>
                 </div>
+                <div *ngIf="spinner" class="col-md-12">  
+                  <br>
+                  <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
                 </div>
               <div class="col-sm-12" [hidden]="!isupdated">  
                   <p-messages [(value)]="msgs"></p-messages>  

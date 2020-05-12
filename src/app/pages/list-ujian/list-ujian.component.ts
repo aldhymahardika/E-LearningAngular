@@ -38,6 +38,8 @@ export class ListUjianComponent implements OnInit {
   login = new Login()
   spinner=false
   spinner2=true
+  kId:string 
+
   constructor(private confirmationService: ConfirmationService, private sessionService: StorageService ,private uploadService: AppService, private route: ActivatedRoute,private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
@@ -156,8 +158,9 @@ export class ListUjianComponent implements OnInit {
   }
 
   getBack(){
+    this.kId=this.sessionService.getKelas()
     this.route.queryParams.subscribe(params=>{
-      this.router.navigate(['/tables-report'], {queryParams: {kId:params.kId}})
+      this.router.navigate(['/tables-report'], {queryParams: {kId:this.kId}})
     })
   }
 }

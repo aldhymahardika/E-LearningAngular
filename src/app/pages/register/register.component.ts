@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   daftarUser =  new User()
-  message = "Mohon input form dengan benar!"
+  message = "Mohon input dengan benar, username minimal 6 karakter"
   showMessage = false
   constructor(private router : Router, private service : AuthService) { }
 
@@ -27,12 +27,6 @@ export class RegisterComponent implements OnInit {
         this.showMessage = true
       }
     );
-
-    // this.service.addUser(this.daftarUser)
-    //   .subscribe((res:any) => {
-    //     this.daftarUser = res
-    // })
-    // this.router.navigateByUrl('/dashboard')    
   }
 
 
