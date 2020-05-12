@@ -39,7 +39,6 @@ export class TopicMateriComponent implements OnInit, OnDestroy {
     this.getTopic()
     this.getQuiz()
     this.getTask()
-    // this.getDetailScore()
     this.getDetailKelass()
     this.title = this.sessionStorage.getTitle()
     this.nama = this.sessionStorage.getNamaPengajar()
@@ -55,7 +54,6 @@ export class TopicMateriComponent implements OnInit, OnDestroy {
       console.log(params); 
     this.uploadService.getTopic(params.kId).subscribe(data=>{
       this.topics=data
-      // if(this.topics)
       console.log(data);
     })
   })

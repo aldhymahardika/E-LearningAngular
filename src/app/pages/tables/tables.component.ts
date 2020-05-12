@@ -41,13 +41,14 @@ export class TablesComponent implements OnInit, OnDestroy {
     this.dtTrigger.unsubscribe();
   }
 
-  getTopic(kId:string, jam:string, nama:string) {
+  getTopic(kId:string, jam:string, nama:string, tanggal:string) {
     this.router.queryParams
     .subscribe(params => {
-    this.login = this.sessionService.getId() 
-    console.log(this.login);
+    // this.login = this.sessionService.getId() 
+    // console.log(this.login);
     this.sessionService.setNamaPengajar(nama)
-    this.route.navigate(['/loading'], {queryParams: {comp: 'tables', id:params.id, kId:kId, jamid: jam, nama: nama, title:params.title}});
+    this.sessionService.setKelas(kId)
+    this.route.navigate(['/loading'], {queryParams: {comp: 'tables', id:params.id, kId:kId, jamid: jam, nama: nama, title:params.title, date: tanggal}});
     })
   }
 

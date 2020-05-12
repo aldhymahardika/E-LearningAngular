@@ -25,10 +25,6 @@ export class UserComponent implements OnInit {
   dataUjian : Ujian[];
   fileInfos: Observable<any>;
   files: Observable<Ujian[]>;
-  // materirespons = new MateriRespon()
-  // selectedCity1: City;
-  // name:string
-  // dataKuis : Ujian[];
   jawab = new FileUser();
   tanggal = new Materi()
   login = new Login()
@@ -37,6 +33,7 @@ export class UserComponent implements OnInit {
   forum = new Forum()
   forums:any[]
   spinner=false
+  spinner2=false
   title:string
   constructor(private sessionService: StorageService,private uploadService: AppService, private route: ActivatedRoute,private router: Router) { 
     this.jawab.user = new User()
@@ -49,16 +46,6 @@ export class UserComponent implements OnInit {
     this.getAllUjian()
   }
   
-  // get(){
-  //   this.routes.queryParams
-  //     .subscribe(params => {
-  //       this.tanggal.day=params.day 
-  //       this.tanggal.week=params.week
-  //       // console.log(params['day']);
-                
-  //   });
-  // }
-
   getAllUjian(){
     this.route.queryParams
     .subscribe(params=>{
@@ -71,16 +58,16 @@ export class UserComponent implements OnInit {
   }
 
   gets(datas){
-    this.spinner=true
+    this.spinner2=true
     this.route.queryParams
     .subscribe(params => {
    let resp = this.uploadService.downloadKuisUser(datas).subscribe((data) => 
    { const url= window.URL.createObjectURL(data)
    window.open(url)
-   this.spinner=false 
+   this.spinner2=false 
    },
    err=>{
-    this.spinner=false
+    this.spinner2=false
    })
   }) 
   //  let blob:any = new Blob(this.fileInfos, { type: 'text/json; charset=utf-8' });
@@ -91,6 +78,7 @@ export class UserComponent implements OnInit {
   }
 
   setUpload(){
+    this.spinner=true
       this.route.queryParams
         .subscribe(params => {
           this.login = this.sessionService.getId()
@@ -103,23 +91,18 @@ export class UserComponent implements OnInit {
           event => {
             this.isupdated=true;
             if(event==true){
+              this.spinner=false
               this.showSuccess()
             }else{
+              this.spinner=false
               this.showError()
             }
-
-        //     if (event.type === HttpEventType.UploadProgress) {
-        //       this.progress = Math.round(100 * event.loaded / event.total);
-        //     } else if (event instanceof HttpResponse) {
-        //       this.message = event.body.message;
-        //     }
           },
           err => {
             this.progress = 0;
             this.message = 'Could not upload the file!';
             this.currentFile = undefined;
           }) 
-        // this.selectedFiles = undefined;
     })
   }
 
@@ -138,9 +121,6 @@ export class UserComponent implements OnInit {
     this.route.queryParams
     .subscribe(params=>{
       this.uploadService.setForumKuis(params.hId, this.forum.isiPesan, this.login.idUser).subscribe(data=>{
-        this.forum=data
-      },
-      err=>{
         this.forum.isiPesan=""
         this.getForum()
         this.getAllUjian()

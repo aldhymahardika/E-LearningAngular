@@ -132,11 +132,6 @@ export class ListUjianComponent implements OnInit {
       this.forum.isiPesan
       let ser = this.uploadService.setForumKuis(params.idFile, this.forum.isiPesan, this.login.idUser );
       ser.subscribe(data=>{
-
-        this.loadForum(params.hId)
-
-      },
-      err=>{
         this.forum.isiPesan=""
         this.getDetailUjian()
         this.getForum()
@@ -150,7 +145,6 @@ export class ListUjianComponent implements OnInit {
       this.uploadService.getForumKuis(params.idFile).subscribe(data=>{
         this.forums=data
         console.log(data);
-        
       })
     })
   }

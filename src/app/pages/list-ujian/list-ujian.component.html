@@ -49,15 +49,14 @@
                                 <td>{{data.title}}</td>
                                 <td>{{data.time}}</td>             
                                 <td class="text-center">
-                                  <p-splitButton *ngIf="!spinner" label="Download" icon="pi pi-download" (onClick)="getsKuis(data)" [model]="getMenu(data.soal_id)"></p-splitButton>
-                                  <div *ngIf="spinner">
-                                    <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
-                                  </div>
+                                  <p-splitButton  label="Download" icon="pi pi-download" (onClick)="getsKuis(data)" [model]="getMenu(data.soal_id)"></p-splitButton>
                                 </td>
-                               
                               </tr>
                             </tbody>
                           </table>
+                          <div *ngIf="spinner">
+                            <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+                          </div>
                     </div>
                     <ng-template #showSpinner>
                       <div class="text-center">

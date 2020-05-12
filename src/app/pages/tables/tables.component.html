@@ -49,8 +49,7 @@
                         <td>{{ pengajar.start_Date | date : 'dd-MM-yyyy'}}</td>
                         <td>{{ pengajar.end_Date | date : 'dd-MM-yyyy'}}</td>
                         <td class="text-center">
-                          <button type="button" class="btn btn-primary" (click)="getTopic(pengajar.kelas_id, pengajar.time, pengajar.nama)">Masuk</button>
-                          
+                          <button type="button" class="btn btn-primary" (click)="getTopic(pengajar.kelas_id, pengajar.time, pengajar.nama, pengajar.start_Date)">Masuk</button>                          
                         </td>
                       </tr>
                     </tbody>

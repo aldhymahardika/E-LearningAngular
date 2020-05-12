@@ -55,3 +55,9 @@ body{margin-top:20px;}
     background-clip: padding-box;
     box-shadow: none;
 }
+.sejajar{
+    width: 200px;
+    height: 80px;
+    display: inline-block;
+    margin-left: 10px; 
+}

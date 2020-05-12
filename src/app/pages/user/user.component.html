@@ -38,11 +38,15 @@
       <div class="col-md-12">
         <br>
         <button type="button" class="btn btn-primary" (click)="setUpload()">Upload</button>
+        <div *ngIf="spinner" class="sejajar">  
+          <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+        </div>
         <br><br>
       </div>
       <div class="col-sm-12" [hidden]="!isupdated">  
         <p-messages [(value)]="msgs"></p-messages>  
         <br>
+        
       </div>
       </div>
         </div>
@@ -66,17 +70,17 @@
                               <td>{{ file.title }}</td>
                               <td>{{ file.time }}</td>
                               <td class="text-center">
-                                <button class="btn btn-icon btn-3 btn-primary" type="button" *ngIf="!spinner">
+                                <button class="btn btn-icon btn-3 btn-primary" type="button">
                                   <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
                                   <span class="btn-inner--text" (click)="gets(file)">Download</span>
                                   </button>
-                                  <div *ngIf="spinner">
-                                    <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
-                                  </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
+                        <div *ngIf="spinner2">  
+                          <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+                        </div>
                       </div>
                     </p-tabPanel>
                     <p-tabPanel header="Forum" leftIcon="pi pi-comments">

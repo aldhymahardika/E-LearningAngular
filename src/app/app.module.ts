@@ -28,6 +28,8 @@ import {SplitButtonModule, SplitButton} from 'primeng/splitbutton';
 import {ButtonModule} from 'primeng/button';
 import {CalendarModule} from 'primeng/calendar';
 import {TableModule} from 'primeng/table';
+import {ProgressBarModule} from 'primeng/progressbar';
+
 
 import { UploadMateriComponent } from './pages/upload-materi/upload-materi.component';
 import { TablesMateriComponent } from './pages/tables-materi/tables-materi.component';
@@ -103,7 +105,8 @@ import { DashboardPesertaComponent } from './pages/dashboard-peserta/dashboard-p
     SplitButtonModule,
     ButtonModule,
     CalendarModule,
-    TableModule
+    TableModule,
+    ProgressBarModule
   ],
   declarations: [
     AppComponent,

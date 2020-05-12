@@ -32,7 +32,9 @@ export class UserKuisComponent implements OnInit {
   msgs: Message[] = [];
   isupdated = false;
   title:string
-
+  disable = true
+  spinner:boolean = false
+  spinner2:boolean = false
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) {
     this.jawab.user = new User()
    }
@@ -55,11 +57,16 @@ export class UserKuisComponent implements OnInit {
   }
 
   gets(datas){
+    this.spinner2=true
     this.route.queryParams
     .subscribe(params => {
    let resp = this.uploadService.downloadKuisUser(datas).subscribe((data) => 
    { const url= window.URL.createObjectURL(data)
-   window.open(url) 
+   window.open(url)
+   this.spinner2=false 
+   },
+   err=>{
+    this.spinner2=false
    })
   }) 
   }
@@ -69,6 +76,7 @@ export class UserKuisComponent implements OnInit {
   }
 
   setUpload(){
+
       this.route.queryParams
         .subscribe(params => {
           this.login = this.sessionService.getId()
@@ -77,16 +85,20 @@ export class UserKuisComponent implements OnInit {
           this.jawab.headerid=params.hId
           this.jawab.user.userId=this.login.idUser
           console.log(this.jawab)
+          this.spinner=true
           this.uploadService.uploadUser(this.jawab).subscribe(
           event => {
             this.isupdated=true
             if(event==true){
+              this.spinner=false
               this.showSuccess()              
             }else{
+              this.spinner=false
               this.showError()
             }   
           },
           err => {
+            this.spinner=false
             this.progress = 0;
             this.message = 'Could not upload the file!';
             this.currentFile = undefined;
@@ -100,9 +112,9 @@ export class UserKuisComponent implements OnInit {
     this.route.queryParams
     .subscribe(params=>{
       this.uploadService.setForumKuis(params.hId, this.forum.isiPesan, this.login.idUser).subscribe(data=>{
-        this.forum=data
-      },
-      err=>{
+        // this.forum=data
+        console.log(data);
+        
         this.forum.isiPesan=""
         this.getAllKuis()
         this.getForum()

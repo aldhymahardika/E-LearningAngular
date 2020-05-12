@@ -23,15 +23,14 @@ export class UserUploadComponent implements OnInit {
   message = '';
   dataMateri : Materi[];
   fileInfos: Observable<any>;
-  // files: Hari;
-  // materirespons = new MateriRespon()
   fileUrl;
-  // materi: Category;
   jawab = new FileUser()
   forum = new Forum()
   forums:any[]
   login = new Login()
   title:string
+  kId:string
+  spinner:boolean=false
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionService: StorageService) { 
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
@@ -52,11 +51,16 @@ export class UserUploadComponent implements OnInit {
   }
 
   gets(datas){
+    this.spinner=true
     this.route.queryParams
     .subscribe(params => {
     let resp = this.uploadService.downloadMateriUser(datas).subscribe((data) => 
     { const url= window.URL.createObjectURL(data)
       window.open(url) 
+      this.spinner=false
+    },
+    err=>{
+      this.spinner=false
     })
   }) 
   }
@@ -85,12 +89,12 @@ export class UserUploadComponent implements OnInit {
       let ser = this.uploadService.setForum(params.hId, this.forum.isiPesan, this.login.idUser );
       ser.subscribe(data=>{
         this.loadForum(params.hId)
-        this.router.navigate(['/user-upload'], {queryParams: {hId: params.hId}})
-      },
-      err=>{
         this.forum.isiPesan=""
         this.getALlMateri()
         this.getForum()
+      },
+      err=>{
+
       })
     })
   }
@@ -112,8 +116,9 @@ export class UserUploadComponent implements OnInit {
   }
 
   getBack(){
+    this.kId = this.sessionService.getKelas()
     this.route.queryParams.subscribe(params=>{
-      this.router.navigate(['/topic-materi'], {queryParams:{kId:params.kId}})
+      this.router.navigate(['/topic-materi'], {queryParams:{kId:this.kId}})
     })
   }
 }

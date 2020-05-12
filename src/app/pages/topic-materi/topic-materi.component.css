@@ -13,3 +13,9 @@
 .bg-th{
     background-color: #E4E4E4;
 }
+.sejajar{
+    width: 200px;
+    height: 80px;
+    display: inline-block;
+    margin-left: 10px; 
+}

@@ -33,10 +33,7 @@
                 <div class="col">
                     <div class="col s12 m12 l12">
                       <div class=" dataTables_wrapper "> 
-                        <!-- <div class="card-header border-0">
-                          <h3 class="mb-0">Data Use</h3>
-                        </div> -->
-                      <div class="table-responsive">
+                      <div class="table-responsive" *ngIf="!spinner2 ; else showSpinner">
                         <table class="row-border hover dataTable no-footer" datatable [dtOption]="dtOption" [dtTrigger]="dtTrigger">
                           <thead>
                             <tr style="color: black; text-align: center;" class="bg-th" >
@@ -53,6 +50,11 @@
                             </tr>
                           </tbody>
                         </table>
+                        <ng-template #showSpinner>
+                          <div class="text-center">
+                          <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+                        </div>
+                        </ng-template>
                   </div>
                 </div>
       </div>

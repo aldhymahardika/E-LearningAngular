@@ -13,6 +13,8 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import {CalendarModule} from 'primeng/calendar';
 import {TableModule} from 'primeng/table';
+import {ProgressBarModule} from 'primeng/progressbar';
+
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AccordionModule} from 'primeng/accordion';
@@ -46,7 +48,8 @@ import {ButtonModule} from 'primeng/button';
     SplitButtonModule,
     ButtonModule,
     CalendarModule,
-    TableModule
+    TableModule,
+    ProgressBarModule
   ],
   declarations: [
     DashboardComponent,

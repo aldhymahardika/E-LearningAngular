@@ -12,7 +12,7 @@ import { Login } from 'src/app/layouts/model/login';
 export class AbsenComponent implements OnInit {
   login = new Login()
   kondisi:boolean
-
+  kId:string
   constructor(private route: Router, private uploadService: AppService, private router: ActivatedRoute, private sessionService: StorageService) { }
 
   ngOnInit(): void {
@@ -42,5 +42,12 @@ export class AbsenComponent implements OnInit {
     this.uploadService.setAbsen(this.login.idUser, params.kId).subscribe(data=>{
     })
   })
+  }
+
+  getBack(){
+    this.kId = this.sessionService.getKelas()
+    this.router.queryParams.subscribe(params=>{
+      this.route.navigate(['/topic-materi'], {queryParams:{kId:this.kId}})
+    })
   }
 }

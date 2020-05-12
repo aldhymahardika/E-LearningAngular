@@ -45,14 +45,18 @@
                           <tr *ngFor="let file of dataMateri">
                             <td>{{ file.title }}</td>
                             <td class="text-center">
-                              <button class="btn btn-icon btn-3 btn-primary" type="button">
+                              <button  class="btn btn-icon btn-3 btn-primary" type="button">
                                 <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
                                 <span class="btn-inner--text" (click)="gets(file)">Download</span>
                                 </button>
                             </td>
                           </tr>
+
                         </tbody>
                       </table>
+                      <div *ngIf="spinner">  
+                        <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+                      </div> 
                     </div>
                   </p-tabPanel>
                   <p-tabPanel header="Forum" leftIcon="pi pi-inbox">

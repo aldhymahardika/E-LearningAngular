@@ -18,7 +18,7 @@ import { Forum } from '../layouts/model/forum';
 
 export class AppService {
  
-  private baseUrl= 'http://5b46f3df.ngrok.io'
+  private baseUrl= 'https://a17080a4.ngrok.io'
 
   constructor(private http: HttpClient) { }
   
@@ -286,11 +286,8 @@ export class AppService {
     return this.http.post(this.baseUrl + "/user/inclass?kId="+ kId + "&uId=" + uId, {})
   }
 
-  cekClass(uId:string, jamId:string, kId:string): Observable<boolean> { 
-    console.log(jamId);
-    console.log(uId);
-    console.log(kId);
-    return this.http.get<boolean>(this.baseUrl + "/cek/class?uId=" + uId +"&waktu=" + jamId)
+  cekClass(uId:string, jamId:string, kId:string, tanggal:string): Observable<boolean> { 
+    return this.http.get<boolean>(this.baseUrl + "/cek/class?uId=" + uId +"&waktu=" + jamId + "&tanggal="+ tanggal)
   }
 
   getAbsen(uId:string, mpId:string): Observable<boolean> { 

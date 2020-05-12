@@ -55,9 +55,9 @@ export class LoadingComponent implements OnInit {
       this.kondisi=data
       // console.log(this.kondisi);
       if(this.kondisi==true){
-        this.route.navigate(['/enrol'], {queryParams: {uId:this.login.idUser, id: params.id,kId:params.kId, jamid:params.jamid}})
+        this.route.navigate(['/enrol'], {queryParams: {uId:this.login.idUser, id: params.id,kId:params.kId, jamid:params.jamid, date:params.date}})
       }else{
-        this.route.navigate(['/topic-materi'], {queryParams: {uId:this.login.idUser, id: params.id, kId:params.kId, jamid:params.jamid}})
+        this.route.navigate(['/topic-materi'], {queryParams: {uId:this.login.idUser, id: params.id, kId:params.kId, jamid:params.jamid, date:params.date}})
       }
     })
   })

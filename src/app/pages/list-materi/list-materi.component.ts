@@ -16,6 +16,7 @@ export class ListMateriComponent implements OnInit, OnDestroy {
   dtTrigger = new Subject();
   kelas:string
   materi:string
+  spinner2=true
   constructor(private uploadService: AppService, private route: ActivatedRoute,private router: Router, private sessionStorage: StorageService) {
     this.getListUser()
    }
@@ -40,6 +41,7 @@ export class ListMateriComponent implements OnInit, OnDestroy {
         this.dtTrigger.next();
         this.peserta=data
         console.log(data);
+        this.spinner2=false
       })
     })
   }

@@ -40,6 +40,9 @@
         <div class="col-md-12">
           <br>
           <button type="button" class="btn btn-primary" (click)="setUpload()">Upload</button>
+          <div *ngIf="spinner" class="sejajar">  
+            <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+          </div>
           <br><br>
         </div>
         <div class="col-sm-12" [hidden]="!isupdated">  
@@ -72,10 +75,14 @@
                                     <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
                                     <span class="btn-inner--text" (click)="gets(file)">Download</span>
                                   </button>
+                                  
                               </td>
                             </tr>
                           </tbody>
                         </table>
+                        <div *ngIf="spinner2">  
+                          <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+                        </div>
                       </div>
                     </p-tabPanel>
                     <p-tabPanel header="Forum" leftIcon="pi pi-comments">
@@ -88,7 +95,6 @@
                       <div class="clearfix"></div>
                       <br>
                       <button type="button" class="btn btn-primary" (click)="setForum()">Post</button>
-                      
                       <hr>
                       <ul class="media-list" *ngFor="let forum of forums">
                           <li class="media" >

@@ -34,7 +34,7 @@ export class EnrolComponent implements OnInit {
     this.router.queryParams
     .subscribe(params => {
       console.log(params);
-      this.uploadService.cekClass(this.login.idUser, params.jamid, params.kId).subscribe(data=>{
+      this.uploadService.cekClass(this.login.idUser, params.jamid, params.kId, params.date).subscribe(data=>{
         this.kondisi=data
         console.log(data)
         if(this.kondisi==false){
@@ -55,4 +55,9 @@ export class EnrolComponent implements OnInit {
     this.msgs.push({severity:'error', summary:'Error Message', detail:'Cannot enrol, because you have been added in another class'});
   }
 
+  getBack(){
+    this.router.queryParams.subscribe(params=>{
+      this.route.navigate(['/tables'], {queryParams:{id:params.id}})
+    })
+  }
 }

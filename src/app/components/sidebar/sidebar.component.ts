@@ -22,7 +22,7 @@ export const PENGAJAR : RouteInfo[] = [
   { path: '/upload-ujian', title: 'Upload Quiz', icon:'ni ni-cloud-upload-96 text-blue', class: '' },
   { path: '/materi-pengajar', title:'List Uploaded', icon:'ni ni-archive-2 text-blue', class:''},
   { path: '/kelas', title: 'Input Score', icon:'ni ni-trophy text-yellow', class: '' },
-  { path: '/report-menu-pengajar', title: 'Report', icon:'ni ni-paper-diploma text-yellow', class: '' },
+  { path: '/report-menu-pengajar', title: 'Report', icon:'ni ni-book-bookmark text-darker', class: '' },
 ]
 export const PESERTA : RouteInfo[] =[
   //Path Peserta

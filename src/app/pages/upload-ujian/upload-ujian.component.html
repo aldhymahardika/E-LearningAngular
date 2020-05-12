@@ -75,8 +75,6 @@
                 <label>Waktu Selesai</label>
                 <input [disabled]="spinner" type="time" class="form-input" [(ngModel)]="ujian.endTime">
               </div>
-              
-              
               <div class="col-md-12">
                   <label>File</label>
                   <input type="file" class="form-input" id="upload" (change)="selectFile($event)" [(ngModel)]="ujian.file">
@@ -84,14 +82,13 @@
               <div class="col-md-12">
               <br>
               <button type="button" class="btn btn-primary" (click)="uploadUjian()">Upload</button>
-              </div>
-              <div *ngIf="spinner">  
-                <p-progressSpinner></p-progressSpinner>
-              </div>
+              <div *ngIf="spinner" class="sejajar">  
+                <p-progressSpinner [style]="{width: '28px', height: '28px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+              </div>  
+            </div>
               <div class="col-sm-12" [hidden]="!isupdated">  
                 <p-messages [(value)]="msgs"></p-messages>  
               </div> 
-              <!-- </div> -->
             </div>
           </div>
         </div>
