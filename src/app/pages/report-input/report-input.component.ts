@@ -333,11 +333,11 @@ export class ReportInputComponent implements OnInit, OnDestroy {
 
   showSuccess() {
     this.msgs = [];
-    this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+    this.msgs.push({severity:'success', summary:'Sukses', detail:'Berhasil'});
   }
 
   showError() {
     this.msgs = [];
-    this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
+    this.msgs.push({severity:'error', summary:'Error', detail:'Terjadi Kesalahan'});
   }
 }

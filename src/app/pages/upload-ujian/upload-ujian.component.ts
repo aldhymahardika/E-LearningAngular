@@ -156,11 +156,11 @@ export class UploadUjianComponent implements OnInit {
 
   showSuccess() {
     this.msgs = [];
-    this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+    this.msgs.push({severity:'success', summary:'Sukses', detail:'Data Berhasil Diupload'});
   }
 
   showError() {
     this.msgs = [];
-    this.msgs.push({severity:'error', summary:'Error Message', detail:'Validation failed'});
+    this.msgs.push({severity:'error', summary:'Error', detail:'Data Gagal Diupload'});
   }
 }

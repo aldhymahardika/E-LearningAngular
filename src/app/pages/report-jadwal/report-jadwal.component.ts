@@ -30,6 +30,8 @@ export class ReportJadwalComponent implements OnInit {
   getReportAllJadwal(){
     this.uploadService.getReportAllJadwal().subscribe(data=>{
       this.reportAll=data
+      this.jadwal.tgl1 = ""
+      this.jadwal.tgl2 = ""
       console.log(data);
       
     })

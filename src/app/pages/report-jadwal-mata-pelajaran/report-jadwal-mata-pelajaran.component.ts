@@ -49,6 +49,8 @@ export class ReportJadwalMataPelajaranComponent implements OnInit {
   getReportAllMapel(){
     this.adminService.getReportAllMapel().subscribe(data=>{
       this.mapels=data
+      this.dataMateri = null
+      this.dataKelas= null
       console.log(data);
       
     })

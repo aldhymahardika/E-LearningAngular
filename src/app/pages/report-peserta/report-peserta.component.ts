@@ -47,6 +47,8 @@ export class ReportPesertaComponent implements OnInit {
   getReportAllPeserta(){
     this.adminService.getReportAllPeserta().subscribe(data=>{
       this.peserta=data
+      this.dataKelas=null
+      this.dataMateri=null
       console.log(data);
       
     })

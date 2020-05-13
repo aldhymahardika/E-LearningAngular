@@ -63,14 +63,12 @@
                           <thead class="thead-light">
                             <tr style="color: black;" class="bg-th">
                               <th scope="col">Materi</th>
-                              <th scope="col">Waktu</th>
                               <th scope="col"></th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr *ngFor="let file of dataKuis">
                               <td>{{ file.title }}</td>
-                              <td>{{ file.time }}</td>
                               <td class="text-center">
                                 <button class="btn btn-icon btn-3 btn-primary" type="button">
                                     <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>

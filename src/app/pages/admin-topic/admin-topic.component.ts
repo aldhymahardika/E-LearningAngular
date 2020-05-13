@@ -56,6 +56,6 @@ export class AdminTopicComponent implements OnInit {
 
   showSuccess() {
     this.msgs = [];
-	  this.msgs.push({severity:'success', summary:'Success Message', detail:'Order submitted'});
+	  this.msgs.push({severity:'success', summary:'Sukses', detail:'Data Berhasil Ditambah'});
   }
 }

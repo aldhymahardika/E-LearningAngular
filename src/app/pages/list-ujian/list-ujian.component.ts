@@ -71,11 +71,11 @@ export class ListUjianComponent implements OnInit {
   deleteDetailSoal(id:string){
     this.route.queryParams.subscribe(params=>{
       this.uploadService.deleteDetailSoal(id).subscribe(data=>{
-
-      },
-      err=>{
         this.getDetailUjian()
         this.getForum()
+      },
+      err=>{
+        
       })
     })
   }
